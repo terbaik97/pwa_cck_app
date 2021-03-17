@@ -1,14 +1,21 @@
-import { Component , OnInit, OnDestroy } from '@angular/core';
+import { Component , OnInit } from '@angular/core';
 import * as L from 'leaflet';
+
+import { SearchModalComponent } from '../search-modal/search-modal.component';
+import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
-export class Tab1Page implements OnInit, OnDestroy {
+export class Tab1Page implements OnInit {
   map: L.Map;
-  constructor() {}
+  constructor(
+    private modalCtrl: ModalController,
+    private route: Router
+  ) {}
 
   ngOnInit() {}
 
@@ -41,9 +48,11 @@ export class Tab1Page implements OnInit, OnDestroy {
     },0);
   }
 
-  // Remove map when we have multiple map object
-  ngOnDestroy() {
-    // this.map.remove();
-    // document.getElementById("mapId").outerHTML = "";
+  async openModal() {
+    const modal = await this.modalCtrl.create({
+      component: SearchModalComponent
+    });
+
+    await modal.present();
   }
 }

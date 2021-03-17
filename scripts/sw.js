@@ -22,8 +22,8 @@ self.addEventListener("install", function(event) {
         */
 
         return cache.addAll([
-          // '/',
-          // '/manifest.json',
+          '/',
+          '/manifest.json',
           // //205057
           // 'assets/tiles/18/205057/128784.png','assets/tiles/18/205057/128785.png','assets/tiles/18/205057/128786.png','assets/tiles/18/205057/128787.png','assets/tiles/18/205057/128788.png','assets/tiles/18/205057/128789.png','assets/tiles/18/205057/128790.png','assets/tiles/18/205057/128791.png','assets/tiles/18/205057/128792.png','assets/tiles/18/205057/128793.png','assets/tiles/18/205057/128794.png','assets/tiles/18/205057/128795.png','assets/tiles/18/205057/128796.png','assets/tiles/18/205057/128797.png','assets/tiles/18/205057/128798.png','assets/tiles/18/205057/128799.png','assets/tiles/18/205057/128800.png','assets/tiles/18/205057/128801.png','assets/tiles/18/205057/128802.png','assets/tiles/18/205057/128803.png','assets/tiles/18/205057/128804.png','assets/tiles/18/205057/128805.png','assets/tiles/18/205057/128806.png','assets/tiles/18/205057/128807.png','assets/tiles/18/205057/128808.png','assets/tiles/18/205057/128809.png','assets/tiles/18/205057/128810.png',
           // //205058
