@@ -11,3 +11,4 @@ How to run this app :
 "# pwa-maps" 
 "# pwa-um" 
 "# offline-pwa" 
+"# pwa-offline" 
