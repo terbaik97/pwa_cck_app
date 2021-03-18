@@ -55,4 +55,8 @@ export class Tab1Page implements OnInit {
 
     await modal.present();
   }
+
+  nextpage() {
+    this.route.navigate(['/select-campus']);
+  }
 }

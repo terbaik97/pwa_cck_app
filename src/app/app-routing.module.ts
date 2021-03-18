@@ -7,8 +7,8 @@ const routes: Routes = [
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
-    path: 'select-page',
-    loadChildren: () => import('./select-page/select-page.module').then( m => m.SelectPagePageModule)
+    path: 'select-campus',
+    loadChildren: () => import('./select-campus/select-campus.module').then( m => m.SelectCampusPageModule)
   }
 ];
 @NgModule({

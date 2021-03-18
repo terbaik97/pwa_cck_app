@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { SelectPagePageRoutingModule } from './select-page-routing.module';
+import { SelectCampusPageRoutingModule } from './select-campus-routing.module';
 
-import { SelectPagePage } from './select-page.page';
+import { SelectCampusPage } from './select-campus.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SelectPagePageRoutingModule
+    SelectCampusPageRoutingModule
   ],
-  declarations: [SelectPagePage]
+  declarations: [SelectCampusPage]
 })
-export class SelectPagePageModule {}
+export class SelectCampusPageModule {}
