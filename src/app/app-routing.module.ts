@@ -9,6 +9,10 @@ const routes: Routes = [
   {
     path: 'select-campus',
     loadChildren: () => import('./select-campus/select-campus.module').then( m => m.SelectCampusPageModule)
+  },
+  {
+    path: 'poi-info',
+    loadChildren: () => import('./poi-info/poi-info.module').then( m => m.POIInfoPageModule)
   }
 ];
 @NgModule({
