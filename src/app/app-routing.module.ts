@@ -13,6 +13,10 @@ const routes: Routes = [
   {
     path: 'poi-info',
     loadChildren: () => import('./poi-info/poi-info.module').then( m => m.POIInfoPageModule)
+  },
+  {
+    path: 'history',
+    loadChildren: () => import('./history/history.module').then( m => m.HistoryPageModule)
   }
 ];
 @NgModule({
