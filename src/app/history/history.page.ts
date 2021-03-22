@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-history',
@@ -12,9 +13,20 @@ export class HistoryPage implements OnInit {
     loop:true,
     spaceBetween:10
   };
-  constructor() { }
+  constructor(private route: Router) { }
 
   ngOnInit() {
   }
 
+  buttonEdit() {
+    this.route.navigate(['/edit']);
+  }
+
+  buttonReport() {
+    this.route.navigate(['/poi-report']);
+  }
+
+  buttonInfo(){
+    this.route.navigate(['/poi-info']);
+  }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-poi-info',
@@ -12,9 +13,20 @@ export class POIInfoPage implements OnInit {
     loop:true,
     spaceBetween:10
   };
-  constructor() { }
+  constructor(private route: Router) { }
 
   ngOnInit() {
   }
 
+  buttonEdit() {
+    this.route.navigate(['/edit']);
+  }
+
+  buttonReport() {
+    this.route.navigate(['/poi-report']);
+  }
+
+  buttonHistory(){
+    this.route.navigate(['/history']);
+  }
 }

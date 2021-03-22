@@ -32,10 +32,23 @@
   <div id="button-info-history" class="ion-padding">
     <ion-button class="button-info">Info</ion-button>
 
-    <ion-button class="button-history">History</ion-button>
+    <ion-button class="button-history" (click)="buttonHistory()">History</ion-button>
   </div>
 
-  <div class="ion-padding">
+  <ion-toolbar>
+    <div class="info-paragraph">
+      No Info
+    </div>
+  </ion-toolbar>
 
-  </div>
 </ion-content>
+
+<ion-footer >
+  <ion-toolbar class="footerPOI">
+    <div id="button-info-history" class="ion-padding">
+      <ion-button class="button-info" (click)="buttonEdit()">Edit</ion-button>
+
+      <ion-button class="button-history" (click)="buttonReport()">Report</ion-button>
+    </div>
+  </ion-toolbar>
+</ion-footer>

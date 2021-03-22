@@ -27,10 +27,29 @@ ion-card {
 }
 
 .button-info {
-  padding-right: 10%;
-  font-size: 150%;
+  width: 160px;
+  height: 60px;
+  margin-right: 100px;
+  --vertical-align: middle;
+  --padding-start: 10px;
+  --padding-end: 10px;
+  font-size: 130%;
 }
 
 .button-history {
-  font-size: 150%;
+  width: 160px;
+  height: 60px;
+  margin-left: 100px;
+  --vertical-align: middle;
+  --padding-start: 10px;
+  --padding-end: 10px;
+  font-size: 130%;
+}
+
+.info-paragraph {
+  text-align: center;
+}
+
+.footerPOI {
+  --background: #54d61c;
 }
