@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { FormBuilder } from '@angular/forms';
 @Component({
   selector: 'app-poi-report',
   templateUrl: './poi-report.page.html',
@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PoiReportPage implements OnInit {
 
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
+
+  reportForm = this.fb.group({
+    poiName: [''],
+    reportType: [''],
+    comments: ['']
+  });
 
   ngOnInit() {
   }
 
+  submit(){
+    console.log(this.reportForm);
+  }
 }

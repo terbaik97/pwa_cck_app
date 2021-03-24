@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { PoiReportPageRoutingModule } from './poi-report-routing.module';
@@ -13,7 +13,8 @@ import { PoiReportPage } from './poi-report.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    PoiReportPageRoutingModule
+    PoiReportPageRoutingModule,
+    ReactiveFormsModule
   ],
   declarations: [PoiReportPage]
 })

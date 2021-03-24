@@ -1,9 +1,36 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>poi-report</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/poi-info"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Report POI</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <div class="ion-padding">
+  <form [formGroup] = "reportForm" (ngSubmit)="submit()">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">POI Name</ion-label>
+        <ion-input formControlName="poiName" inputmode="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Report Type</ion-label>
+        <ion-select formControlName="reportType" value="brown" okText="Okay" cancelText="Dismiss">
+          <ion-select-option value="brown">Brown</ion-select-option>
+          <ion-select-option value="blonde">Blonde</ion-select-option>
+          <ion-select-option value="black">Black</ion-select-option>
+          <ion-select-option value="red">Red</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+       <ion-label position="floating">Comments</ion-label>
+       <ion-textarea formControlName="comments" placeholder="Enter more information here..."></ion-textarea>
+      </ion-item>
+      <ion-button [disabled]="!reportForm.valid" type="submit" expand="block">Send</ion-button>
+    </ion-list>
+  </form>
+  </div>
+  {{ reportForm.value | json}}
 </ion-content>
