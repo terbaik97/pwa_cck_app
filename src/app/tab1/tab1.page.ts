@@ -1,6 +1,9 @@
 import { Component , OnInit } from '@angular/core';
 import * as L from 'leaflet';
-
+//imports for showing leaflet marker
+import "leaflet/dist/images/marker-shadow.png";
+import "leaflet/dist/images/marker-icon.png";
+import "leaflet/dist/images/marker-icon-2x.png";
 import { SearchModalComponent } from '../search-modal/search-modal.component';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
@@ -43,6 +46,8 @@ export class Tab1Page implements OnInit {
      });
     layer.addTo(this.map);
 
+    this.map.on('click', this.onMapClick, this);
+
     setTimeout(() => {
       this.map.invalidateSize();
     },0);
@@ -58,5 +63,22 @@ export class Tab1Page implements OnInit {
 
   nextpage() {
     this.route.navigate(['/select-campus']);
+  }
+
+  onMapClick(e) {
+    let POIMarker = L.marker(e.latlng);
+    POIMarker.addTo(this.map);
+
+    //Call function to see lat and longitude
+    POIlatlng();
+
+    //function when the marker is placed down
+    function POIlatlng(){
+      let lat = e.latlng.lat;
+      let lon = e.latlng.lng;
+
+      console.log('lat: ', lat);
+      console.log('lon: ', lon);
+    }
   }
 }
