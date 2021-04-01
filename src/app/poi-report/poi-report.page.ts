@@ -6,10 +6,10 @@ import { FormGroup,FormBuilder } from '@angular/forms';
   styleUrls: ['./poi-report.page.scss'],
 })
 export class PoiReportPage implements OnInit {
-  public form_one: FormGroup;
-  constructor(private fb: FormBuilder) { }
+  public reportform: FormGroup;
+  constructor(private formbuilder: FormBuilder) { }
 
-  reportForm = this.fb.group({
+  reportForm = this.formbuilder.group({
     poiName: [''],
     reportType: [''],
     comments: ['']
@@ -27,6 +27,6 @@ export class PoiReportPage implements OnInit {
 
 
   submit(){
-    console.log(this.form_one);
+    console.log(this.reportForm);
   }
 }

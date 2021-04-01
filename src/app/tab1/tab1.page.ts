@@ -7,6 +7,7 @@ import "leaflet/dist/images/marker-icon-2x.png";
 import { SearchModalComponent } from '../search-modal/search-modal.component';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1',
@@ -14,16 +15,25 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page implements OnInit {
+  // poiItems:[];
   map: L.Map;
   constructor(
     private modalCtrl: ModalController,
-    private route: Router
+    private route: Router,
+    private alertCtrl: AlertController
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+
+  }
+
+  // refresh() {
+  //   this.poiItems = JSON.parse(localStorage.getItem("addpoiData"));
+  //   console.log(this.poiItems);
+  // }
 
   ionViewDidEnter() {
-    console.log(this.map);
+    // console.log(this.map);
     if(this.map) {
       this.map.remove();
     }
@@ -46,7 +56,37 @@ export class Tab1Page implements OnInit {
      });
     layer.addTo(this.map);
 
-    this.map.on('click', this.onMapClick, this);
+     //marker go to poi-info
+     const markPoint = L.marker([3.1209, 101.6538], {myCustomId: 1001});
+     console.log(markPoint);
+     console.log(markPoint.options.myCustomId);
+     markPoint.bindPopup('<p>UM is HERE!!</p>');
+     markPoint.on('click', onClick, this);
+     //function for add marker id to db
+    //  addStatic();
+    // function addStatic() {
+    //   if (this.poiItems == null) {
+    //     localStorage.setItem("addpoiData", JSON.stringify([{ "poiID": markPoint.options.myCustomId }]))
+    //     this.refresh();
+    //   }else {
+    //     this.poiItems.push(
+    //       {
+    //         poiID: markPoint.options.myCustomId
+    //       }
+    //     );
+    //     localStorage.setItem("addpoiData", JSON.stringify(this.poiItems));
+    //   }
+    // }
+
+    //function when click poi, go to page info
+    function onClick() {
+      // alert(this.getLatLng());
+      this.route.navigate(['/poi-info']);
+    }
+
+    markPoint.addTo(this.map);
+    //When user click on map, pop up will appear.
+    this.map.on('click', this.handleButtonClick, this);
 
     setTimeout(() => {
       this.map.invalidateSize();
@@ -80,5 +120,29 @@ export class Tab1Page implements OnInit {
       console.log('lat: ', lat);
       console.log('lon: ', lon);
     }
+  }
+
+  async  handleButtonClick(e) {
+    console.log(e.latlng);
+    const alert = await this.alertCtrl.create({
+      header: 'Create POI here?',
+      message: '',
+      // buttons: ['No', 'Yes']
+      buttons: [
+                {
+                  text: 'No'
+                },
+                {
+                  text: 'Yes',
+                  handler: data => {
+                      // console.log(JSON.stringify(data)); //to see the object
+                      // console.log(data);
+                      this.onMapClick(e);
+                  }
+                }
+      ]
+    });
+
+    await alert.present();
   }
 }
