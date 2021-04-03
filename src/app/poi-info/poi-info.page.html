@@ -1,0 +1,60 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/select-campus"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Info</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-slides [options]="option" class="ion-margin-top">
+    <ion-slide>
+      <ion-card>
+        <img src="assets/slides/01.jpg">
+      </ion-card>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-card>
+        <img src="assets/slides/02.jpg">
+      </ion-card>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-card>
+        <img src="assets/slides/03.jpg">
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+
+  <div id="button-info-history" class="ion-padding">
+    <ion-button class="button-info">Info</ion-button>
+
+    <ion-button class="button-history" (click)="buttonHistory()">History</ion-button>
+  </div>
+
+
+    <div class="info-paragraph">
+
+      <div *ngFor="let item of poiInfo">
+        <p class="ion-text-wrap">ID : {{ item.poiID }}</p><br>
+        <p class="ion-text-wrap">Latitude : {{ item.latitude }}</p><br>
+        <p class="ion-text-wrap">Longitude : {{ item.longitude }}</p><br>
+      </div>
+
+    </div>
+
+
+</ion-content>
+
+<ion-footer >
+  <ion-toolbar class="footerPOI">
+    <div id="button-info-history" class="ion-padding">
+      <ion-button class="button-info" (click)="buttonEdit()">Edit</ion-button>
+
+      <ion-button class="button-history" (click)="buttonReport()">Report</ion-button>
+    </div>
+  </ion-toolbar>
+</ion-footer>

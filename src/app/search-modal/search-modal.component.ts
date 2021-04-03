@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
 @Component({
@@ -6,7 +6,7 @@ import { ModalController } from '@ionic/angular';
   templateUrl: './search-modal.component.html',
   styleUrls: ['./search-modal.component.scss'],
 })
-export class SearchModalComponent {
+export class SearchModalComponent implements OnInit {
 
   pOIData: any = [];
   noResult=false;
@@ -14,6 +14,13 @@ export class SearchModalComponent {
   constructor(private modalCtrl: ModalController) {
     this.initializePOIData();
    }
+
+  ngOnInit() {
+   console.log(this.FilterPOIData);
+   if(this.FilterPOIData){
+     this.noResult = false;
+   }
+  }
 
    FilterPOIData(data:any){
     this.initializePOIData();
@@ -24,14 +31,16 @@ export class SearchModalComponent {
       })
       if (this.pOIData.length===0){
         this.noResult = true;
-        console.log(this.noResult);
+        // console.log(this.noResult);
       }
-      else{
+      if (this.pOIData.length!==0){
         this.noResult = false;
-        console.log(this.noResult);
+        // console.log(this.noResult);
+      }
+      if(data.target.value.length ===1 ){
+        this.noResult = false;
       }
     }
-
    }
 
   dismissModal(){
