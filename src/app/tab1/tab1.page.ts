@@ -16,9 +16,12 @@ import { AlertController } from '@ionic/angular';
 })
 export class Tab1Page implements OnInit {
   public poiItems: any[] = [];
-  public result: any[] = [];
+  public resultID: any[] = [];
+  public resultLat: any[] = [];
+  public resultLng: any[] = [];
+  public newPOIMarker:any;
+  public markerPoints: any;
   map: L.Map;
-  public markerPoint:any;
   constructor(
     private modalCtrl: ModalController,
     private route: Router,
@@ -27,15 +30,18 @@ export class Tab1Page implements OnInit {
 
   ngOnInit() {
     this.refresh();
+    //Store first POI Data
+    if (this.poiItems == null) {
+      localStorage.setItem("addpoiData", JSON.stringify([{ "poiID": '', "latitude": '', "longitude": '' }]))
+      this.refresh();
+    }
   }
 
   refresh() {
     this.poiItems = JSON.parse(localStorage.getItem("addpoiData"));
-    console.log(this.poiItems);
   }
 
   ionViewDidEnter() {
-    // console.log(this.map);
     if(this.map) {
       this.map.remove();
     }
@@ -53,56 +59,23 @@ export class Tab1Page implements OnInit {
     var layer = L.tileLayer('assets/tiles/{z}/{x}/{y}.png', {
       maxNativeZoom: 18,
       minNativeZoom: 18,
-      // useCache: true,
-	    // crossOrigin: true
      });
     layer.addTo(this.map);
 
-     //marker go to poi-info
-    this.markerPoint = L.marker([3.1209, 101.6538], {myCustomId: 1001});
-     console.log(this.markerPoint);
-     console.log(this.markerPoint.options.myCustomId);
-    //  this.markerPoint.bindPopup('<p>UM is HERE!!</p>');
-    //  this.markerPoint.on('click', onClick, this);
-    //  this.markerPoint.addTo(this.map);
-     //function for add marker id to db
+     //call this function to retrieve id, longitude and latitude
+     this.retrievePOIdata();
 
-    //call this function to store POI data in db
-     this.addStatic();
-     this.markerPoint = L.marker([]);
-     L.featureGroup([this.markerPoint])
-        .bindPopup('Hello world!')
-        .on('click', function() { alert('Clicked on a group!'); })
-        .addTo(this.map);
-
-
-    //function when click poi, go to page info
-    function onClick() {
-      console.log(this.poiItems);
-      // console.log(Object.keys(this.poiItems).map((key) => [Number(key), this.poiItems[key]]));
-      // console.log(this.poiItems[0]);
-      // console.log(this.poiItems[0].poiID);
-      // console.log(this.markerPoint.options.myCustomId);
-
-      console.log(this.poiItems.length);
-      //pull out all the poi ID
-      for (let i = 0; i < this.poiItems.length; i++) {
-        this.result.push(this.poiItems[i].poiID);
-        console.log(this.result);
-      }
-      //check if the current POI is same in the db
-      console.log(Array.isArray(this.result));
-      console.log(this.result.includes(this.markerPoint.options.myCustomId));
-      let navigationExtra: NavigationExtras = {
-        state: {
-          index: this.result
-        }
-      }
-      this.route.navigate(['/poi-info'], navigationExtra);
+    //loop is for display all marker
+    for (let i = 0; i < this.poiItems.length; i++) {
+      this.markerPoints = L.marker([this.resultLat[i], this.resultLng[i]]);
+      this.markerPoints.bindPopup('<p>UM is HERE!!</p>');
+      this.markerPoints.on('click', this.onClick, this);
+      this.markerPoints.addTo(this.map);
+      this.markerPoints.ID=i;
     }
 
     //When user click on map, pop up will appear.
-    this.map.on('click', this.handleButtonClick, this);
+    this.map.on('click', this.modalPopupClick, this);
 
     setTimeout(() => {
       this.map.invalidateSize();
@@ -122,29 +95,40 @@ export class Tab1Page implements OnInit {
   }
 
   //function create new marker
-  onMapClick(e) {
-    let POIMarker = L.marker(e.latlng);
-    POIMarker.addTo(this.map);
+  newPOIClick(e) {
+    this.newPOIMarker = L.marker(e.latlng);
+    this.newPOIMarker.bindPopup('<p>UM is HERE!!</p>');
+    this.newPOIMarker.on('click', this.onClick, this);
+    this.newPOIMarker.addTo(this.map);
+
+    //dummy id for putting new id
+    let dummyID;
+
+    for (let i = 0; i <= this.poiItems.length; i++) {
+      dummyID=i;
+    }
+
+    //call this function to store new POI created in db
+    this.addStatic(this.newPOIMarker.ID=dummyID);
 
     //Call function to see lat and longitude
-    POIlatlng();
+    // POIlatlng();
 
     //function when the marker is placed down
-    function POIlatlng(){
-      let lat = e.latlng.lat;
-      let lon = e.latlng.lng;
+    // function POIlatlng(){
+    //   let lat = e.latlng.lat;
+    //   let lon = e.latlng.lng;
 
-      console.log('lat: ', lat);
-      console.log('lon: ', lon);
-    }
+    //   console.log('lat: ', lat);
+    //   console.log('lon: ', lon);
+    // }
   }
 
-  async  handleButtonClick(e) {
-    console.log(e.latlng);
+  //When user click this, it will popup modal
+  async  modalPopupClick(e) {
     const alert = await this.alertCtrl.create({
-      header: 'Create POI here?',
-      message: '',
-      // buttons: ['No', 'Yes']
+      header: 'Create POI here',
+      message: 'Confirm?',
       buttons: [
                 {
                   text: 'No'
@@ -152,9 +136,7 @@ export class Tab1Page implements OnInit {
                 {
                   text: 'Yes',
                   handler: data => {
-                      // console.log(JSON.stringify(data)); //to see the object
-                      // console.log(data);
-                      this.onMapClick(e);
+                      this.newPOIClick(e);
                   }
                 }
       ]
@@ -163,18 +145,41 @@ export class Tab1Page implements OnInit {
     await alert.present();
   }
 
-   addStatic() {
-    if (this.poiItems == null) {
-      localStorage.setItem("addpoiData", JSON.stringify([{ "poiID": this.markerPoint.options.myCustomId, "latitude": this.markerPoint._latlng.lat, "longitude": this.markerPoint._latlng.lng }]))
-      this.refresh();
+  addStatic(id) {
+     //Store other POI Data
+    if (this.poiItems !== null && this.poiItems.length>0){
+      this.poiItems.push(
+        {
+          poiID: id,
+          latitude: this.newPOIMarker._latlng.lat,
+          longitude: this.newPOIMarker._latlng.lng
+        }
+      );
+      localStorage.setItem("addpoiData", JSON.stringify(this.poiItems));
     }
-    // if (this.poiItems !== null){
-    //   this.poiItems.push(
-    //     {
-    //       poiID: this.markerPoint.options.myCustomId
-    //     }
-    //   );
-    //   localStorage.setItem("addpoiData", JSON.stringify(this.poiItems));
-    // }
+
+  }
+
+  //Retreive and Store all POI id,latitude and logitude in variables
+  retrievePOIdata(){
+    if(this.poiItems.length !== null){
+      for (let i = 0; i < this.poiItems.length; i++) {
+        this.resultID.push(this.poiItems[i].poiID);
+        this.resultLat.push(this.poiItems[i].latitude);
+        this.resultLng.push(this.poiItems[i].longitude);
+      }
+    }
+  }
+
+  //function when click poi, go to page info
+  onClick(e) {
+
+    //Go to page poi based on ID of each marker
+    let navigationExtra: NavigationExtras = {
+      state: {
+        index: e.target.ID
+      }
+    }
+    this.route.navigate(['/poi-info'], navigationExtra);
   }
 }

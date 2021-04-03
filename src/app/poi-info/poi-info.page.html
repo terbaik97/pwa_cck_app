@@ -35,11 +35,17 @@
     <ion-button class="button-history" (click)="buttonHistory()">History</ion-button>
   </div>
 
-  <ion-toolbar>
+
     <div class="info-paragraph">
-      No Info
+
+      <div *ngFor="let item of poiInfo">
+        <p class="ion-text-wrap">ID : {{ item.poiID }}</p><br>
+        <p class="ion-text-wrap">Latitude : {{ item.latitude }}</p><br>
+        <p class="ion-text-wrap">Longitude : {{ item.longitude }}</p><br>
+      </div>
+
     </div>
-  </ion-toolbar>
+
 
 </ion-content>
 

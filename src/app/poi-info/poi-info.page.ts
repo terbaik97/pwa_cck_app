@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+export class PoiInfo {
+  poiID: any;
+  latitude: any;
+  longitude: any;
+}
 
 @Component({
   selector: 'app-poi-info',
@@ -13,9 +18,34 @@ export class POIInfoPage implements OnInit {
     loop:true,
     spaceBetween:10
   };
-  constructor(private route: Router) { }
+
+  public poi: PoiInfo[] = [];
+  public poiData: any[];
+  public index: any;
+  public poiInfo = [];
+
+  constructor(private route: Router,
+    private activatedRoute: ActivatedRoute,) {
+      this.activatedRoute.queryParams.subscribe(params => {
+        if (this.route.getCurrentNavigation().extras.state) {
+          this.index = this.route.getCurrentNavigation().extras.state.index;
+          this.poiData = JSON.parse(localStorage.getItem("addpoiData"));
+          this.poi = this.poiData[this.index];
+        }
+      })
+     }
 
   ngOnInit() {
+
+    let result = Object.values(this.poi);
+    this.poiInfo = [
+      {
+        poiID: result[0],
+        latitude: result[1],
+        longitude: result[2]
+      }
+    ];
+
   }
 
   buttonEdit() {
