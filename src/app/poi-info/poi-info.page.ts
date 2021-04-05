@@ -23,7 +23,7 @@ export class POIInfoPage implements OnInit {
   public poiData: any[];
   public index: any;
   public poiInfo = [];
-
+  id: string
   constructor(private route: Router,
     private activatedRoute: ActivatedRoute,) {
       this.activatedRoute.queryParams.subscribe(params => {
@@ -38,6 +38,7 @@ export class POIInfoPage implements OnInit {
   ngOnInit() {
 
     let result = Object.values(this.poi);
+    // store data for id , coordinate x and 
     this.poiInfo = [
       {
         poiID: result[0],
@@ -45,11 +46,15 @@ export class POIInfoPage implements OnInit {
         longitude: result[2]
       }
     ];
+   console.log(this.poiInfo);
+
+
 
   }
 
   buttonEdit() {
-    this.route.navigate(['/edit']);
+    let data = this.poiInfo
+    this.route.navigate(['/edit',JSON.stringify(this.poiInfo)]);
   }
 
   buttonReport() {
