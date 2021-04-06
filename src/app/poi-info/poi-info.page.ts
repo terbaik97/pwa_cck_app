@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 export class PoiInfo {
   poiID: any;
-  latitude: any;
-  longitude: any;
+  x: any;
+  y: any;
 }
 
 @Component({
@@ -41,8 +41,8 @@ export class POIInfoPage implements OnInit {
     this.poiInfo = [
       {
         poiID: result[0],
-        latitude: result[1],
-        longitude: result[2]
+        x: result[1],
+        y: result[2]
       }
     ];
 
@@ -50,7 +50,15 @@ export class POIInfoPage implements OnInit {
 
   buttonEdit() {
     this.route.navigate(['/edit']);
-  }
+        //Go to page poi based on ID of each marker
+        let navigationExtra: NavigationExtras = {
+          state: {
+            index: this.index
+          }
+        }
+        this.route.navigate(['/edit'], navigationExtra);
+      }
+
 
   buttonReport() {
     this.route.navigate(['/poi-report']);

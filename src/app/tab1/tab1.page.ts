@@ -32,7 +32,7 @@ export class Tab1Page implements OnInit {
     this.refresh();
     //Store first POI Data
     if (this.poiItems == null) {
-      localStorage.setItem("addpoiData", JSON.stringify([{ "poiID": '', "latitude": '', "longitude": '' }]))
+      localStorage.setItem("addpoiData", JSON.stringify([{ "poiID": '', "x": '', "y": '' }]))
       this.refresh();
     }
   }
@@ -151,8 +151,8 @@ export class Tab1Page implements OnInit {
       this.poiItems.push(
         {
           poiID: id,
-          latitude: this.newPOIMarker._latlng.lat,
-          longitude: this.newPOIMarker._latlng.lng
+          x: this.newPOIMarker._latlng.lat,
+          y: this.newPOIMarker._latlng.lng
         }
       );
       localStorage.setItem("addpoiData", JSON.stringify(this.poiItems));
@@ -165,8 +165,8 @@ export class Tab1Page implements OnInit {
     if(this.poiItems.length !== null){
       for (let i = 0; i < this.poiItems.length; i++) {
         this.resultID.push(this.poiItems[i].poiID);
-        this.resultLat.push(this.poiItems[i].latitude);
-        this.resultLng.push(this.poiItems[i].longitude);
+        this.resultLat.push(this.poiItems[i].x);
+        this.resultLng.push(this.poiItems[i].y);
       }
     }
   }

@@ -10,17 +10,24 @@
 <ion-content>
   <ion-grid class="ion-no-margin">
     <!-- form one here -->
-    <ion-row *ngIf="reportForm">
+   <ion-row *ngIf="editForm">
       <ion-col size="12" class="ion-no-margin ion-no-padding title">
       </ion-col>
       <ion-col size="12" class="form">
-        <form [formGroup]="reportForm" (ngSubmit)="submit(reportForm.value)" class="ion-margin-top">
+        <form [formGroup]="editForm" (ngSubmit)="submit(editForm.value)" class="ion-margin-top">
+         <!-- <ion-item lines="none">
+            <ion-label position="stacked" color="accent">Category <span>*</span></ion-label>
+            <ion-select formControlName="category" value="fraud" okText="Okay" cancelText="Dismiss">
+              <ion-select-option value="library">Library</ion-select-option>
+              <ion-select-option value="faculty">Faculty</ion-select-option>
+            </ion-select>
+          </ion-item>  -->
           <ion-item lines="none">
-            <ion-label position="stacked" color="accent">POI Name <span>*</span></ion-label>
-            <ion-input formControlName="poiName" type="text" placeholder="Enter your first name"></ion-input>
+            <ion-label position="stacked" color="accent">Name <span>*</span></ion-label>
+            <ion-input formControlName="poiID" type="text" placeholder="Enter your first name"></ion-input>
           </ion-item>
           <!-- Error messages
-          <div class="validation-errors">
+          <div class="validation-errors">g
             <ng-container *ngFor="let validation of form_one_validation_messages.firstName">
               <div class="error-message"
                 *ngIf="form_one.get('firstName').hasError(validation.type) && (form_one.get('firstName').dirty || form_one.get('firstName').touched)">
@@ -28,21 +35,10 @@
               </div>
             </ng-container>
           </div> -->
-          <ion-item lines="none">
-            <ion-label position="stacked" color="accent">Report Type</ion-label>
-            <ion-select formControlName="reportType" value="fraud" okText="Okay" cancelText="Dismiss">
-              <ion-select-option value="fraud">Fraud</ion-select-option>
-              <ion-select-option value="abuse">Abuse</ion-select-option>
-            </ion-select>
-          </ion-item>
-          <ion-item lines="none">
-            <ion-label position="stacked" color="accent">Comments</ion-label>
-            <ion-textarea formControlName="comments" placeholder="Enter more information here..."></ion-textarea>
-           </ion-item>
-          <ion-button class="ion-float-start" type="submit" >Send</ion-button>
+          <ion-button class="ion-float-end" type="submit" [disabled]="!editForm.valid">Submit</ion-button>
         </form>
       </ion-col>
     </ion-row>
   </ion-grid>
-  {{ reportForm.value | json}}
+  {{ editForm.value | json}}
 </ion-content>

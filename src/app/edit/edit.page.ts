@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+export class POIData {
+  // category: string;
+  // poiName: string;
+  poiID: string;
+}
 
 @Component({
   selector: 'app-edit',
@@ -7,37 +13,48 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./edit.page.scss'],
 })
 export class EditPage implements OnInit {
+  public editForm: FormGroup;
+  public poi: POIData;
   public poiData: any[];
-  public storeData: any[] = [];
-  public formOneValue: any;
-  constructor(private fb: FormBuilder) { }
+  public index: any;
 
-  reportForm = this.fb.group({
-    poiName: [''],
-    reportType: [''],
-    comments: ['']
-  });
+  constructor(
+    private formBuilder: FormBuilder,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    ) {
+      this.activatedRoute.queryParams.subscribe(params => {
+        if (this.router.getCurrentNavigation().extras.state) {
+          this.index = this.router.getCurrentNavigation().extras.state.index;
+          this.poiData = JSON.parse(localStorage.getItem("addpoiData"));
+          this.poi = this.poiData[this.index];
+        }
+      })
+  }
 
   ngOnInit() {
+    this.editForm = this.formBuilder.group({
+      poiID: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.maxLength(30),
+      ])),
+    });
+
     this.bindData();
   }
 
-  submit(value: any){
-    console.log(this.reportForm);
-    this.formOneValue = value;
-    // let local = localStorage.setItem("POI-data", JSON.stringify(this.poiData));
-    let employee = Object.assign(this.formOneValue, value);
-    console.log(employee);
-    this.storeData.push(employee);
-    let local = localStorage.setItem("poiData", JSON.stringify(this.storeData));
-    console.log(local);
+  bindData() {
+
+    this.editForm = this.formBuilder.group({
+      poiID: [this.poi?.poiID],
+    });
   }
 
-  bindData() {
-    // this.reportForm = this.fb.group({
-    //   poiName: [this.employee?.firstName],
-    //   reportType: [this.employee?.lastName],
-    //   comments: [this.employee?.gender],
-    // });
+  submit(value: any) {
+
+    let poi = value;
+    this.poiData[this.index] = poi;
+    localStorage.setItem("addpoiData", JSON.stringify(this.poiData));
+    // this.router.navigate(['./home'], { replaceUrl: true });
   }
 }
