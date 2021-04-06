@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PoiService } from '../api/poi.service';
 
 @Component({
@@ -9,11 +9,9 @@ import { PoiService } from '../api/poi.service';
   styleUrls: ['./edit.page.scss'],
 })
 export class EditPage implements OnInit {
-  public poiData: any[];
+  
  
   public categoryData: any;
-
-
   public requiredInfo: FormGroup;
   public additionalInfo: FormGroup;
   public submitAttempt: boolean = false;
@@ -22,13 +20,26 @@ export class EditPage implements OnInit {
   latitude: any;
   longitude: any;
   public poiInfo: any;
-  constructor(private formBuilder: FormBuilder, private _poiService: PoiService, private activatedRoute: ActivatedRoute) {
+  public editForm: FormGroup;
+  public poi: any;
+  public poiData: any[];
+  public index: any;
+  constructor(private formBuilder: FormBuilder, private _poiService: PoiService, private activatedRoute: ActivatedRoute,
+    private router: Router,) {
+    
+    
+    this.activatedRoute.queryParams.subscribe(params => {
+      if (this.router.getCurrentNavigation().extras.state) {
+        this.index = this.router.getCurrentNavigation().extras.state.index;
+        this.poiData = JSON.parse(localStorage.getItem("addpoiData"));
+        this.poi = this.poiData[this.index];
+      }
+    })
 
     this.requiredInfo = formBuilder.group({
       placeName: ['', Validators.required],
       categoryName: [''],
-      // latitude: [],
-      // longitude: []
+     
       });
 
 
@@ -52,16 +63,14 @@ export class EditPage implements OnInit {
       console.log(this.categoryData[0]["category_name"]);
       })
     
-      
-      this.poiInfo = this.activatedRoute.snapshot.paramMap.get("name")
-      // console.log(this.poiInfo.split(",")[1])
-      this.latitude = this.poiInfo.split(",")[1]
-      this.longitude = this.poiInfo.split(",")[2]
-      console.log(this.latitude);
-      console.log(this.longitude);
+      console.log("check data")
+      console.log(this.poi.latitude);
+     
     
 
   }
+  
+ 
 
  
   addControl(){

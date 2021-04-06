@@ -186,4 +186,6 @@ export class Tab1Page implements OnInit {
     // console.log(this.resultID);
     this.route.navigate(['/poi-info'], navigationExtra);
   }
+
+ 
 }
