@@ -40,6 +40,7 @@ export class EditPage implements OnInit {
       }
     );
 
+    
    }
 
   
@@ -75,20 +76,21 @@ export class EditPage implements OnInit {
   
   save(){
         
-        
         this.submitAttempt = true;
-
         if(!this.requiredInfo.valid){
          alert("Name required")
         } 
-      
         else {
           console.log("success!")
           // console.log(this.requiredInfo.value);
           // console.log(this.additionalInfo.value);
           this.poiData =[].concat(this.requiredInfo.value,this.additionalInfo.value);
           console.log(this.poiData);
+          let message = this._poiService.saveData(this.poiData);
+          console.log(message);
         }
       }
+
+      
 }
 

@@ -25,7 +25,15 @@ const routes: Routes = [
   {
     path: 'poi-report/:name',
     loadChildren: () => import('./poi-report/poi-report.module').then( m => m.PoiReportPageModule)
+  },  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
   }
+
 ];
 @NgModule({
   imports: [
