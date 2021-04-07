@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-export class POIData {
-  // category: string;
-  // poiName: string;
-  poiID: string;
-}
+import { PoiService } from '../api/poi.service';
 
 @Component({
   selector: 'app-edit',
@@ -13,48 +9,96 @@ export class POIData {
   styleUrls: ['./edit.page.scss'],
 })
 export class EditPage implements OnInit {
+
+
+  public categoryData: any;
+  public requiredInfo: FormGroup;
+  public additionalInfo: FormGroup;
+  public submitAttempt: boolean = false;
+  private playerCount: number = 1;
+  id: string
+  latitude: any;
+  longitude: any;
+  public poiInfo: any;
   public editForm: FormGroup;
-  public poi: POIData;
+  public poi: any;
   public poiData: any[];
   public index: any;
+  constructor(private formBuilder: FormBuilder, private _poiService: PoiService, private activatedRoute: ActivatedRoute,
+    private router: Router,) {
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
-    ) {
-      this.activatedRoute.queryParams.subscribe(params => {
-        if (this.router.getCurrentNavigation().extras.state) {
-          this.index = this.router.getCurrentNavigation().extras.state.index;
-          this.poiData = JSON.parse(localStorage.getItem("addpoiData"));
-          this.poi = this.poiData[this.index];
-        }
-      })
-  }
+
+    this.activatedRoute.queryParams.subscribe(params => {
+      if (this.router.getCurrentNavigation().extras.state) {
+        this.index = this.router.getCurrentNavigation().extras.state.index;
+        this.poiData = JSON.parse(localStorage.getItem("addpoiData"));
+        this.poi = this.poiData[this.index];
+      }
+    })
+
+    this.requiredInfo = formBuilder.group({
+      placeName: ['', Validators.required],
+      categoryName: [''],
+
+      });
+
+
+    this.additionalInfo = formBuilder.group(
+
+      {
+      player1: ['', Validators.required],
+
+      }
+    );
+
+
+   }
+
+
 
   ngOnInit() {
-    this.editForm = this.formBuilder.group({
-      poiID: new FormControl('', Validators.compose([
-        Validators.required,
-        Validators.maxLength(30),
-      ])),
-    });
+     this._poiService.getCategories().subscribe(data => {
+      this.categoryData = data;
+      console.log(this.categoryData);
+      console.log(this.categoryData[0]["category_name"]);
+      })
 
-    this.bindData();
+      console.log("check data")
+      console.log(this.poi.latitude);
+
+
+
   }
 
-  bindData() {
 
-    this.editForm = this.formBuilder.group({
-      poiID: [this.poi?.poiID],
-    });
+
+
+  addControl(){
+    this.playerCount++;
+    this.additionalInfo.addControl('player' + this.playerCount, new FormControl('', Validators.required));
+  }
+  removeControl(control){
+    this.additionalInfo.removeControl(control.key);
   }
 
-  submit(value: any) {
 
-    let poi = value;
-    this.poiData[this.index] = poi;
-    localStorage.setItem("addpoiData", JSON.stringify(this.poiData));
-    // this.router.navigate(['./home'], { replaceUrl: true });
-  }
+
+  save(){
+
+        this.submitAttempt = true;
+        if(!this.requiredInfo.valid){
+         alert("Name required")
+        }
+        else {
+          console.log("success!")
+          // console.log(this.requiredInfo.value);
+          // console.log(this.additionalInfo.value);
+          this.poiData =[].concat(this.requiredInfo.value,this.additionalInfo.value);
+          console.log(this.poiData);
+          let message = this._poiService.saveData(this.poiData);
+          console.log(message);
+        }
+      }
+
+
 }

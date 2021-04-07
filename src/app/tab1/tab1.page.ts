@@ -21,6 +21,7 @@ export class Tab1Page implements OnInit {
   public resultLng: any[] = [];
   public newPOIMarker:any;
   public markerPoints: any;
+  public placeCoordinate: any;
   map: L.Map;
   constructor(
     private modalCtrl: ModalController,
@@ -162,6 +163,7 @@ export class Tab1Page implements OnInit {
 
   //Retreive and Store all POI id,latitude and logitude in variables
   retrievePOIdata(){
+    
     if(this.poiItems.length !== null){
       for (let i = 0; i < this.poiItems.length; i++) {
         this.resultID.push(this.poiItems[i].poiID);
@@ -180,6 +182,10 @@ export class Tab1Page implements OnInit {
         index: e.target.ID
       }
     }
+    // this.placeCoordinate = { x: this.resultLat, y: this.resultLng }
+    // console.log(this.resultID);
     this.route.navigate(['/poi-info'], navigationExtra);
   }
+
+ 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-
+import { PoiService } from '../api/poi.service';
 @Component({
   selector: 'app-search-modal',
   templateUrl: './search-modal.component.html',
@@ -11,7 +11,7 @@ export class SearchModalComponent implements OnInit {
   pOIData: any = [];
   noResult=false;
 
-  constructor(private modalCtrl: ModalController) {
+  constructor(private modalCtrl: ModalController, private _poiService:PoiService) {
     this.initializePOIData();
    }
 
@@ -49,15 +49,8 @@ export class SearchModalComponent implements OnInit {
 
   //search functionality
   initializePOIData(){
-    this.pOIData = [
-      {
-        "name": "Toilet",
-        "code": "01"
-      },
-      {
-        "name": "Cafe",
-        "code": "02"
-      }
-    ];
+    this._poiService.getAllPoi('').subscribe( data => {
+      this.pOIData = data;
+    })
   }
 }

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 export class PoiInfo {
   poiID: any;
-  x: any;
-  y: any;
+  latitude: any;
+  longitude: any;
 }
 
 @Component({
@@ -23,7 +23,7 @@ export class POIInfoPage implements OnInit {
   public poiData: any[];
   public index: any;
   public poiInfo = [];
-
+  id: string
   constructor(private route: Router,
     private activatedRoute: ActivatedRoute,) {
       this.activatedRoute.queryParams.subscribe(params => {
@@ -38,27 +38,29 @@ export class POIInfoPage implements OnInit {
   ngOnInit() {
 
     let result = Object.values(this.poi);
+    // store data for id , coordinate x and
     this.poiInfo = [
       {
         poiID: result[0],
-        x: result[1],
-        y: result[2]
+        latitude: result[1],
+        longitude: result[2]
       }
     ];
+   console.log(this.poiInfo);
+
+
 
   }
 
   buttonEdit() {
-    this.route.navigate(['/edit']);
-        //Go to page poi based on ID of each marker
-        let navigationExtra: NavigationExtras = {
-          state: {
-            index: this.index
-          }
-        }
-        this.route.navigate(['/edit'], navigationExtra);
+    //Go to page poi based on ID of each marker
+    let navigationExtra: NavigationExtras = {
+      state: {
+        index: this.index
       }
-
+    }
+    this.route.navigate(['/edit'], navigationExtra);
+  }
 
   buttonReport() {
     this.route.navigate(['/poi-report']);

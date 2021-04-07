@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-searchbar search-icon=“undefined” (ionInput)="FilterPOIData($event)" (ionClear)="noResult=false"></ion-searchbar>
+    <ion-searchbar showCancelButton="focus" (keyup)="onKey($event)" [(ngModel)]="searchPoi"  placeholder="Find place you want to go" ></ion-searchbar>
     <ion-buttons slot="end">
       <ion-button (click)="dismissModal()">Close</ion-button>
     </ion-buttons>

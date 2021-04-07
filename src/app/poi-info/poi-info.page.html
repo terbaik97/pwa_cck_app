@@ -1,60 +1,47 @@
-
-<ion-header>
+<ion-header translucent>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/select-campus"></ion-back-button>
+      <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
-    <ion-title>Info</ion-title>
+    <ion-title>Poi info</ion-title>
   </ion-toolbar>
+
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-slides [options]="option" class="ion-margin-top">
-    <ion-slide>
-      <ion-card>
-        <img src="assets/slides/01.jpg">
-      </ion-card>
-    </ion-slide>
+<ion-content>
 
-    <ion-slide>
-      <ion-card>
-        <img src="assets/slides/02.jpg">
-      </ion-card>
-    </ion-slide>
+  <!-- display poi image -->
+  <img src="https://study.com/cimages/videopreview/videopreview-full/izfvnkemcz.jpg" >
+  <div *ngFor="let item of poiInfo">
+        <!-- <p class="ion-text-wrap">ID : {{ item.poiID }}</p><br>
+        <p class="ion-text-wrap">Latitude : {{ item.latitude }}</p><br>
+        <p class="ion-text-wrap">Longitude : {{ item.longitude }}</p><br> -->
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>Latitude : {{ item.latitude }} , Longitude : {{ item.longitude }}</ion-card-subtitle>
+            <ion-card-title>No place name</ion-card-title>
+          </ion-card-header>
 
-    <ion-slide>
-      <ion-card>
-        <img src="assets/slides/03.jpg">
-      </ion-card>
-    </ion-slide>
-  </ion-slides>
+          <ion-card-content>
+            No place information
+          </ion-card-content>
 
-  <div id="button-info-history" class="ion-padding">
-    <ion-button class="button-info">Info</ion-button>
-
-    <ion-button class="button-history" (click)="buttonHistory()">History</ion-button>
-  </div>
-
-
-    <div class="info-paragraph">
-
-      <div *ngFor="let item of poiInfo">
-        <p class="ion-text-wrap">ID : {{ item.poiID }}</p><br>
-        <p class="ion-text-wrap">Latitude : {{ item.x }}</p><br>
-        <p class="ion-text-wrap">Longitude : {{ item.y }}</p><br>
+        </ion-card>
       </div>
 
-    </div>
 
 
+
+
+
+  <!-- tab buttons -->
+  <ion-footer >
+    <ion-toolbar class="footerPOI">
+      <div id="button-info-history" class="ion-padding">
+        <ion-button class="button-info" (click)="buttonEdit()">Edit</ion-button>
+
+        <ion-button class="button-history" (click)="buttonReport()">Report</ion-button>
+      </div>
+    </ion-toolbar>
+  </ion-footer>
 </ion-content>
-
-<ion-footer >
-  <ion-toolbar class="footerPOI">
-    <div id="button-info-history" class="ion-padding">
-      <ion-button class="button-info" (click)="buttonEdit()">Edit</ion-button>
-
-      <ion-button class="button-history" (click)="buttonReport()">Report</ion-button>
-    </div>
-  </ion-toolbar>
-</ion-footer>
