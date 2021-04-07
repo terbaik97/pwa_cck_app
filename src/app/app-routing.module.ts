@@ -25,6 +25,10 @@ const routes: Routes = [
   {
     path: 'poi-report',
     loadChildren: () => import('./poi-report/poi-report.module').then( m => m.PoiReportPageModule)
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
   }
 ];
 @NgModule({
