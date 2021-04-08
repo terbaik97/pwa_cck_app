@@ -59,11 +59,17 @@ export class POIInfoPage implements OnInit {
         index: this.index
       }
     }
-    this.route.navigate(['/edit'], navigationExtra);
+    this.route.navigate(['/poi-edit'], navigationExtra);
   }
 
   buttonReport() {
-    this.route.navigate(['/poi-report']);
+     //Go to page poi based on ID of each marker
+     let navigationExtra: NavigationExtras = {
+      state: {
+        index: this.index
+      }
+    }
+    this.route.navigate(['/poi-report', navigationExtra]);
   }
 
   buttonHistory(){
