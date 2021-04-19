@@ -1,20 +1,33 @@
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import { Routes, RouterModule } from "@angular/router";
 import { IonicModule } from '@ionic/angular';
-
+import { ActivityGraphComponent } from '../dashboard/activity-graph/activity-graph.component';
 import { DashboardPageRoutingModule } from './dashboard-routing.module';
 
 import { DashboardPage } from './dashboard.page';
+
+const routes: Routes = [
+  {
+    path: "",
+    data: {
+      title: "Dashboard",
+      urls: [{ title: "Dashboard", url: "/dashboard" }, { title: "Dashboard" }],
+    },
+    component: DashboardPage,
+  },
+];
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    DashboardPageRoutingModule
+    DashboardPageRoutingModule,
+    RouterModule.forChild(routes),
   ],
-  declarations: [DashboardPage]
+  declarations: [DashboardPage, ActivityGraphComponent]
 })
 export class DashboardPageModule {}
