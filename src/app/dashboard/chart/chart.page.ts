@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import Chart from 'chart.js/auto';
 
 @Component({
-  selector: 'app-activity-graph',
-  templateUrl: './activity-graph.component.html',
-  styleUrls: ['./activity-graph.component.scss'],
+  selector: 'app-chart',
+  templateUrl: './chart.page.html',
+  styleUrls: ['./chart.page.scss'],
 })
-export class ActivityGraphComponent  implements OnInit{
+export class ChartPage implements OnInit {
   public chartItem: any[] = [];
   public chartWeekData: any;
   @ViewChild('barCanvas') private barCanvas: ElementRef;
@@ -16,6 +16,7 @@ export class ActivityGraphComponent  implements OnInit{
 
   constructor(private route: Router) { }
 
+  //if local storage empty, will set default data
   ngOnInit() {
     this.refresh();
     //Store first POI Data
@@ -26,18 +27,20 @@ export class ActivityGraphComponent  implements OnInit{
     }
 
     this.chartWeekData = this.chartItem[1];
-    console.log(this.chartWeekData.Sun);
   }
 
+  //retrieve data from local storage
   refresh() {
     this.chartItem = JSON.parse(localStorage.getItem("addChartData"));
   }
 
+  //initialize chart
   ngAfterViewInit() {
     this.barChartMethod();
     // this.addData();
   }
 
+  //chart code
   barChartMethod() {
     this.barChart = new Chart(this.barCanvas.nativeElement, {
       type: 'bar',
@@ -88,25 +91,27 @@ export class ActivityGraphComponent  implements OnInit{
     });
   }
 
+  //navigate to list all badges
   toPageBadges(){
     this.route.navigate(['/badges']);
   }
 
-  addData(){
-    if (this.chartItem !== null && this.chartItem.length>0){
-      this.chartItem.push(
-        {
-          chartID: 1,
-          Sun: 8,
-          Mon: 3,
-          Tue: 2,
-          Wed: 1,
-          Thu: 4,
-          Fri: 4,
-          Sat: 7,
-        }
-      );
-      localStorage.setItem("addChartData", JSON.stringify(this.chartItem));
-    }
-  }
+//add dummy data
+//   addData(){
+//     if (this.chartItem !== null && this.chartItem.length>0){
+//       this.chartItem.push(
+//         {
+//           chartID: 1,
+//           Sun: 8,
+//           Mon: 3,
+//           Tue: 2,
+//           Wed: 1,
+//           Thu: 4,
+//           Fri: 4,
+//           Sat: 7,
+//         }
+//       );
+//       localStorage.setItem("addChartData", JSON.stringify(this.chartItem));
+//     }
+//   }
 }

@@ -8,6 +8,7 @@ import { Leaderboard } from './leaderboard.model';
 })
 export class LeaderboardPage implements OnInit {
 
+  //dummy data
   public players =[
         {
             "rank": "1",

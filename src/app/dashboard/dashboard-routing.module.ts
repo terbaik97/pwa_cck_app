@@ -7,7 +7,15 @@ const routes: Routes = [
   {
     path: '',
     component: DashboardPage
-  }
+  },
+  {
+    path: 'chart',
+    loadChildren: () => import('./chart/chart.module').then( m => m.ChartPageModule)
+  },
+  {
+    path: 'roles',
+    loadChildren: () => import('./roles/roles.module').then( m => m.RolesPageModule)
+  },
 ];
 
 @NgModule({
