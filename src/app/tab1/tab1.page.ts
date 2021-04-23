@@ -66,7 +66,7 @@ export class Tab1Page implements OnInit {
      //call this function to retrieve id, longitude and latitude
      this.retrievePOIdata();
 
-    //  test here
+    //  test here commit from fix-button
     console.log(this.data[0]["name"]);
     for (let i = 0; i < this.data.length; i++) {
       this.markerPoints = L.marker([
