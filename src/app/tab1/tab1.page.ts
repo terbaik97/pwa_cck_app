@@ -33,12 +33,26 @@ export class Tab1Page implements OnInit {
   ) {}
 
   ngOnInit() {
+
+    this.refresh();
+    //Store first POI Data
+    if (this.poiItems == null) {
+      localStorage.setItem("addpoiData", JSON.stringify([{ "poiID": '', "latitude": '', "longitude": '' }]))
+      this.refresh();
+    }
+
     this._poiService.getAllPoi().subscribe((res: any)=>{
       if(res){ 
         
         this.data = res.data
       } 
    });
+
+  }
+
+  refresh() {
+    this.poiItems = JSON.parse(localStorage.getItem("addpoiData"));
+
   }
 
   ionViewDidEnter() {
@@ -66,7 +80,7 @@ export class Tab1Page implements OnInit {
      //call this function to retrieve id, longitude and latitude
      this.retrievePOIdata();
 
-    //  test here commit from fix-button
+
     console.log(this.data[0]["name"]);
     for (let i = 0; i < this.data.length; i++) {
       this.markerPoints = L.marker([
@@ -79,7 +93,7 @@ export class Tab1Page implements OnInit {
       // this.markerPoints.ID=i;
       
     }
-    //test
+
     //When user click on map, pop up will appear.
     this.map.on('click', this.modalPopupClick, this);
 
