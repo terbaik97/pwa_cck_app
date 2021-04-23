@@ -79,6 +79,7 @@ export class Tab1Page implements OnInit {
       // this.markerPoints.ID=i;
       
     }
+    //test
     //When user click on map, pop up will appear.
     this.map.on('click', this.modalPopupClick, this);
 
