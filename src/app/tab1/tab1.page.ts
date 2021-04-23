@@ -8,6 +8,7 @@ import { SearchModalComponent } from '../search-modal/search-modal.component';
 import { NavigationExtras,Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
+import { PoiService } from '../api/poi.service';
 
 @Component({
   selector: 'app-tab1',
@@ -23,10 +24,12 @@ export class Tab1Page implements OnInit {
   public markerPoints: any;
   public placeCoordinate: any;
   map: L.Map;
+  data: any;
   constructor(
     private modalCtrl: ModalController,
     private route: Router,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private _poiService:PoiService
   ) {}
 
   ngOnInit() {
@@ -36,6 +39,12 @@ export class Tab1Page implements OnInit {
       localStorage.setItem("addpoiData", JSON.stringify([{ "poiID": '', "latitude": '', "longitude": '' }]))
       this.refresh();
     }
+    this._poiService.getAllPoi().subscribe((res: any)=>{
+      if(res){ 
+        
+        this.data = res.data
+      } 
+   });
   }
 
   refresh() {
@@ -51,6 +60,7 @@ export class Tab1Page implements OnInit {
 
   //Load Map
   leafletMap() {
+   
     this.map = L.map('mapId', {
       center: [3.1209, 101.6538],
       zoom: 18,
@@ -67,13 +77,30 @@ export class Tab1Page implements OnInit {
      this.retrievePOIdata();
 
     //loop is for display all marker
-    for (let i = 0; i < this.poiItems.length; i++) {
-      this.markerPoints = L.marker([this.resultLat[i], this.resultLng[i]]);
-      this.markerPoints.bindPopup('<p>UM is HERE!!</p>');
-      this.markerPoints.on('click', this.onClick, this);
+    // for (let i = 0; i < this.poiItems.length; i++) {
+    //   this.markerPoints = L.marker([this.resultLat[i], this.resultLng[i]]);
+    //   this.markerPoints.bindPopup('<p>UM is HERE!!</p>');
+    //   this.markerPoints.on('click', this.onClick, this);
+    //   this.markerPoints.addTo(this.map);
+    //   this.markerPoints.ID=i;
+    // }
+
+    //  test here
+    console.log(this.data[0]["name"]);
+    for (let i = 0; i < this.data.length; i++) {
+      this.markerPoints = L.marker([
+        this.data[i]["poi_latitude"], 
+        this.data[i]["poi_longitude"] 
+      ]);
+      this.markerPoints.bindTooltip(this.data[i]["name"] + '<br> is here'  +'</p>');
+      this.markerPoints.on('dblclick', this.onClick, this);
       this.markerPoints.addTo(this.map);
-      this.markerPoints.ID=i;
+      // this.markerPoints.ID=i;
+      
     }
+
+
+
 
     //When user click on map, pop up will appear.
     this.map.on('click', this.modalPopupClick, this);
@@ -98,7 +125,7 @@ export class Tab1Page implements OnInit {
   //function create new marker
   newPOIClick(e) {
     this.newPOIMarker = L.marker(e.latlng);
-    this.newPOIMarker.bindPopup('<p>UM is HERE!!</p>');
+    this.newPOIMarker.bindPopup('<p>Create new place here !!</p>');
     this.newPOIMarker.on('click', this.onClick, this);
     this.newPOIMarker.addTo(this.map);
 
@@ -128,7 +155,7 @@ export class Tab1Page implements OnInit {
   //When user click this, it will popup modal
   async  modalPopupClick(e) {
     const alert = await this.alertCtrl.create({
-      header: 'Create POI here',
+      header: 'Create new place here',
       message: 'Confirm?',
       buttons: [
                 {
@@ -164,22 +191,27 @@ export class Tab1Page implements OnInit {
   //Retreive and Store all POI id,latitude and logitude in variables
   retrievePOIdata(){
     
-    if(this.poiItems.length !== null){
-      for (let i = 0; i < this.poiItems.length; i++) {
-        this.resultID.push(this.poiItems[i].poiID);
-        this.resultLat.push(this.poiItems[i].latitude);
-        this.resultLng.push(this.poiItems[i].longitude);
+    if(this.data.length !== null){
+      for (let i = 0; i < this.data.length; i++) {
+        this.markerPoints = L.marker([
+          this.data[i]["poi_latitude"], 
+          this.data[i]["poi_longitude"] 
+        ]);
+        this.markerPoints.bindPopup('<p>' + this.data[i]["name"] + 'is here'  +'</p>');
+        this.markerPoints.on('click', this.onClick, this);
+        this.markerPoints.addTo(this.map);
+        this.markerPoints.ID=i;
       }
     }
   }
 
   //function when click poi, go to page info
-  onClick(e) {
-
+onClick(e) {
+console.log(e.latlng);
     //Go to page poi based on ID of each marker
     let navigationExtra: NavigationExtras = {
       state: {
-        index: e.target.ID
+        index: e.latlng
       }
     }
     // this.placeCoordinate = { x: this.resultLat, y: this.resultLng }
