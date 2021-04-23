@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { PoiService } from '../api/poi.service';
+import { ApiService } from '../services/api.service';
 export class PoiInfo {
   poiID: any;
   latitude: any;
@@ -23,31 +25,51 @@ export class POIInfoPage implements OnInit {
   public poiData: any[];
   public index: any;
   public poiInfo = [];
-  id: string
+  id: string;
+  data: any;
+  checkdata: any;
+  fields: any;
   constructor(private route: Router,
-    private activatedRoute: ActivatedRoute,) {
+    private activatedRoute: ActivatedRoute,
+    private _poiService: PoiService) {
       this.activatedRoute.queryParams.subscribe(params => {
         if (this.route.getCurrentNavigation().extras.state) {
           this.index = this.route.getCurrentNavigation().extras.state.index;
-          this.poiData = JSON.parse(localStorage.getItem("addpoiData"));
-          this.poi = this.poiData[this.index];
+          console.log(this.index);
+          // this.poiData = JSON.parse(localStorage.getItem("addpoiData"));
+          // this.poi = this.poiData[this.index];
         }
       })
      }
 
   ngOnInit() {
 
-    let result = Object.values(this.poi);
+    let result = Object.values(this.index);
     // store data for id , coordinate x and 
     this.poiInfo = [
       {
-        poiID: result[0],
-        latitude: result[1],
-        longitude: result[2]
+       
+        latitude: result[0],
+        longitude: result[1]
       }
     ];
-   console.log(this.poiInfo);
-
+  console.log(this.poiInfo);
+   this._poiService.getPoibyCoordinate(this.poiInfo).subscribe((res: any) => {
+     console.log(res);
+    if (res === ""){
+      this.checkdata = false;
+      this.data = "";
+    }
+    this.checkdata = true;
+    this.data = res;
+    console.log("data")
+    console.log(this.data.name)
+    this.id = this.data.id
+    // console.log( this.data[0]["fields"]);
+    this.fields = this.data.fields;
+    console.log(this.data)
+    });
+ 
 
 
   }
@@ -58,21 +80,17 @@ export class POIInfoPage implements OnInit {
       state: {
         index: this.index
       }
-    }
+    }   
     this.route.navigate(['/poi-edit'], navigationExtra);
   }
 
-  buttonReport() {
-     //Go to page poi based on ID of each marker
-     let navigationExtra: NavigationExtras = {
-      state: {
-        index: this.index
-      }
-    }
-    this.route.navigate(['/poi-report', navigationExtra]);
+  buttonReport(id) {
+    console.log(id);
+    this.route.navigate(['/poi-report',id]);
   }
 
-  buttonHistory(){
-    this.route.navigate(['/history']);
+  buttonHistory(id){
+    console.log(id);
+    this.route.navigate(['/history',id]);
   }
 }
