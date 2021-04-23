@@ -19,6 +19,12 @@ export class AuthService {
   getToken() { 
       return localStorage.getItem('jwt'); 
   } 
+  getUserEmail() { 
+    return localStorage.getItem('email'); 
+  } 
+  getUserNickname() { 
+    return localStorage.getItem('nickname'); 
+  } 
 
   clearStorage() { 
       localStorage.clear(); 
