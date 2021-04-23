@@ -8,41 +8,54 @@
 </ion-header>
 
 <ion-content>
+
+  <!-- <ion-card>
+
+    <ion-card-header *ngFor="let data of data">
+      {{data.name}}
+    </ion-card-header>
+  
+    <ion-card-content *ngFor="let data of data">
+      <div>{{data}}</div>
+    </ion-card-content>
+  
+  </ion-card> -->
+
+
   <ion-grid class="ion-no-margin">
     <!-- form one here -->
     <ion-row *ngIf="reportForm">
       <ion-col size="12" class="ion-no-margin ion-no-padding title">
       </ion-col>
       <ion-col size="12" class="form">
-        <form [formGroup]="reportForm" (ngSubmit)="submit()" class="ion-margin-top">
-          <ion-item lines="none">
-            <ion-label position="stacked" color="accent">POI Name <span>*</span></ion-label>
-            <ion-input formControlName="poiName" type="text" placeholder="Enter your first name"></ion-input>
+        <form [formGroup]="reportForm"  class="ion-margin-top">
+          <ion-item>
+            <ion-label position="floating">Place Name</ion-label>
+            <ion-input formControlName="name" type="text" [class.invalid]="!reportForm.controls.name.valid"></ion-input>
           </ion-item>
-          <!-- Error messages
-          <div class="validation-errors">
-            <ng-container *ngFor="let validation of form_one_validation_messages.firstName">
-              <div class="error-message"
-                *ngIf="form_one.get('firstName').hasError(validation.type) && (form_one.get('firstName').dirty || form_one.get('firstName').touched)">
-                {{ validation.message }}
-              </div>
-            </ng-container>
-          </div> -->
+  
+          <ion-item *ngIf="!reportForm.controls.name.valid  ">
+            <p>Please fill up name of the place.</p>
+          </ion-item>
+         
           <ion-item lines="none">
             <ion-label position="stacked" color="accent">Report Type</ion-label>
-            <ion-select formControlName="reportType" value="fraud" okText="Okay" cancelText="Dismiss">
-              <ion-select-option value="fraud">Fraud</ion-select-option>
-              <ion-select-option value="abuse">Abuse</ion-select-option>
+            <ion-select formControlName="report_reason" value="fraud" okText="Okay" cancelText="Dismiss"
+            [class.invalid]="!reportForm.controls.report_reason.valid">
+              <ion-select-option value="pornography">Pornography</ion-select-option>
+              <ion-select-option value="inappropriate_information">Inappropriate information</ion-select-option>
+              <ion-select-option value="spam_information">Spam information</ion-select-option>
             </ion-select>
           </ion-item>
           <ion-item lines="none">
             <ion-label position="stacked" color="accent">Comments</ion-label>
             <ion-textarea formControlName="comments" placeholder="Enter more information here..."></ion-textarea>
            </ion-item>
-          <ion-button class="ion-float-start" type="submit" >Send</ion-button>
+
         </form>
+        <ion-button expand="full" color="primary" (click)="report(id)"  [disabled]="reportForm.invalid">Submit Info</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
-  {{ reportForm.value | json}}
+ 
 </ion-content>

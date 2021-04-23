@@ -2,14 +2,14 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/select-campus"></ion-back-button>
+      <ion-back-button defaultHref="/poi-info"></ion-back-button>
     </ion-buttons>
     <ion-title>History</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-slides [options]="option" class="ion-margin-top">
+  <!-- <ion-slides [options]="option" class="ion-margin-top">
     <ion-slide>
       <ion-card>
         <img src="assets/slides/01.jpg">
@@ -27,13 +27,74 @@
         <img src="assets/slides/03.jpg">
       </ion-card>
     </ion-slide>
-  </ion-slides>
-
+  </ion-slides> -->
+<!-- 
   <div id="button-info-history" class="ion-padding">
     <ion-button class="button-info" (click)="buttonInfo()">Info</ion-button>
 
     <ion-button class="button-history">History</ion-button>
-  </div>
+  </div> -->
+
+  <ion-card *ngFor="let data of data">
+    <ion-card-header>
+      Header
+    </ion-card-header>
+    
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div>
+                
+                
+                <label for="changes-made">Changes happened: </label>
+                  <div *ngFor="let data of data.object_changes.name;  let i = index">
+                    <div *ngIf="i == 0">
+                      {{data}} => 
+                    </div>
+                    <div *ngIf="i== 1">
+                      {{data}} 
+                    </div>
+                  </div>
+                  <div *ngFor="let data of data.object_changes.fields; let i = index"> 
+                    <div *ngIf="i == 0">
+                      {{data | json}} => 
+                    </div>
+                    <div *ngIf="i== 1">
+                      {{data | json}} 
+                    </div>
+                  </div>
+                  <div *ngFor="let data of data.object_changes.report_reason;  let i = index">
+                    <div *ngIf="i == 0">
+                      {{data}} => 
+                    </div>
+                    <div *ngIf="i== 1">
+                      {{data}} 
+                    </div>
+                  </div>
+                  <div *ngFor="let data of data.object_changes.is_report;  let i = index">
+                    <div *ngIf="i == 0">
+                      {{data}} => 
+                    </div>
+                    <div *ngIf="i== 1">
+                      {{data}} 
+                    </div>
+                  </div>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div>
+               
+                
+                <div>{{data.event}}</div>
+                <ion-datetime displayFormat="MMM DD, YYYY HH:mm" value="{{data.created_at}}" display-timezone="utc"></ion-datetime>
+                
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+   
+  </ion-card>
+
 
   <ion-toolbar>
     <div class="info-paragraph">
@@ -41,9 +102,15 @@
     </div>
   </ion-toolbar>
 
+
+
+
+
+
+  
 </ion-content>
 
-<ion-footer >
+<!-- <ion-footer >
   <ion-toolbar class="footerPOI">
     <div id="button-info-history" class="ion-padding">
       <ion-button class="button-info" (click)="buttonEdit()">Edit</ion-button>
@@ -51,4 +118,4 @@
       <ion-button class="button-history" (click)="buttonReport()">Report</ion-button>
     </div>
   </ion-toolbar>
-</ion-footer>
+</ion-footer> -->

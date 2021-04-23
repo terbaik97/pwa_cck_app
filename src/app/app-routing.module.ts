@@ -15,17 +15,31 @@ const routes: Routes = [
     loadChildren: () => import('./poi-info/poi-info.module').then( m => m.POIInfoPageModule)
   },
   {
-    path: 'history',
+    path: 'history/:id',
     loadChildren: () => import('./history/history.module').then( m => m.HistoryPageModule)
   },
   {
-    path: 'edit',
+    path: 'poi-edit',
     loadChildren: () => import('./edit/edit.module').then( m => m.EditPageModule)
   },
   {
-    path: 'poi-report',
+    path: 'poi-report/:id',
     loadChildren: () => import('./poi-report/poi-report.module').then( m => m.PoiReportPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'profile/:email',
+    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   }
+
+
 ];
 @NgModule({
   imports: [

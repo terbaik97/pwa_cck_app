@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
-
+import { PoiService } from '../api/poi.service';
 @Component({
   selector: 'app-search-modal',
   templateUrl: './search-modal.component.html',
@@ -10,8 +11,12 @@ export class SearchModalComponent implements OnInit {
 
   pOIData: any = [];
   noResult=false;
-
-  constructor(private modalCtrl: ModalController) {
+  title = 'angular-text-search-highlight';
+  searchText = '';
+ 
+  all_poi: any;
+  data: any;
+  constructor(private modalCtrl: ModalController, private _poiService:PoiService, private route: Router,) {
     this.initializePOIData();
    }
 
@@ -20,6 +25,15 @@ export class SearchModalComponent implements OnInit {
    if(this.FilterPOIData){
      this.noResult = false;
    }
+
+    this._poiService.getAllPoi().subscribe((res: any)=>{
+      if(res){ 
+        console.log(res.data);
+        this.data = res.data
+       
+        
+      } 
+   });
   }
 
    FilterPOIData(data:any){
@@ -49,15 +63,26 @@ export class SearchModalComponent implements OnInit {
 
   //search functionality
   initializePOIData(){
-    this.pOIData = [
-      {
-        "name": "Toilet",
-        "code": "01"
-      },
-      {
-        "name": "Cafe",
-        "code": "02"
-      }
-    ];
+    this._poiService.getAllPoi().subscribe( data => {
+      this.pOIData = data;
+    })
   }
+
+  onClick(poi_latitude , poi_longitude) {
+    console.log(poi_latitude + "<br>"+poi_longitude);
+
+    let navigationExtra: NavigationExtras = {
+      state: {
+        index: {
+           lat: poi_latitude,
+           lng: poi_longitude
+        }
+      }
+    }
+    this.modalCtrl.dismiss();
+    this.route.navigate(['/poi-info'], navigationExtra);
+
+      }
+
+
 }

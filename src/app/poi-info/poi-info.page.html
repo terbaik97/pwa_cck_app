@@ -1,60 +1,61 @@
-
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/select-campus"></ion-back-button>
+      <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
-    <ion-title>Info</ion-title>
+    <ion-title>Poi Info</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-slides [options]="option" class="ion-margin-top">
-    <ion-slide>
-      <ion-card>
-        <img src="assets/slides/01.jpg">
-      </ion-card>
-    </ion-slide>
-
-    <ion-slide>
-      <ion-card>
-        <img src="assets/slides/02.jpg">
-      </ion-card>
-    </ion-slide>
-
-    <ion-slide>
-      <ion-card>
-        <img src="assets/slides/03.jpg">
-      </ion-card>
-    </ion-slide>
-  </ion-slides>
-
-  <div id="button-info-history" class="ion-padding">
-    <ion-button class="button-info">Info</ion-button>
-
-    <ion-button class="button-history" (click)="buttonHistory()">History</ion-button>
-  </div>
-
-
-    <div class="info-paragraph">
-
-      <div *ngFor="let item of poiInfo">
-        <p class="ion-text-wrap">ID : {{ item.poiID }}</p><br>
-        <p class="ion-text-wrap">Latitude : {{ item.latitude }}</p><br>
-        <p class="ion-text-wrap">Longitude : {{ item.longitude }}</p><br>
-      </div>
-
+<ion-content>
+    <ion-button (click)="buttonInfo()">
+      <ion-icon slot="start" ></ion-icon>
+      Info
+    </ion-button>
+    
+    <ion-button  (click)="buttonHistory(id)">
+      <ion-icon slot="end" ></ion-icon>
+      History
+    </ion-button>
+    <ion-item>
+      <!-- <ion-img [src]="item.src"></ion-img> -->
+      <ion-icon name="person-outline"></ion-icon>
+      <ion-label>Poi Info</ion-label>
+      <!-- <ion-button fill="outline" slot="end">View</ion-button> -->
+    </ion-item>
+    <div *ngIf="checkdata">
+    
+        <ion-badge color="secondary">Id</ion-badge>
+        <div>{{data.id}}</div>
+        <ion-badge color="secondary">Name</ion-badge>
+        <div>{{data.name ? data.name : "Sorry no information yet"}}</div>
+        <ion-badge color="secondary">Fields</ion-badge>
+        <div > 
+          {{ fields.field}}
+        </div>
+        <ion-badge color="secondary">Latitude</ion-badge>
+        <div>{{data.poi_latitude ? data.poi_latitude : "Sorry no information yet" }}</div>
+        <ion-badge color="secondary">Longitude</ion-badge>
+        <div>{{data.poi_longitude ? data.poi_longitude : "Sorry no information yet"}}</div>
+     
     </div>
+    
+    <div>
+      <div>No info</div>
+    </div>
+    
+    
+  <!-- Icons -->
+<ion-button (click)="buttonEdit()">
+  <ion-icon slot="start" ></ion-icon>
+  Edit
+</ion-button>
+
+<ion-button (click)="buttonReport(id)">
+  <ion-icon slot="end" ></ion-icon>
+  Report
+</ion-button>
+ 
 
 
 </ion-content>
-
-<ion-footer >
-  <ion-toolbar class="footerPOI">
-    <div id="button-info-history" class="ion-padding">
-      <ion-button class="button-info" (click)="buttonEdit()">Edit</ion-button>
-
-      <ion-button class="button-history" (click)="buttonReport()">Report</ion-button>
-    </div>
-  </ion-toolbar>
-</ion-footer>

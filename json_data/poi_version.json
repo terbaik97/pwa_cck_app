@@ -1,0 +1,36 @@
+{
+    "id": "e036ee4b-a28c-44e2-ba68-78288064e15b",
+    "item_type": "Poi",
+    "item_id": "4ed9a1c5-3d5e-45f4-ab3b-78dd0dbfd915",
+    "event": "update",
+    "whodunnit": "cd29272c-48d8-4eb6-be67-2b6ca73cce98",
+    "object_changes": {
+        "fields": [
+            {
+                "field": ""
+            },
+            {
+                "field": "dsadsda"
+            }
+        ],
+        "updated_at": [
+            "2021-04-15T16:56:33.184Z",
+            "2021-04-15T17:09:20.056Z"
+        ]
+    },
+    "object": {
+        "name": "Kafeteria Humaira  ",
+        "fields": {
+            "field": ""
+        },
+        "poi_latitude": "3.122026",
+        "poi_longitude": "101.65444",
+        "id": "4ed9a1c5-3d5e-45f4-ab3b-78dd0dbfd915",
+        "user_id": "cd29272c-48d8-4eb6-be67-2b6ca73cce98",
+        "action_id": null,
+        "subcategory_id": null,
+        "created_at": "2021-04-15T16:45:30.387Z",
+        "updated_at": "2021-04-15T16:56:33.184Z"
+    },
+    "created_at": "2021-04-15T17:09:20.056Z"
+}

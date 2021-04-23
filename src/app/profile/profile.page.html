@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-item>
+      <!-- <ion-img [src]="item.src"></ion-img> -->
+      <ion-icon name="person-outline"></ion-icon>
+      <ion-label>User Profile</ion-label>
+      <!-- <ion-button fill="outline" slot="end">View</ion-button> -->
+    </ion-item>
+  
+    <ion-card-content>
+      <div *ngFor="let profile_data of profile_data">
+      
+        <ion-badge color="secondary">Full Name</ion-badge>
+        <div>{{profile_data.full_name}}</div>
+        <ion-badge color="secondary">Nickname</ion-badge>
+        <div>{{profile_data.nickname}}</div>
+        <ion-badge color="secondary">Email</ion-badge>
+        <div>{{profile_data.email}}</div>
+        <ion-badge color="secondary">Mobile Number</ion-badge>
+        <div>{{profile_data.mobile_number}}</div>
+        <ion-badge color="secondary">Status</ion-badge>
+        <div>{{profile_data.status}}</div>
+      </div>
+    
+    </ion-card-content>
+  </ion-card>
+ 
+ 
+
+</ion-content>
