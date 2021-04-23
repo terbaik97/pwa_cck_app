@@ -11,6 +11,7 @@ import { AuthService } from '../services/auth.service';
 export class LoginPage implements OnInit {
 
   form: FormGroup 
+  email: any;
   constructor( 
     private _api : ApiService, 
     private _auth: AuthService, 
@@ -30,13 +31,19 @@ export class LoginPage implements OnInit {
     console.log(b) 
     this._api.postTypeRequest('login', b).subscribe((res: any) => { 
       console.log(res.data.access_token) 
+      console.log(res.data.user.email) 
+      this.email = res.data.user.email
       if(res.data.access_token){ 
-        
+        this._auth.setDataInLocalStorage('email', res.data.user.email) 
+        this._auth.setDataInLocalStorage('nickname', res.data.user.nickname) 
         this._auth.setDataInLocalStorage('jwt', res.data.access_token.jwt) 
-        this.router.navigate(['profile']) 
+        this.router.navigate(['tabs/tab2']) 
       } 
     }, err => { 
       console.log(err) 
     }); 
   } 
+  register(){
+    this.router.navigate(['/register']) 
+  }
 }
