@@ -24,7 +24,7 @@ export class POIInfoPage implements OnInit {
   public poi: PoiInfo[] = [];
   public poiData: any[];
   public index: any;
-  public poiInfo = [];
+  public poiInfo: any;
   id: string;
   data: any;
   checkdata: any;
@@ -45,14 +45,16 @@ export class POIInfoPage implements OnInit {
   ngOnInit() {
 
     let result = Object.values(this.index);
+    console.log(result)
     // store data for id , coordinate x and 
-    this.poiInfo = [
-      {
+    this.poiInfo = {
+      "lat": result[0],
+      "lng": result[1]
+      
+    }
+      
        
-        latitude: result[0],
-        longitude: result[1]
-      }
-    ];
+    
   console.log(this.poiInfo);
    this._poiService.getPoibyCoordinate(this.poiInfo).subscribe((res: any) => {
      console.log(res);
@@ -81,6 +83,7 @@ export class POIInfoPage implements OnInit {
         index: this.index
       }
     }   
+    console.log()
     this.route.navigate(['/poi-edit'], navigationExtra);
   }
 

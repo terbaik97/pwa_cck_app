@@ -33,22 +33,12 @@ export class Tab1Page implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.refresh();
-    //Store first POI Data
-    if (this.poiItems == null) {
-      localStorage.setItem("addpoiData", JSON.stringify([{ "poiID": '', "latitude": '', "longitude": '' }]))
-      this.refresh();
-    }
     this._poiService.getAllPoi().subscribe((res: any)=>{
       if(res){ 
         
         this.data = res.data
       } 
    });
-  }
-
-  refresh() {
-    this.poiItems = JSON.parse(localStorage.getItem("addpoiData"));
   }
 
   ionViewDidEnter() {
@@ -76,15 +66,6 @@ export class Tab1Page implements OnInit {
      //call this function to retrieve id, longitude and latitude
      this.retrievePOIdata();
 
-    //loop is for display all marker
-    // for (let i = 0; i < this.poiItems.length; i++) {
-    //   this.markerPoints = L.marker([this.resultLat[i], this.resultLng[i]]);
-    //   this.markerPoints.bindPopup('<p>UM is HERE!!</p>');
-    //   this.markerPoints.on('click', this.onClick, this);
-    //   this.markerPoints.addTo(this.map);
-    //   this.markerPoints.ID=i;
-    // }
-
     //  test here
     console.log(this.data[0]["name"]);
     for (let i = 0; i < this.data.length; i++) {
@@ -98,10 +79,6 @@ export class Tab1Page implements OnInit {
       // this.markerPoints.ID=i;
       
     }
-
-
-
-
     //When user click on map, pop up will appear.
     this.map.on('click', this.modalPopupClick, this);
 
@@ -109,7 +86,6 @@ export class Tab1Page implements OnInit {
       this.map.invalidateSize();
     },0);
   }
-
   async openModal() {
     const modal = await this.modalCtrl.create({
       component: SearchModalComponent
@@ -121,7 +97,6 @@ export class Tab1Page implements OnInit {
   nextpage() {
     this.route.navigate(['/select-campus']);
   }
-
   //function create new marker
   newPOIClick(e) {
     this.newPOIMarker = L.marker(e.latlng);
@@ -135,7 +110,6 @@ export class Tab1Page implements OnInit {
     for (let i = 0; i <= this.poiItems.length; i++) {
       dummyID=i;
     }
-
     //call this function to store new POI created in db
     this.addStatic(this.newPOIMarker.ID=dummyID);
 
@@ -218,6 +192,4 @@ console.log(e.latlng);
     // console.log(this.resultID);
     this.route.navigate(['/poi-info'], navigationExtra);
   }
-
- 
 }
