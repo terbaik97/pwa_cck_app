@@ -36,8 +36,8 @@ export class EditPage implements OnInit {
     this.activatedRoute.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.index = this.router.getCurrentNavigation().extras.state.index;
-        this.poiData = JSON.parse(localStorage.getItem("addpoiData"));
-        this.poi =[ this.poiData[this.index]];
+
+
       }
     })
 
@@ -72,7 +72,9 @@ export class EditPage implements OnInit {
       this.categoryData = data;
       });
      
-      this._poiService.getPoibyCoordinate(this.poi).subscribe((res: any) => {
+
+      this._poiService.getPoibyCoordinate(this.index).subscribe((res: any) => {
+
           
           console.log(res)
           if (res){
