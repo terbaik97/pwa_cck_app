@@ -8,6 +8,20 @@
 </ion-header>
 
 <ion-content>
+
+  <!-- <ion-card>
+
+    <ion-card-header *ngFor="let data of data">
+      {{data.name}}
+    </ion-card-header>
+  
+    <ion-card-content *ngFor="let data of data">
+      <div>{{data}}</div>
+    </ion-card-content>
+  
+  </ion-card> -->
+
+
   <ion-grid class="ion-no-margin">
     <!-- form one here -->
     <ion-row *ngIf="reportForm">
@@ -17,19 +31,20 @@
         <form [formGroup]="reportForm"  class="ion-margin-top">
           <ion-item>
             <ion-label position="floating">Place Name</ion-label>
-            <ion-input formControlName="placeName" type="text" [class.invalid]="!reportForm.controls.placeName.valid"></ion-input>
+            <ion-input formControlName="name" type="text" [class.invalid]="!reportForm.controls.name.valid"></ion-input>
           </ion-item>
   
-          <ion-item *ngIf="!reportForm.controls.placeName.valid  ">
+          <ion-item *ngIf="!reportForm.controls.name.valid  ">
             <p>Please fill up name of the place.</p>
           </ion-item>
          
           <ion-item lines="none">
             <ion-label position="stacked" color="accent">Report Type</ion-label>
-            <ion-select formControlName="reportType" value="fraud" okText="Okay" cancelText="Dismiss"
-            [class.invalid]="!reportForm.controls.reportType.valid">
-              <ion-select-option value="fraud">Fraud</ion-select-option>
-              <ion-select-option value="abuse">Abuse</ion-select-option>
+            <ion-select formControlName="report_reason" value="fraud" okText="Okay" cancelText="Dismiss"
+            [class.invalid]="!reportForm.controls.report_reason.valid">
+              <ion-select-option value="pornography">Pornography</ion-select-option>
+              <ion-select-option value="inappropriate_information">Inappropriate information</ion-select-option>
+              <ion-select-option value="spam_information">Spam information</ion-select-option>
             </ion-select>
           </ion-item>
           <ion-item lines="none">
@@ -38,7 +53,7 @@
            </ion-item>
 
         </form>
-        <ion-button expand="full" color="primary" (click)="save()">Submit Info</ion-button>
+        <ion-button expand="full" color="primary" (click)="report(id)"  [disabled]="reportForm.invalid">Submit Info</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
