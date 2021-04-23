@@ -31,6 +31,7 @@
     "fs": "0.0.1-security",
     "leaflet": "^1.7.1",
     "leaflet-modal": "^0.2.0",
+    "ng2-search-filter": "^0.5.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "workbox-cli": "^6.1.1",
