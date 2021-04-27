@@ -46,7 +46,7 @@ export class EditPage implements OnInit {
       category: [''],
       poi_latitude:[''],
       poi_longitude:[''],
-      file:['']
+      image_poi:['']
       });
 
 
@@ -84,8 +84,9 @@ export class EditPage implements OnInit {
             this.poi_id = this.data.id
             this.requiredInfo.patchValue({
               name: this.data.name,
-               poi_latitude:  this.index.lat,
-              poi_longitude:  this.index.lng
+              poi_latitude:  this.index.lat,
+              poi_longitude:  this.index.lng,
+              image_poi: ""
             });
           }
         
@@ -95,7 +96,8 @@ export class EditPage implements OnInit {
           this.requiredInfo.patchValue({
             name: "",
             poi_latitude:  this.index.lat,
-            poi_longitude:  this.index.lng
+            poi_longitude:  this.index.lng,
+            image_poi: ""
           });
         }
         );
@@ -119,10 +121,6 @@ export class EditPage implements OnInit {
     if(this.image_file) {
       const file_reader = new FileReader();
       file_reader.readAsDataURL(this.image_file);
-      // console.log(file_reader.readAsDataURL(this.image_file))
-      // file_reader.onload = (e: any) => {
-      //   this.requiredInfo.get('file').setValue(file_reader.result);
-      // }
     }
   }
   
