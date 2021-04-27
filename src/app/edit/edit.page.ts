@@ -29,6 +29,7 @@ export class EditPage implements OnInit {
   updatedata: any;
   adddata: any;
   poi_id: any;
+  image_file: File;
   constructor(private formBuilder: FormBuilder, private _poiService: PoiService, private activatedRoute: ActivatedRoute,
     private router: Router,) {
     
@@ -44,8 +45,8 @@ export class EditPage implements OnInit {
       name: ['', Validators.required],
       category: [''],
       poi_latitude:[''],
-      poi_longitude:['']
-     
+      poi_longitude:[''],
+      file:['']
       });
 
 
@@ -83,7 +84,7 @@ export class EditPage implements OnInit {
             this.poi_id = this.data.id
             this.requiredInfo.patchValue({
               name: this.data.name,
-              poi_latitude:  this.index.lat,
+               poi_latitude:  this.index.lat,
               poi_longitude:  this.index.lng
             });
           }
@@ -112,7 +113,18 @@ export class EditPage implements OnInit {
     this.additionalInfo.removeControl(control.key);
   }
 
-
+  setImageFile(event) {
+    this.image_file = event.target.files[0];
+    console.log(this.image_file.name)
+    if(this.image_file) {
+      const file_reader = new FileReader();
+      file_reader.readAsDataURL(this.image_file);
+      // console.log(file_reader.readAsDataURL(this.image_file))
+      // file_reader.onload = (e: any) => {
+      //   this.requiredInfo.get('file').setValue(file_reader.result);
+      // }
+    }
+  }
   
   save(){
         
@@ -149,7 +161,7 @@ export class EditPage implements OnInit {
 
   update(poi_id: any){
     console.log(poi_id);
-    this.poiData = [].concat(this.requiredInfo.value,this.additionalInfo.value,poi_id);
+    this.poiData = [].concat(this.requiredInfo.value,this.additionalInfo.value,poi_id,this.image_file);
     this._poiService.updateData(this.poiData)
     .subscribe((res: any) => { 
       if(res){ 

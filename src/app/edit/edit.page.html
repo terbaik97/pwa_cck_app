@@ -39,9 +39,9 @@
         <ion-input formControlName="poi_longitude"  disabled></ion-input>
       </ion-item>
     
-          
+      <input formControlName="file" (change)="setImageFile($event)" type="file" id="selectFile" name="selectFile" class="btn btn-success">
   </form>
-  
+  <!-- <input type="file" (change)="onFileChange($event)"/> -->
   <!-- Additional Info -->
   <form [formGroup]="additionalInfo">
 
