@@ -81,7 +81,7 @@ export class Tab1Page implements OnInit {
      this.retrievePOIdata();
 
 
-    console.log(this.data[0]["name"]);
+    
     for (let i = 0; i < this.data.length; i++) {
       this.markerPoints = L.marker([
         this.data[i]["poi_latitude"], 

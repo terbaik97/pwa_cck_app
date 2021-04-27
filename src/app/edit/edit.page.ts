@@ -36,8 +36,7 @@ export class EditPage implements OnInit {
     this.activatedRoute.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.index = this.router.getCurrentNavigation().extras.state.index;
-
-
+        console.log(this.index)
       }
     })
 
@@ -84,8 +83,8 @@ export class EditPage implements OnInit {
             this.poi_id = this.data.id
             this.requiredInfo.patchValue({
               name: this.data.name,
-              poi_latitude:  this.data.poi_latitude,
-              poi_longitude:  this.data.poi_longitude
+              poi_latitude:  this.index.lat,
+              poi_longitude:  this.index.lng
             });
           }
         
@@ -94,8 +93,8 @@ export class EditPage implements OnInit {
           this.adddata = true;
           this.requiredInfo.patchValue({
             name: "",
-            poi_latitude:  this.poi[0].latitude,
-            poi_longitude:  this.poi[0].longitude
+            poi_latitude:  this.index.lat,
+            poi_longitude:  this.index.lng
           });
         }
         );
@@ -132,7 +131,8 @@ export class EditPage implements OnInit {
           else{
             console.log("this.poiData");
           }
-           this._poiService.saveData(this.poiData).subscribe((res: any) => { 
+           this._poiService.saveData(this.poiData)
+           .subscribe((res: any) => { 
             if(res){ 
               console.log(res.message);
               this.message = res.message
@@ -150,7 +150,8 @@ export class EditPage implements OnInit {
   update(poi_id: any){
     console.log(poi_id);
     this.poiData = [].concat(this.requiredInfo.value,this.additionalInfo.value,poi_id);
-    this._poiService.updateData(this.poiData).subscribe((res: any) => { 
+    this._poiService.updateData(this.poiData)
+    .subscribe((res: any) => { 
       if(res){ 
         console.log(res.message);
         this.message = res.message
