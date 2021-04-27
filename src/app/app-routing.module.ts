@@ -35,6 +35,10 @@ const routes: Routes = [
     loadChildren: () => import('./dashboard/chart/chart.module').then(m => m.ChartPageModule)
   },
   {
+    path: 'roles',
+    loadChildren: () => import('./dashboard/roles/roles.module').then( m => m.RolesPageModule)
+  },
+  {
     path: 'leaderboard',
     loadChildren: () => import('./dashboard/leaderboard/leaderboard.module').then( m => m.LeaderboardPageModule)
   },

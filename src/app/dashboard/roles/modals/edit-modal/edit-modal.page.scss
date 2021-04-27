@@ -1,0 +1,28 @@
+img {
+  width: 50%;
+  display: block;
+  margin: 0 auto;
+}
+
+ion-header {
+  --ion-background-color: #ffc409;
+}
+
+ion-card {
+  --ion-background-color: white;
+}
+
+ion-content {
+  --ion-background-color: #111d12;
+}
+
+.imgA1 {
+  z-index: 1;
+}
+.imgB1 {
+  z-index: -1;
+  position: absolute;
+  top: -30px;
+  left: 10px;
+  width: 180px;
+}

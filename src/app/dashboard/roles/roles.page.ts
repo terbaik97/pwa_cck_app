@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { EditModalPage } from '../roles/modals/edit-modal/edit-modal.page';
+import { ReportModalPage } from './modals/report-modal/report-modal.page';
 
 @Component({
   selector: 'app-roles',
@@ -7,9 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RolesPage implements OnInit {
 
-  constructor() { }
+  constructor(public modalCtrl: ModalController) { }
 
   ngOnInit() {
   }
 
+  async editModal() {
+    const modal = await this.modalCtrl.create({
+      component: EditModalPage,
+    });
+
+    return await modal.present();
+  }
+
+  async reportModal(){
+    const modal = await this.modalCtrl.create({
+      component: ReportModalPage,
+    });
+
+    return await modal.present();
+  }
 }

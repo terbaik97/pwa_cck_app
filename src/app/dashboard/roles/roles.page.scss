@@ -1,0 +1,35 @@
+ion-card {
+  z-index: -2;
+  text-align: center;
+  background: #091d23;
+}
+svg {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+.container {
+  display: inline-block;
+  position: absolute;
+  width: 100%;
+  padding-bottom: 100%;
+  vertical-align: middle;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+}
+
+.wave-container {
+  img {
+    width: 150px;
+  }
+}
+
+ion-card-title {
+  h1 {
+    font-weight: 900;
+    font-size: 60px;
+  }
+}

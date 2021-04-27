@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { RolesPageRoutingModule } from './roles-routing.module';
 
 import { RolesPage } from './roles.page';
+import { EditModalPage } from '../roles/modals/edit-modal/edit-modal.page';
+import { ReportModalPage } from '../roles/modals/report-modal/report-modal.page';
 
 @NgModule({
   imports: [
@@ -15,6 +17,6 @@ import { RolesPage } from './roles.page';
     IonicModule,
     RolesPageRoutingModule
   ],
-  declarations: [RolesPage]
+  declarations: [RolesPage, EditModalPage, ReportModalPage]
 })
 export class RolesPageModule {}

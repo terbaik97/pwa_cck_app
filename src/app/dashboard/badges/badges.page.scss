@@ -1,7 +1,78 @@
-ion-avatar {
-  width: 150px !important;
-  height: 150px !important;
-  // max-width: 500px !important; //any size
-  // max-height: 500px !important; //any size
-  border-radius: 50%;
+.headerBadges {
+  height: 50px;
+}
+.headerBadgesCard {
+  height: 35px !important;
+}
+
+.headerBadge {
+  text-align: center;
+  color: black;
+  font-weight: 2000;
+  font-size: 30px;
+}
+
+ion-content {
+  ion-card {
+    overflow: visible;
+    height: 120px;
+    box-shadow: none;
+    border-radius: 8px;
+    margin: 26px 10px;
+    ion-col {
+      ion-img {
+        position: absolute;
+        // bottom: -50px;
+        // width: 100%;
+      }
+    }
+  }
+}
+
+.bigSection {
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  height: 450px !important;
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+.divideSection {
+  height: 25px !important;
+}
+
+.loginCard {
+  background-color: #f7cd7c;
+}
+
+.contributionCard {
+  background-color: #a8d1df;
+}
+
+.loginImage {
+  width: 200px;
+  bottom: -50px;
+  z-index: 3;
+}
+
+.loginImageBorder {
+  width: 200px;
+  bottom: -50px;
+}
+
+.contributionImage {
+  width: 150px;
+  bottom: -20px;
+  z-index: 3;
+}
+
+.contributionImageBorder {
+  width: 200px;
+  bottom: -40px;
+  left: -23px;
+}
+
+.cardSub {
+  height: 35px;
 }
