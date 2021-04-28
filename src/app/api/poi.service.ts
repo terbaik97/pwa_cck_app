@@ -64,9 +64,9 @@ export class PoiService {
 
     updateData (data: any){
       console.log("update");
-      console.log(data);
+      console.log(data[4]);
       let jwtToken = this._authService.getToken();
-      const headers = { 'Authorization':  jwtToken };
+      const headers = { 'Authorization':  jwtToken , 'Content-Type': 'application/json'};
       console.log(jwtToken);
         return this.http.put(this.baseUrl + "pois/update" ,
           {
@@ -80,7 +80,10 @@ export class PoiService {
           },
           { 
             headers 
-          } ).pipe(map(res => { 
+          }
+          ).
+          pipe(map(res => { 
+            
               return res; 
             }));
       }
