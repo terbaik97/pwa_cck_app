@@ -64,11 +64,11 @@ export class PoiService {
 
     updateData (data: any){
       console.log("update");
-      console.log(data[0]);
+      console.log(data[4]);
       let jwtToken = this._authService.getToken();
       const headers = { 'Authorization':  jwtToken , 'Content-Type': 'application/json'};
       console.log(jwtToken);
-         this.http.put(this.baseUrl + "pois/update" ,
+        return this.http.put(this.baseUrl + "pois/update" ,
           {
            
             name: data[0]["name"],
@@ -86,15 +86,6 @@ export class PoiService {
             
               return res; 
             }));
-            return this.http.put("http://127.0.0.1:3000/api/v1/image_poi/" + data[2],{
-              poi_id: data[2],
-              image: data[0]["image_poi"],
-              name: data[3].name,
-              size: data[3].size,
-
-            },{
-              headers
-            })
       }
 
       reportPoi(data: any){

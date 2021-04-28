@@ -1,5 +1,8 @@
 {
   "name": "new-pwa",
-  "integrations": {},
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
   "type": "angular"
 }

@@ -38,19 +38,19 @@
         <ion-label position="fixed">Longitude</ion-label>
         <ion-input formControlName="poi_longitude"  disabled></ion-input>
       </ion-item>
-      
+      <!-- <input  formControlName="image_poi"  (change)="setImageFile($event)" type="file" id="selectFile" name="selectFile" class="btn btn-success"> -->
+      <!-- <input  formControlName="image_poi"  (click)="takePicture()" type="file"  class="btn btn-success"> -->
       
   </form>
-  
-  <form [formGroup] = "uploadForm" (ngSubmit)="onSubmit()" *ngIf="updatedata">      
-    <div>
-      <input type="file" name="profile" (change)="onFileSelect($event)" />
-    </div>
-    <div>
-      <button type="submit">Upload</button>
-    </div>
-  </form>
+  <!-- <div class="image-upload">
+    <img [src]="imageSrc" style="max-width:300px;max-height:300px"/>
+    <input name="imageUrl" type="file" accept="image/*" (change)="handleInputChange($event)" />
+</div>  -->
 
+
+
+
+  <!-- <input  (change)="setImageFile($event)" type="file" id="selectFile" name="selectFile" class="btn btn-success"> -->
   <!-- Additional Info -->
   <form [formGroup]="additionalInfo">
 
@@ -64,7 +64,13 @@
   
   <ion-button *ngIf="adddata" expand="full" color="primary" (click)="save()">Add Info</ion-button>
 
-  <ion-button *ngIf="updatedata" expand="full" color="primary" (click)="update(poi_id)"  >Update Info</ion-button>
+  <ion-button *ngIf="updatedata" expand="full" color="primary" (click)="update(poi_id)">Update Info</ion-button>
   
 </ion-content>
- 
+
+
+
+
+
+
+
