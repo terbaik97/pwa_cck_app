@@ -148,7 +148,23 @@ export class EditPage implements OnInit {
       this.uploadForm.get('profile').setValue(file);
     }
   }
-  onSubmit() {
+  onSubmit(poi_id: any) {
+    //update data
+    console.log(poi_id);
+    this.poiData = [].concat(this.requiredInfo.value,this.additionalInfo.value,poi_id);
+    this._poiService.updateData(this.poiData)
+    .subscribe((res: any) => { 
+      if(res){ 
+        console.log(res.message);
+        this.message = res.message
+        this.router.navigate(['/']) 
+      } 
+    }, err => { 
+      console.log(err) 
+      this.message = err
+    });
+
+    //update image
     const formData = new FormData();
     formData.append('image', this.uploadForm.get('profile').value);
     formData.append('poi_id', this.poi_id);
@@ -193,26 +209,6 @@ export class EditPage implements OnInit {
     this.imageSrc = reader.result;
     console.log(this.imageSrc)
   }
-  // uploadFiles(files:File[]) : Subscription {
-  //   console.log(this.myFormData);
-  //   const config = new HttpRequest('PUT', "http://127.0.0.1:3000/api/v1/image_poi/"+ this.data.id, this.myFormData, {
-  //     reportProgress: true
-  //   })
-
-  //   return this.httpClient.request( config )
-  //   .subscribe(event=>{
-  //     this.httpEvent = event
-
-  //     if (event instanceof HttpResponse) {
-  //       alert('upload complete, old school alert used')
-  //     }
-  //   },
-  //   error=>{
-  //     alert('!failure beyond compare cause:' + error.toString())
-  //   })
-  // }
-
-
 
   public upload(formData) {
         return this.httpClient.post<any>(this.SERVER_URL, formData, {
@@ -255,21 +251,21 @@ export class EditPage implements OnInit {
         }
       }
 
-  update(poi_id: any){
-    console.log(poi_id);
-    this.poiData = [].concat(this.requiredInfo.value,this.additionalInfo.value,poi_id,this.image_file,this.imageSrc);
-    this._poiService.updateData(this.poiData)
-    .subscribe((res: any) => { 
-      if(res){ 
-        console.log(res.message);
-        this.message = res.message
-        this.router.navigate(['/']) 
-      } 
-    }, err => { 
-      console.log(err) 
-      this.message = err
-    });
-  }
+  // update(poi_id: any){
+  //   console.log(poi_id);
+  //   this.poiData = [].concat(this.requiredInfo.value,this.additionalInfo.value,poi_id,this.image_file,this.imageSrc);
+  //   this._poiService.updateData(this.poiData)
+  //   .subscribe((res: any) => { 
+  //     if(res){ 
+  //       console.log(res.message);
+  //       this.message = res.message
+  //       this.router.navigate(['/']) 
+  //     } 
+  //   }, err => { 
+  //     console.log(err) 
+  //     this.message = err
+  //   });
+  // }
       
 }
 
