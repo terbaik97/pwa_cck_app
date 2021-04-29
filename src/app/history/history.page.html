@@ -37,16 +37,16 @@
 
   <ion-card *ngFor="let data of data">
     <ion-card-header>
-      Header
+      {{data.whodunnit}}
     </ion-card-header>
     
         <ion-grid>
           <ion-row>
             <ion-col>
               <div>
-                
-                
-                <label for="changes-made">Changes happened: </label>
+                <ion-card-content>
+                  <ion-badge>Name change</ion-badge>
+                  <!-- <label for="changes-made">Changes name of the place: </label> -->
                   <div *ngFor="let data of data.object_changes.name;  let i = index">
                     <div *ngIf="i == 0">
                       {{data}} => 
@@ -55,6 +55,8 @@
                       {{data}} 
                     </div>
                   </div>
+                  <ion-badge>Field change</ion-badge>
+                  <!-- <label for="changes-made">Changes field of the place: </label> -->
                   <div *ngFor="let data of data.object_changes.fields; let i = index"> 
                     <div *ngIf="i == 0">
                       {{data | json}} => 
@@ -63,6 +65,7 @@
                       {{data | json}} 
                     </div>
                   </div>
+                  <!-- <label for="changes-made">Changes happened: </label> -->
                   <div *ngFor="let data of data.object_changes.report_reason;  let i = index">
                     <div *ngIf="i == 0">
                       {{data}} => 
@@ -71,6 +74,7 @@
                       {{data}} 
                     </div>
                   </div>
+            
                   <div *ngFor="let data of data.object_changes.is_report;  let i = index">
                     <div *ngIf="i == 0">
                       {{data}} => 
@@ -79,6 +83,10 @@
                       {{data}} 
                     </div>
                   </div>
+                </ion-card-content>
+                
+            
+
               </div>
             </ion-col>
             <ion-col>
@@ -102,8 +110,7 @@
     </div>
   </ion-toolbar>
 
-
-
+  
 
 
 

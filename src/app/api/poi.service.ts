@@ -8,9 +8,6 @@ import { AuthService } from '../services/auth.service';
 export class PoiService {
 
     baseUrl = 'http://127.0.0.1:3000/api/v1/';
-    
-    
-    
     constructor(public http: HttpClient , private _authService: AuthService) {
     }
 
@@ -46,7 +43,7 @@ export class PoiService {
             category:data[0]["category"], 
             poi_latitude:data[0]["poi_latitude"],
             poi_longitude:data[0]["poi_longitude"],
-            fields: data[1], 
+            fields: data[1]["details"], 
           },
           { 
             headers 
@@ -61,8 +58,6 @@ export class PoiService {
     }
 
     updateData (data: any){
-      console.log("update");
-      console.log(data[4]);
       let jwtToken = this._authService.getToken();
       const headers = { 'Authorization':  jwtToken , 'Content-Type': 'application/json'};
       console.log(jwtToken);
@@ -73,7 +68,7 @@ export class PoiService {
             category:data[0]["category"], 
             poi_latitude:data[0]["poi_latitude"],
             poi_longitude:data[0]["poi_longitude"],
-            fields: data[1], 
+            fields: data[1]['details'], 
             poi_id:data[2],
           },
           { 

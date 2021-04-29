@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { PoiService } from '../api/poi.service';
 import { ApiService } from '../services/api.service';
+import * as L from 'leaflet';
+//imports for showing leaflet marker
+import "leaflet/dist/images/marker-shadow.png";
+import "leaflet/dist/images/marker-icon.png";
+import "leaflet/dist/images/marker-icon-2x.png";
 export class PoiInfo {
   poiID: any;
   latitude: any;
@@ -30,6 +35,7 @@ export class POIInfoPage implements OnInit {
   id: string;
   data: any;
   checkdata: any;
+  map: L.Map;
   fields: any;
   constructor(private route: Router,
     private activatedRoute: ActivatedRoute,
@@ -68,13 +74,28 @@ export class POIInfoPage implements OnInit {
     }
     this.checkdata = true;
     this.data = res;
-    console.log("data")
-    console.log(this.data.name)
     this.id = this.data.id
-    // console.log( this.data[0]["fields"]);
     this.fields = this.data.fields;
     console.log(this.data)
+    this.map = L.map('map', {
+      center: [this.data.poi_latitude, this.data.poi_longitude],
+      zoom: 18,
+      renderer: L.canvas
+    })
+
+    var layer = L.tileLayer('assets/tiles/{z}/{x}/{y}.png', {
+      maxNativeZoom: 18,
+      minNativeZoom: 18,
+     });
+    layer.addTo(this.map);
+
+    var marker = L.marker([this.data.poi_latitude, this.data.poi_longitude])
+    .bindPopup('Place you search is here')
+    .openPopup();
+    marker.addTo(this.map);
     });
+
+
  
 
 

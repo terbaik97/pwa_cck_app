@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
 import {  NgModule } from "@angular/core"
 import { ActivatedRoute, Router } from '@angular/router';
 import { PoiService } from '../api/poi.service';
@@ -32,7 +32,7 @@ export class EditPage implements OnInit {
   requiredInfo: FormGroup;
   additionalInfo: FormGroup;
   uploadForm: FormGroup; 
-  
+  keyValueForm: FormGroup;
   constructor(
     private formBuilder: FormBuilder, 
     private _poiService: PoiService, 
@@ -42,7 +42,7 @@ export class EditPage implements OnInit {
     private _authService:AuthService
   ) 
 {
-    
+
   this.activatedRoute.queryParams.subscribe(params => {
     if (this.router.getCurrentNavigation().extras.state) {
       this.index = this.router.getCurrentNavigation().extras.state.index;
@@ -63,6 +63,22 @@ export class EditPage implements OnInit {
     field: ['', Validators.required],
     }
   );
+
+  //form key and value for fields
+  const items = [];
+  items.push(this.formBuilder.group({
+    key: new FormControl(''),
+    value: new FormControl('')
+  }));
+
+  items.push(this.formBuilder.group({
+    key: new FormControl(''),
+    value: new FormControl('')
+  }));
+
+  this.keyValueForm = this.formBuilder.group({
+    details: this.formBuilder.array(items)
+  });
 }
 
   ngOnInit() {
@@ -105,6 +121,23 @@ export class EditPage implements OnInit {
         });
   }
 
+  addRow() {
+    const details = this.keyValueForm.get('details') as FormArray;
+    details.push(this.createItem());
+  }
+
+  removeRow(index) {
+    const details = this.keyValueForm.get('details') as FormArray;
+    details.removeAt(index);
+  }
+
+  createItem(): FormGroup {
+    return this.formBuilder.group({
+      key: [],
+      value: []
+    });
+  }
+
   onFileSelect(event) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
@@ -115,7 +148,8 @@ export class EditPage implements OnInit {
   onSubmit(poi_id: any) {
     //update data
     console.log(poi_id);
-    this.poiData = [].concat(this.requiredInfo.value,this.additionalInfo.value,poi_id);
+    this.poiData = [].concat(this.requiredInfo.value,this.keyValueForm.value,poi_id);
+    console.log(this.poiData);
     this._poiService.updateData(this.poiData)
     .subscribe((res: any) => { 
       if(res){ 
@@ -181,8 +215,8 @@ export class EditPage implements OnInit {
     alert("Name required")
     } 
     else {
-      // let coordinate = [this.poi.latitude,this.poi.longitude]
-      this.poiData = [].concat(this.requiredInfo.value,this.additionalInfo.value);
+      
+      this.poiData = [].concat(this.requiredInfo.value,this.keyValueForm.value);
       console.log(this.data);
       if(this.data === "")
       {
@@ -207,21 +241,6 @@ export class EditPage implements OnInit {
     }
   }
 
-  // update(poi_id: any){
-  //   console.log(poi_id);
-  //   this.poiData = [].concat(this.requiredInfo.value,this.additionalInfo.value,poi_id,this.image_file,this.imageSrc);
-  //   this._poiService.updateData(this.poiData)
-  //   .subscribe((res: any) => { 
-  //     if(res){ 
-  //       console.log(res.message);
-  //       this.message = res.message
-  //       this.router.navigate(['/']) 
-  //     } 
-  //   }, err => { 
-  //     console.log(err) 
-  //     this.message = err
-  //   });
-  // }
-      
+
 }
 

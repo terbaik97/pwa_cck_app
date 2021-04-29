@@ -46,12 +46,9 @@
     <div>
       <input type="file" name="profile" (change)="onFileSelect($event)" />
     </div>
-    <!-- <div>
-      <button type="submit">Upload</button>
-    </div> -->
   </form>
 
-  <!-- Additional Info -->
+  <!-- Additional Info
   <form [formGroup]="additionalInfo">
 
     <ion-button expand="full" color="light" (click)="addControl()">Add Info</ion-button>
@@ -60,7 +57,37 @@
       <ion-input required type="text" [formControlName]="control.key" placeHolder="Field value"></ion-input>
       <ion-icon (click)="removeControl(control)" name="close-circle"></ion-icon>
     </ion-item>
-  </form>
+  </form> -->
+
+  <div class="container">
+    <form [formGroup]="keyValueForm" (ngSubmit)="doSubmit()">
+      <div class="form-row" formArrayName="details" *ngFor="let field of keyValueForm.get('details').controls; let ind = index;">
+        <ng-container [formGroupName]="ind">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <div class="form-group col-sm-5">
+                  <label>Key</label>
+                  <input type="email" class="form-control" formControlName="key" placeholder="Key">
+                </div>
+              </ion-col>
+              <ion-col>
+                <div class="form-group col-sm-5">
+                  <label>Value</label>
+                  <input type="text" class="form-control" formControlName="value" placeholder="Value">
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ng-container>
+      </div>
+    </form>
+    <button class="btn btn-danger" (click)="removeRow(ind)" >Remove</button>
+    <button class="btn btn-success" (click)="addRow()">Add Row</button>
+  </div>
+  <pre>
+    {{keyValueForm.value | json}}
+  </pre>
   
   <ion-button *ngIf="adddata" expand="full" color="primary" (click)="save()">Add Info</ion-button>
 
