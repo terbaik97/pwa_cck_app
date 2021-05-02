@@ -1,9 +1,3 @@
-<!-- <div class="row">
-  <div class="col-md-9">
-    <app-activity-graph></app-activity-graph>
-  </div>
-</div> -->
-
 <ion-header>
   <ion-toolbar>
     <ion-title>Dashboard</ion-title>
@@ -14,33 +8,87 @@
 </ion-header>
 
 <ion-content fullscreen>
-  <div class="cards>">
-      <div class="grid-full">
-        <ion-row>
-          <ion-col>
-            <ion-card>
-              <ion-card-header>
-                <ion-card-title>
-                  <ion-icon name="star" style="padding: 0px 10px 0px 0px;"></ion-icon>Points Gained
-                </ion-card-title>
-              </ion-card-header>
-              <ion-card-content><ion-card-title class="ion-text-center">10</ion-card-title></ion-card-content>
-            </ion-card>
-          </ion-col>
 
-          <ion-col>
-            <ion-card>
-              <ion-card-header>
-                <ion-card-title>
-                  <ion-icon name="star" style="padding: 0px 10px 0px 0px;"></ion-icon>Badges Received
-                  <ion-button fill="outline" style="float: right;" (click)="toPageBadges()">View</ion-button>
-                </ion-card-title>
-              </ion-card-header>
-              <ion-card-content><ion-card-title class="ion-text-center">1</ion-card-title>
-              </ion-card-content>
-            </ion-card>
-          </ion-col>
-        </ion-row>
-      </div>
-    </div>
+  <ion-row>
+    <ion-col>
+      <ion-row>
+        <ion-col >
+        </ion-col>
+        <ion-card class="profileCard">
+          <ion-card-content>
+            <ion-col >
+              <ion-img class="pictureProfile" src="assets/badges/contribution.png"></ion-img>
+              <ion-img class="pictureBorder" src="assets/border/pinkBorder.png"></ion-img>
+
+              <ion-button class="changeBorder" primary large>
+                <ion-icon name="repeat-outline"></ion-icon>
+                <ion-label>Change border</ion-label>
+              </ion-button>
+            </ion-col>
+          </ion-card-content>
+        </ion-card>
+        <ion-col >
+        </ion-col>
+      </ion-row>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col></ion-col>
+    <ion-col>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title color="primary">
+          Total Points Gained
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content><ion-card-title class="ion-text-center">10</ion-card-title></ion-card-content>
+      </ion-card>
+    </ion-col>
+
+    <ion-col>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title color="primary">
+            Badges Received
+            <ion-button fill="outline" style="float: right;" (click)="toPageBadges()">View</ion-button>
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content><ion-card-title class="ion-text-center">1</ion-card-title>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+
+  <ion-title>Badge Display</ion-title>
+  <ion-row>
+    <ion-col>
+      <ion-card>
+        <ion-card-content>
+            <ion-button block (click)="badgeModal1()">
+              Choose Your Badge
+            </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+    <ion-col>
+      <ion-card>
+        <ion-card-content>
+            <ion-button block (click)="badgeModal1()">
+              Choose Your Badge
+            </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+    <ion-col>
+      <ion-card>
+        <ion-card-content>
+            <ion-button block (click)="badgeModal1()">
+              Choose Your Badge
+            </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
 </ion-content>

@@ -91,11 +91,6 @@ export class ChartPage implements OnInit {
     });
   }
 
-  //navigate to list all badges
-  toPageBadges(){
-    this.route.navigate(['/badges']);
-  }
-
 //add dummy data
 //   addData(){
 //     if (this.chartItem !== null && this.chartItem.length>0){

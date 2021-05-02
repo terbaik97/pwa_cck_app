@@ -1,0 +1,39 @@
+ion-content {
+  .profileCard {
+    // overflow: visible;
+    background-color: black;
+    height: 300px;
+    width: 300px;
+    border-radius: 8px;
+    // margin: 26px 10px;
+    ion-col {
+      position: relative;
+      ion-img {
+        position: absolute;
+      }
+    }
+  }
+}
+
+.pictureProfile {
+  width: 200px;
+  bottom: -180px;
+  left: 30px;
+}
+
+.pictureBorder {
+  width: 300px;
+  bottom: -225px;
+  left: -15px;
+}
+
+.changeBorder {
+  left: 40px;
+  position: absolute;
+  bottom: -250px;
+}
+
+.card-alert {
+  width: 100px;
+  height: 100px;
+}

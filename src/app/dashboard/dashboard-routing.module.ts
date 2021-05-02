@@ -16,6 +16,14 @@ const routes: Routes = [
     path: 'roles',
     loadChildren: () => import('./roles/roles.module').then( m => m.RolesPageModule)
   },
+  {
+    path: 'badge1',
+    loadChildren: () => import('./badgeDisplayModal/badge1/badge1.module').then( m => m.Badge1PageModule)
+  },
+  {
+    path: 'choose-border-modal',
+    loadChildren: () => import('./badgeDisplayModal/choose-border-modal/choose-border-modal.module').then( m => m.ChooseBorderModalPageModule)
+  },
 ];
 
 @NgModule({

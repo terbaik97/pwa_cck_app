@@ -1,6 +1,6 @@
 <ion-app>
 
-  <ion-menu menuId="main-menu" content-id="main">
+  <!-- <ion-menu menuId="main-menu" content-id="main">
     <ion-header>
       <ion-toolbar>
         <ion-title>Dashboard</ion-title>
@@ -33,7 +33,7 @@
       </ion-list>
     </ion-content>
   </ion-menu>
-  <ion-router-outlet id="main"></ion-router-outlet>
+  <ion-router-outlet id="main"></ion-router-outlet> -->
   <!-- <div *ngIf="buttonLogout">
     <ion-button class="LogoutButton" (click)="logout()">
     <div class="ion-text-left">Logout</div>
@@ -45,4 +45,41 @@
     </ion-button>
   </div> -->
 
+  <ion-menu menuId="main-menu" content-id="main">
+    <ion-content>
+      <div class="menu-header-bg"></div>
+      <div class="header-content">
+        <img src="../assets/badges/contribution.png">
+        <ion-label>
+          <h2>Luqman</h2>
+          <p>Total Points: 100</p>
+        </ion-label>
+      </div>
+      <ion-list class="menu-items" lines="none">
+        <ion-menu-toggle>
+          <ion-item routerLink="dashboard">
+            <ion-icon name="pie-chart-outline" slot="start"></ion-icon>
+            <ion-label>Dashboard</ion-label>
+          </ion-item>
+          <ion-item routerLink="chart">
+            <ion-icon name="stats-chart-outline"></ion-icon>
+            <ion-label>Chart</ion-label>
+          </ion-item>
+          <ion-item routerLink="roles">
+            <ion-icon name="game-controller-outline"></ion-icon>
+            <ion-label>Roles</ion-label>
+          </ion-item>
+          <ion-item routerLink="leaderboard">
+            <ion-icon name="trophy-outline"></ion-icon>
+            <ion-label>Leaderboard</ion-label>
+          </ion-item>
+          <ion-item routerLink="badges">
+            <ion-icon name="ribbon-outline"></ion-icon>
+            <ion-label>Badges</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main"></ion-router-outlet>
 </ion-app>
