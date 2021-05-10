@@ -31,19 +31,19 @@ export class POIInfoPage implements OnInit {
   public index: any;
 
   public poiInfo: any;
-
+  image: any;
   id: string;
   data: any;
   checkdata: any;
   map: L.Map;
   fields: any;
+  baseUrl="http://127.0.0.1:3000";
   constructor(private route: Router,
     private activatedRoute: ActivatedRoute,
     private _poiService: PoiService) {
       this.activatedRoute.queryParams.subscribe(params => {
         if (this.route.getCurrentNavigation().extras.state) {
           this.index = this.route.getCurrentNavigation().extras.state.index;
-          console.log(this.index);
           // this.poiData = JSON.parse(localStorage.getItem("addpoiData"));
           // this.poi = this.poiData[this.index];
         }
@@ -53,8 +53,6 @@ export class POIInfoPage implements OnInit {
   ngOnInit() {
 
     let result = Object.values(this.index);
-
-    console.log(result)
     // store data for id , coordinate x and 
     this.poiInfo = {
       "lat": result[0],
@@ -76,7 +74,8 @@ export class POIInfoPage implements OnInit {
     this.data = res;
     this.id = this.data.id
     this.fields = this.data.fields;
-    console.log(this.data)
+    this.image = this.data.image_pois[0]["image"]["url"]
+    console.log(this.image)
     this.map = L.map('map', {
       center: [this.data.poi_latitude, this.data.poi_longitude],
       zoom: 18,
