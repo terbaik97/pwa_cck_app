@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PoiService } from '../api/poi.service';
 import {HttpClient, HttpEvent, HttpErrorResponse, HttpEventType, HttpRequest, HttpResponse} from '@angular/common/http';
 import { AuthService } from "../services/auth.service";
-
+import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.page.html',
@@ -39,7 +39,8 @@ export class EditPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private httpClient: HttpClient,
-    private _authService:AuthService
+    private _authService:AuthService,
+    public alertController: AlertController
   ) 
 {
 
@@ -67,15 +68,10 @@ export class EditPage implements OnInit {
   //form key and value for fields
   const items = [];
   items.push(this.formBuilder.group({
-    key: new FormControl(''),
-    value: new FormControl('')
+    key: new FormControl('',Validators.required),
+    value: new FormControl('',Validators.required)
   }));
-
-  items.push(this.formBuilder.group({
-    key: new FormControl(''),
-    value: new FormControl('')
-  }));
-
+  
   this.keyValueForm = this.formBuilder.group({
     details: this.formBuilder.array(items)
   });
@@ -147,14 +143,12 @@ export class EditPage implements OnInit {
 
   onSubmit(poi_id: any) {
     //update data
-    console.log(poi_id);
     this.poiData = [].concat(this.requiredInfo.value,this.keyValueForm.value,poi_id);
     console.log(this.poiData);
     this._poiService.updateData(this.poiData)
     .subscribe((res: any) => { 
       if(res){ 
-        console.log(res.message);
-        this.message = res.message
+        alert(res.message);
         this.router.navigate(['/']) 
       } 
     }, 
@@ -174,6 +168,15 @@ export class EditPage implements OnInit {
       (err) => console.log(err)
     );
   }
+  isEmpty(obj) {
+    for(var prop in obj) {
+        if(obj.hasOwnProperty(prop))
+            return false;
+    }
+
+    return true;
+}
+  
  
   addControl(){
     this.playerCount++;
@@ -217,7 +220,6 @@ export class EditPage implements OnInit {
     else {
       
       this.poiData = [].concat(this.requiredInfo.value,this.keyValueForm.value);
-      console.log(this.data);
       if(this.data === "")
       {
         console.log(this.poiData);
@@ -229,8 +231,7 @@ export class EditPage implements OnInit {
       this._poiService.saveData(this.poiData)
       .subscribe((res: any) => { 
         if(res){ 
-          console.log(res.message);
-          this.message = res.message
+          alert(res.message);
           this.router.navigate(['']) 
         } 
       }, 
@@ -241,6 +242,7 @@ export class EditPage implements OnInit {
     }
   }
 
+ 
 
 }
 
