@@ -12,6 +12,7 @@ export class LoginPage implements OnInit {
 
   form: FormGroup 
   email: any;
+  errorMessage: any;
   constructor( 
     private _api : ApiService, 
     private _auth: AuthService, 
@@ -40,7 +41,8 @@ export class LoginPage implements OnInit {
         this.router.navigate(['tabs/tab2']) 
       } 
     }, err => { 
-      console.log(err) 
+      this.errorMessage = err.error.message;
+      console.log(err.error.message) 
     }); 
   } 
   register(){

@@ -29,6 +29,10 @@
     </ion-grid>
   </form>
 
+  <div *ngIf="errorMessage"> 
+    <ion-badge color="primary">Wrong password or email</ion-badge>
+  </div>
+
   <p text-center>Don't have a account?</p>
   <ion-button expand="full" color="danger" (click)="register()">Register</ion-button>
 
