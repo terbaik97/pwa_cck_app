@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/poi-info"></ion-back-button>
     </ion-buttons>
-    <ion-title>Add POI</ion-title>
+    <ion-title>Add info's about the place</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -38,7 +38,25 @@
         <ion-label position="fixed">Longitude</ion-label>
         <ion-input formControlName="poi_longitude"  disabled></ion-input>
       </ion-item>
-      
+
+      <!-- select option -->
+      <!-- <ion-item>
+        <ion-label>Gender</ion-label>
+        <ion-select placeholder="Select One">
+          <ion-select-option value="f">Female</ion-select-option>
+          <ion-select-option value="m">Male</ion-select-option>
+        </ion-select>
+      </ion-item>
+    
+      <ion-item>
+        <ion-label>Hair Color</ion-label>
+        <ion-select value="brown" okText="Okay" cancelText="Dismiss">
+          <ion-select-option value="brown">Brown</ion-select-option>
+          <ion-select-option value="blonde">Blonde</ion-select-option>
+          <ion-select-option value="black">Black</ion-select-option>
+          <ion-select-option value="red">Red</ion-select-option>
+        </ion-select>
+      </ion-item> -->
       
   </form>
   
@@ -68,7 +86,7 @@
               <ion-col>
                 <div class="form-group col-sm-5">
                   <label>Key</label>
-                  <input type="email" class="form-control" formControlName="key" placeholder="Key">
+                  <input type="text" class="form-control" formControlName="key" placeholder="Key">
                 </div>
               </ion-col>
               <ion-col>
@@ -82,16 +100,25 @@
         </ng-container>
       </div>
     </form>
-    <button class="btn btn-danger" (click)="removeRow(ind)" >Remove</button>
-    <button class="btn btn-success" (click)="addRow()">Add Row</button>
-  </div>
-  <pre>
-    {{keyValueForm.value | json}}
-  </pre>
-  
-  <ion-button *ngIf="adddata" expand="full" color="primary" (click)="save()">Add Info</ion-button>
 
-  <ion-button *ngIf="updatedata" expand="full" color="primary" (click)="onSubmit(poi_id)">Update Info</ion-button>
+    
+    <ion-buttons start>
+      <button ion-button (click)="removeRow(ind)">
+        <ion-icon name="remove"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button ion-button (click)="addRow()" [disabled]="keyValueForm.invalid">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+    
+  </div>
+  
+  
+  <ion-button round *ngIf="adddata" expand="full" color="primary" (click)="save()">Add Info</ion-button>
+
+  <ion-button round *ngIf="updatedata" expand="full" color="primary" (click)="onSubmit(poi_id)">Update Info</ion-button>
   
 </ion-content>
  

@@ -74,8 +74,92 @@ ion-button {
   font-weight: bold !important;
   height: auto;
 }
+.place_name {
+  /* POI Name */
+  height: 16px;
+  left: -123px;
+  top: 142px;
 
-// .validation-errors {
-//   margin: 0px 16px 5px 16px !important;
-//   width: calc(100% - 32px);
-// }
+  font-family: Metropolis;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 16px;
+  /* identical to box height */
+
+  text-transform: capitalize;
+
+  color: #0e1026;
+}
+.place_name_input {
+  width: 331px;
+  height: 50px;
+  left: 23px;
+  top: 172px;
+  background: #ffffff;
+  border: 1px solid rgba(39, 46, 93, 0.1);
+  box-sizing: border-box;
+  box-shadow: 0px 5px 20px rgba(60, 134, 221, 0.15);
+  border-radius: 5px;
+}
+.report_reason {
+  width: 331px;
+  height: 50px;
+  left: 23px;
+  top: 225px;
+
+  background: #ffffff;
+  border: 1px solid rgba(39, 46, 93, 0.1);
+  box-sizing: border-box;
+  box-shadow: 0px 5px 20px rgba(60, 134, 221, 0.15);
+  border-radius: 5px;
+}
+
+.report_reason_name {
+  height: 16px;
+  left: -123px;
+  top: 257px;
+
+  font-family: Metropolis;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 16px;
+  /* identical to box height */
+  text-transform: capitalize;
+  color: #0e1026;
+}
+
+.comment_name {
+  left: -123px;
+  font-family: Metropolis;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 16px;
+  /* identical to box height */
+  text-transform: capitalize;
+  color: #0e1026;
+}
+
+.comments {
+  width: 331px;
+  height: 187px;
+  left: 23px;
+  top: 300px;
+
+  background: #ffffff;
+  border: 1px solid rgba(39, 46, 93, 0.1);
+  box-sizing: border-box;
+  box-shadow: 0px 5px 20px rgba(60, 134, 221, 0.15);
+  border-radius: 5px;
+}
+
+.report_button {
+  width: 314.92px;
+  height: 50px;
+  left: 26px;
+  top: 574px;
+  background: linear-gradient(179.17deg, #597eab 29.07%, #09446c 117.37%);
+  border-radius: 5px;
+}

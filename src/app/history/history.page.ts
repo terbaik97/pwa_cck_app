@@ -22,6 +22,7 @@ export class HistoryPage implements OnInit {
     console.log(id);
     this._poiService.getPoiVersion(id).subscribe((res: any)=>{
       this.data = res;
+      // this.whodunnit = this.data.
       console.log(this.data);
     },
     (err: any) =>{
