@@ -38,4 +38,7 @@ export class Tab2Page implements OnInit{
     localStorage.removeItem('email');
     this.router.navigate(['/']) 
   }
+
+  
 }
+
