@@ -7,81 +7,53 @@
   </ion-toolbar>
 </ion-header>
 
-<!-- 
-<ion-content [fullscreen]="true">
-  <ion-card>
-    <ion-item>
-      <ion-icon name="person-outline"></ion-icon>
-      <ion-label>User detail</ion-label>
-      <ion-button fill="outline" slot="end">Dashboard</ion-button>
-    </ion-item>
-  
-    <ion-card-content>
-      <div *ngFor="let profile_data of profile_data">
-      
-        <ion-badge color="secondary">Full Name</ion-badge>
-        <div>{{profile_data.full_name}}</div>
-        <ion-badge color="secondary">Nickname</ion-badge>
-        <div>{{profile_data.nickname}}</div>
-        <ion-badge color="secondary">Email</ion-badge>
-        <div>{{profile_data.email}}</div>
-        <ion-badge color="secondary">Mobile Number</ion-badge>
-        <div>{{profile_data.mobile_number}}</div>
-        <ion-badge color="secondary">Status</ion-badge>
-        <div>{{profile_data.status}}</div>
-      </div>
+
+
+
+<form [formGroup]="updateProfile">
+
+  <div class="container py-3">
     
-    </ion-card-content>
-  </ion-card>
-
-  <div *ngIf="buttonLogout">
-    <ion-button class="LogoutButton" (click)="logout()">
-    <div class="ion-text-left">Logout</div>
-  </ion-button>
-  </div>
+    <div class="row py-4">
+      
+        <div class="col-lg-6 ">
   
-</ion-content> -->
-
-<!-- upload image -->
-
-<div class="container py-5">
-
-  <!-- For demo purpose -->
-
-
-
-  <div class="row py-4">
-      <div class="col-lg-6 mx-auto">
-
-          <!-- Upload image input-->
-          <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
-              <input id="upload" type="file" onchange="readURL(this);" class="form-control border-0">
-              <label id="upload-label" for="upload" class="font-weight-light text-muted">Choose file</label>
-              <div class="input-group-append">
-                  <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Choose file</small></label>
-              </div>
-          </div>
-
-          <!-- Uploaded image area-->
-          <div class="image-area mt-4"><img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
-
+            
+            <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm" style="top: -60px;">
+                <input id="upload" type="file" name="avatar" (change)="onFileSelect($event)" class="file-upload form-control border-0" accept="image/*">
+                <label id="upload-label" for="upload" class="font-weight-light text-muted">Choose file</label>
+                <div class="input-group-append">
+                    <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Choose file</small></label>
+                </div>
+            </div>
+            <img class="profile-pic" [src]="displayImage">
+          
+           
+        </div>
       </div>
-    </div>
   </div>
+ 
 
+  
+ 
+    <ion-title class="name">Name</ion-title>
+    <ion-input   formControlName="full_name" class="name_input"  ></ion-input>
+  
+    <ion-title class="email">Email</ion-title>
+    <ion-input  formControlName="email" class="email_input"  ></ion-input>
+  
+    <ion-title class="mobile_number">Mobile Number</ion-title>
+    <ion-input formControlName="mobile_number" class="mobile_number_input" ></ion-input>
+  
+    
+  
 
-<ion-content *ngFor="let profile_data of profile_data">
-  <ion-title class="name">Name</ion-title>
-  <ion-input   class="name_input" disabled value="{{profile_data.full_name}}"></ion-input>
+</form>
 
-  <ion-title class="email">Email</ion-title>
-  <ion-input   class="email_input" disabled value="{{profile_data.email}}"></ion-input>
+<!-- <ion-button expand="full" class="report_button" color="primary" (click)="update()"  [disabled]="updateProfile.invalid">Update profile</ion-button> -->
+<ion-button class="update_button" round  expand="full" color="primary" (click)="onSubmit()">Update profile</ion-button>
 
-  <ion-title class="mobile_number">Mobile Number</ion-title>
-  <ion-input   class="mobile_number_input" disabled value="{{profile_data.mobile_number}}"></ion-input>
-
-  <div *ngIf="buttonLogout">
-    <ion-button class="logout_button" (click)="logout()">Logout
-  </ion-button>
-  </div>
-</ion-content>
+<div *ngIf="buttonLogout">
+  <ion-button class="logout_button" (click)="logout()">Logout
+</ion-button>
+</div>
