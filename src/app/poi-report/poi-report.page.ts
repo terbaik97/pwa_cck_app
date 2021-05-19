@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PoiService } from '../api/poi.service';
+import { AlertMessageService } from '../services/alert-message.service';
 @Component({
   selector: 'app-poi-report',
   templateUrl: './poi-report.page.html',
@@ -15,9 +16,15 @@ export class PoiReportPage implements OnInit {
   public poiInfo = [];
   public submitAttempt: boolean = false;
   data: any;
-  message ="";
   id = "";
-  constructor(private formbuilder: FormBuilder, private activatedRoute: ActivatedRoute,private router: Router,private _poiService: PoiService,private route: ActivatedRoute) {
+  constructor(
+    private formbuilder: FormBuilder, 
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private _poiService: PoiService,
+    private route: ActivatedRoute,
+    private alertMessage:AlertMessageService
+    ) {
     this.reportForm = formbuilder.group({
       name: ['',Validators.required],
       report_reason: ['',Validators.required],
@@ -64,12 +71,12 @@ export class PoiReportPage implements OnInit {
           this._poiService.reportPoi(this.poiData).subscribe((res: any) => { 
             if(res){ 
               console.log(res.message);
-              this.message = res.message
+              this.alertMessage.presentAlert(res.message)
               this.router.navigate(['']) 
             } 
           }, err => { 
             console.log(err) 
-            this.message = err
+            this.alertMessage.presentAlert(err)
           });
         }
   }

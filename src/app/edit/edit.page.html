@@ -1,81 +1,43 @@
-<ion-header>
+<ion-header >
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/poi-info"></ion-back-button>
+      <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
-    <ion-title>Add info's about the place</ion-title>
+    <ion-title>Add info</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-badge color="secondary">{{message}}</ion-badge>
-   <!-- requiredInfo -->
+  
    <form [formGroup]="requiredInfo">
      
-      
-          <ion-item>
-            <ion-label position="floating">Place Name</ion-label>
-            <ion-input formControlName="name" type="text" value="sasa" [class.invalid]="!requiredInfo.controls.name.valid"></ion-input>
-          </ion-item>
+      <div class="coordinate">
+        <ion-input  formControlName="poi_latitude"  class="latitude" disabled></ion-input>
+        <ion-input  formControlName="poi_longitude"  class="longitude" disabled></ion-input>
+      </div>
+   
+      <ion-title class="category_name">Category</ion-title>
+      <ion-select formControlName="category"  cancelText="Dismiss" [class.invalid]="!requiredInfo.controls.category.valid" class="category">
+        <ion-select-option *ngFor="let categoryData of categoryData" [value]="categoryData.category_name">{{categoryData.category_name}}</ion-select-option>
+      </ion-select>
+ 
+      <ion-title class="place_name">Place</ion-title>
+      <ion-input class="place" formControlName="name"  [class.invalid]="!requiredInfo.controls.name.valid"></ion-input>
 
-          <ion-item lines="none">
-            <ion-label position="stacked" color="accent">Category of the place</ion-label>
-            <ion-select formControlName="category"  cancelText="Dismiss" [class.invalid]="!requiredInfo.controls.category.valid">
-              <ion-select-option *ngFor="let categoryData of categoryData" [value]="categoryData.category_name">{{categoryData.category_name}}</ion-select-option>
-          
-            </ion-select>
-          </ion-item>
-          <ion-item *ngIf="!requiredInfo.controls.category.valid  ">
-            <p>Please fill up category of the place.</p>
-          </ion-item>
-
+      <ion-title class="event_name">Event happen</ion-title>
+      <ion-input class="event" formControlName="event" [class.invalid]="!requiredInfo.controls.event.valid"></ion-input>
     
-      <ion-item>
-        <ion-label position="fixed">Latitude</ion-label>
-        <ion-input  formControlName="poi_latitude"   disabled></ion-input>
+      <ion-item class="date_event">
+        <ion-label>Date event</ion-label>
+        <ion-datetime displayFormat="MM DD YY" formControlName="event_date" placeholder="Select Date"></ion-datetime>
       </ion-item>
-      <ion-item>
-        <ion-label position="fixed">Longitude</ion-label>
-        <ion-input formControlName="poi_longitude"  disabled></ion-input>
-      </ion-item>
-
-      <!-- select option -->
-      <!-- <ion-item>
-        <ion-label>Gender</ion-label>
-        <ion-select placeholder="Select One">
-          <ion-select-option value="f">Female</ion-select-option>
-          <ion-select-option value="m">Male</ion-select-option>
-        </ion-select>
-      </ion-item>
-    
-      <ion-item>
-        <ion-label>Hair Color</ion-label>
-        <ion-select value="brown" okText="Okay" cancelText="Dismiss">
-          <ion-select-option value="brown">Brown</ion-select-option>
-          <ion-select-option value="blonde">Blonde</ion-select-option>
-          <ion-select-option value="black">Black</ion-select-option>
-          <ion-select-option value="red">Red</ion-select-option>
-        </ion-select>
-      </ion-item> -->
-      
   </form>
   
-  <form [formGroup] = "uploadForm"  *ngIf="updatedata">      
+  <form [formGroup] = "uploadForm"  *ngIf="updatedata" class="upload_image">      
     <div>
       <input type="file" name="profile" (change)="onFileSelect($event)" />
     </div>
   </form>
-
-  <!-- Additional Info
-  <form [formGroup]="additionalInfo">
-
-    <ion-button expand="full" color="light" (click)="addControl()">Add Info</ion-button>
-
-    <ion-item *ngFor="let control of additionalInfo.controls | keyvalue">
-      <ion-input required type="text" [formControlName]="control.key" placeHolder="Field value"></ion-input>
-      <ion-icon (click)="removeControl(control)" name="close-circle"></ion-icon>
-    </ion-item>
-  </form> -->
 
   <div class="container">
     <form [formGroup]="keyValueForm" (ngSubmit)="doSubmit()">
@@ -116,9 +78,9 @@
   </div>
   
   
-  <ion-button round *ngIf="adddata" expand="full" color="primary" (click)="save()">Add Info</ion-button>
+  <ion-button class="button" round *ngIf="adddata" expand="full" color="primary" (click)="save()">Add Info</ion-button>
 
-  <ion-button round *ngIf="updatedata" expand="full" color="primary" (click)="onSubmit(poi_id)">Update Info</ion-button>
+  <ion-button class="button" round *ngIf="updatedata" expand="full" color="primary" (click)="onSubmit(poi_id)">Update Info</ion-button>
   
 </ion-content>
  

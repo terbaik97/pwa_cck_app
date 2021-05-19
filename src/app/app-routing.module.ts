@@ -15,11 +15,19 @@ const routes: Routes = [
     loadChildren: () => import('./poi-info/poi-info.module').then( m => m.POIInfoPageModule)
   },
   {
+    path: 'poi-info/:id',
+    loadChildren: () => import('./poi-info/poi-info.module').then( m => m.POIInfoPageModule)
+  },
+  {
     path: 'history/:id',
     loadChildren: () => import('./history/history.module').then( m => m.HistoryPageModule)
   },
   {
     path: 'poi-edit',
+    loadChildren: () => import('./edit/edit.module').then( m => m.EditPageModule)
+  },
+  {
+    path: 'poi-edit/:id',
     loadChildren: () => import('./edit/edit.module').then( m => m.EditPageModule)
   },
   {

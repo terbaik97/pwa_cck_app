@@ -202,9 +202,7 @@ console.log(e.latlng);
       state: {
         index: e.latlng
       }
-    }
-    // this.placeCoordinate = { x: this.resultLat, y: this.resultLng }
-    // console.log(this.resultID);
+    }    
     this.route.navigate(['/poi-info'], navigationExtra);
   }
 }

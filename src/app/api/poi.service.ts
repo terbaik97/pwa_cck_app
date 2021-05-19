@@ -36,14 +36,16 @@ export class PoiService {
       console.log(data);
       let jwtToken = this._authService.getToken();
       const headers = { 'Authorization':  jwtToken };
-      console.log(jwtToken);
+      console.log(data);
         return this.http.post(this.baseUrl + "pois" ,
           {
             name: data[0]["name"],
             category:data[0]["category"], 
             poi_latitude:data[0]["poi_latitude"],
             poi_longitude:data[0]["poi_longitude"],
-            fields: data[1]["details"], 
+            fields: data[1]["details"],
+            event:data[0]["event"],
+            event_date:data[0]["event_date"] 
           },
           { 
             headers 
@@ -68,7 +70,9 @@ export class PoiService {
             category:data[0]["category"], 
             poi_latitude:data[0]["poi_latitude"],
             poi_longitude:data[0]["poi_longitude"],
-            fields: data[1]['details'], 
+            fields: data[1]["details"],
+            event:data[0]["event"],
+            event_date:data[0]["event_date"],
             poi_id:data[2],
           },
           { 
