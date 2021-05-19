@@ -6,6 +6,7 @@ import { PoiService } from '../api/poi.service';
 import {HttpClient, HttpEvent, HttpErrorResponse, HttpEventType, HttpRequest, HttpResponse} from '@angular/common/http';
 import { AuthService } from "../services/auth.service";
 import { AlertController } from '@ionic/angular';
+import { AlertMessageService } from '../services/alert-message.service';
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.page.html',
@@ -40,7 +41,7 @@ export class EditPage implements OnInit {
     private router: Router,
     private httpClient: HttpClient,
     private _authService:AuthService,
-    public alertController: AlertController
+    private alertMessage:AlertMessageService 
   ) 
 {
 
@@ -56,7 +57,9 @@ export class EditPage implements OnInit {
     category: [''],
     poi_latitude:[''],
     poi_longitude:[''],
-    image_poi:['']
+    image_poi:[''],
+    event:[''],
+    event_date:['']
     });
 
   this.additionalInfo = formBuilder.group(
@@ -96,7 +99,9 @@ export class EditPage implements OnInit {
             name: this.data.name,
             poi_latitude:  this.index.lat,
             poi_longitude:  this.index.lng,
-            image_poi: ""
+            image_poi: "",
+            event:this.data.event,
+            event_date:this.data.event_date
             });
           }
         
@@ -148,7 +153,8 @@ export class EditPage implements OnInit {
     this._poiService.updateData(this.poiData)
     .subscribe((res: any) => { 
       if(res){ 
-        alert(res.message);
+        
+        this.alertMessage.presentAlert(res.message)
         this.router.navigate(['/']) 
       } 
     }, 
@@ -231,13 +237,14 @@ export class EditPage implements OnInit {
       this._poiService.saveData(this.poiData)
       .subscribe((res: any) => { 
         if(res){ 
-          alert(res.message);
+          this.alertMessage.presentAlert(res.message)
           this.router.navigate(['']) 
         } 
       }, 
       err => { 
         console.log(err) 
         this.message = err
+        this.alertMessage.presentAlert(this.message )
       });
     }
   }

@@ -1,11 +1,9 @@
-<ion-header [translucent]="true">
+<ion-header >
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/poi-info"></ion-back-button>
+      <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
-    <ion-title>
-    Add Info
-    </ion-title>
+    <ion-title>Add info</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,22 +11,26 @@
   
    <form [formGroup]="requiredInfo">
      
+      <div class="coordinate">
+        <ion-input  formControlName="poi_latitude"  class="latitude" disabled></ion-input>
+        <ion-input  formControlName="poi_longitude"  class="longitude" disabled></ion-input>
+      </div>
    
       <ion-title class="category_name">Category</ion-title>
       <ion-select formControlName="category"  cancelText="Dismiss" [class.invalid]="!requiredInfo.controls.category.valid" class="category">
         <ion-select-option *ngFor="let categoryData of categoryData" [value]="categoryData.category_name">{{categoryData.category_name}}</ion-select-option>
       </ion-select>
  
-
       <ion-title class="place_name">Place</ion-title>
-      <ion-input class="place" formControlName="name" type="text" value="sasa" [class.invalid]="!requiredInfo.controls.name.valid"></ion-input>
-    
-      <div class="coordinate">
-        <ion-input  formControlName="poi_latitude"  class="latitude" disabled></ion-input>
-        <ion-input  formControlName="poi_longitude"  class="longitude" disabled></ion-input>
-      </div>
+      <ion-input class="place" formControlName="name"  [class.invalid]="!requiredInfo.controls.name.valid"></ion-input>
 
-      
+      <ion-title class="event_name">Event happen</ion-title>
+      <ion-input class="event" formControlName="event" [class.invalid]="!requiredInfo.controls.event.valid"></ion-input>
+    
+      <ion-item class="date_event">
+        <ion-label>Date event</ion-label>
+        <ion-datetime displayFormat="MM DD YY" formControlName="event_date" placeholder="Select Date"></ion-datetime>
+      </ion-item>
   </form>
   
   <form [formGroup] = "uploadForm"  *ngIf="updatedata" class="upload_image">      
