@@ -25,6 +25,9 @@ export class AuthService {
   getUserNickname() { 
     return localStorage.getItem('nickname'); 
   } 
+  getUserId() { 
+    return localStorage.getItem('id'); 
+  } 
 
   clearStorage() { 
       localStorage.clear(); 
