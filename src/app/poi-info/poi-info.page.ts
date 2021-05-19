@@ -38,14 +38,16 @@ export class POIInfoPage implements OnInit {
   map: L.Map;
   fields: any;
   baseUrl="http://127.0.0.1:3000";
-  constructor(private route: Router,
+  nodata: any;
+
+  constructor(
+    private router: Router,
     private activatedRoute: ActivatedRoute,
-    private _poiService: PoiService) {
+    private _poiService: PoiService
+    ) {
       this.activatedRoute.queryParams.subscribe(params => {
-        if (this.route.getCurrentNavigation().extras.state) {
-          this.index = this.route.getCurrentNavigation().extras.state.index;
-          // this.poiData = JSON.parse(localStorage.getItem("addpoiData"));
-          // this.poi = this.poiData[this.index];
+        if (this.router.getCurrentNavigation().extras.state) {
+          this.index = this.router.getCurrentNavigation().extras.state.index;
         }
       })
      }
@@ -59,15 +61,11 @@ export class POIInfoPage implements OnInit {
       "lng": result[1]
       
     }
-      
-       
-    
 
-  console.log(this.poiInfo);
    this._poiService.getPoibyCoordinate(this.poiInfo).subscribe((res: any) => {
      console.log(res);
     if (res === ""){
-      this.checkdata = false;
+      this.nodata = true;
       this.data = "";
     }
     this.checkdata = true;
@@ -108,16 +106,16 @@ export class POIInfoPage implements OnInit {
       }
     }   
 
-    this.route.navigate(['/poi-edit'], navigationExtra);
+    this.router.navigate(['/poi-edit'], navigationExtra);
   }
 
   buttonReport(id) {
     console.log(id);
-    this.route.navigate(['/poi-report',id]);
+    this.router.navigate(['/poi-report',id]);
   }
 
   buttonHistory(id){
     console.log(id);
-    this.route.navigate(['/history',id]);
+    this.router.navigate(['/history',id]);
   }
 }
