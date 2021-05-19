@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../services/api.service';
 import { AuthService } from '../services/auth.service';
@@ -13,11 +14,14 @@ export class ProfilePage implements OnInit {
 profile_data: any;
 buttonLogout = true;
 buttonLogin: any;
+updateProfile: FormGroup; 
   constructor( 
     private _api : ApiService, 
     private _auth: AuthService, 
     private route: ActivatedRoute,
-    private _profileService: ProfileService) {
+    private _profileService: ProfileService,
+    private formBuilder: FormBuilder, 
+    ) {
       
         
      }
