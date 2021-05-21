@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { ChooseBorderModalPage } from './choose-border-modal.page';
+import { BadgeContributionClaim2Page } from './badge-contribution-claim2.page';
 
-describe('ChooseBorderModalPage', () => {
-  let component: ChooseBorderModalPage;
-  let fixture: ComponentFixture<ChooseBorderModalPage>;
+describe('BadgeContributionClaim2Page', () => {
+  let component: BadgeContributionClaim2Page;
+  let fixture: ComponentFixture<BadgeContributionClaim2Page>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChooseBorderModalPage ],
+      declarations: [ BadgeContributionClaim2Page ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ChooseBorderModalPage);
+    fixture = TestBed.createComponent(BadgeContributionClaim2Page);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

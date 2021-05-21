@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
+import { FirebaseService } from 'src/app/services/firebase.service';
 
 @Component({
   selector: 'app-badge1',
@@ -10,18 +11,19 @@ import { ModalController } from '@ionic/angular';
 export class Badge1Page implements OnInit {
   public borderForm: FormGroup;
   public submitAttempt: boolean = false;
-  public borderChosen: any[];
+  public borderChosen1: any[];
+  badgeList = [];
 
   constructor(private formbuilder: FormBuilder,
     private viewCtrl: ModalController,
+    private firebaseService: FirebaseService
     ) {
     this.borderForm = formbuilder.group({
-      borderChosen: ['',Validators.required],
+      borderChosen1: ['',Validators.required],
     });
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   save(){
     this.submitAttempt = true;
@@ -31,11 +33,15 @@ export class Badge1Page implements OnInit {
         }
 
         else {
-          console.log("success!")
-          this.borderChosen =[].concat(this.borderForm.value);
-          console.log(this.borderChosen);
+          this.borderChosen1=this.borderForm.value;
+          this.updateRecord('1', this.borderChosen1);
           this.viewCtrl.dismiss(this.borderForm);
         }
   }
 
+  updateRecord(id, record) {
+    let recordBadge = {};
+    recordBadge = record;
+    this.firebaseService.update_current_badge(id, recordBadge);
+  }
 }

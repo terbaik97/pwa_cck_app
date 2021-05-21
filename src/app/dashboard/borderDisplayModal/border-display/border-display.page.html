@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Border Lists</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="borderForm" (ngSubmit)="save()">
+    <ion-list >
+      <ion-radio-group value="border1" [formControl]="borderForm.controls['borderDisplayChosen']">
+
+        <ion-item class="border">
+          <ion-img class="loginImageBorder" src="assets/border/pinkBorder.png"></ion-img>
+          <ion-radio class="badgeRadio" slot="start" value="badge1"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-img class="loginImageBorder"  src="assets/border/glowBorder.png"></ion-img>
+          <ion-radio slot="start" value="badge2"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+      <ion-button expand="full" color="primary" (click)="save()">Submit Info</ion-button>
+    </ion-list>
+  </form>
+</ion-content>

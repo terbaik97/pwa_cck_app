@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ChooseBorderModalPage } from './choose-border-modal.page';
+import { BadgeLoginClaim1Page } from './badge-login-claim1.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: ChooseBorderModalPage
+    component: BadgeLoginClaim1Page
   }
 ];
 
@@ -14,4 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class ChooseBorderModalPageRoutingModule {}
+export class BadgeLoginClaim1PageRoutingModule {}

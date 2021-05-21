@@ -21,9 +21,18 @@ const routes: Routes = [
     loadChildren: () => import('./badgeDisplayModal/badge1/badge1.module').then( m => m.Badge1PageModule)
   },
   {
-    path: 'choose-border-modal',
-    loadChildren: () => import('./badgeDisplayModal/choose-border-modal/choose-border-modal.module').then( m => m.ChooseBorderModalPageModule)
+    path: 'badge2',
+    loadChildren: () => import('./badgeDisplayModal/badge2/badge2.module').then( m => m.Badge2PageModule)
   },
+  {
+    path: 'badge3',
+    loadChildren: () => import('./badgeDisplayModal/badge3/badge3.module').then( m => m.Badge3PageModule)
+  },
+  {
+    path: 'border-display',
+    loadChildren: () => import('./borderDisplayModal/border-display/border-display.module').then( m => m.BorderDisplayPageModule)
+  },
+
 ];
 
 @NgModule({

@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">Close</ion-button>
+    </ion-buttons>
+    <ion-title>Claim Rewards</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col text-center>
+
+      </ion-col>
+      <ion-col text-center>
+        <ion-card class="badgeClaimCard">
+         <img class="imgA1" src="assets/badges/contribution.png">
+         <img class="imgB1" src="assets/badges/border3.png">
+         <img class="imgC1" src="assets/badgeClaim/confetti.png">
+         <img class="imgD1" src="assets/badgeClaim/poggers.png">
+          <img class="imgE1" src="assets/badgeClaim/poggers.png">
+        </ion-card>
+      </ion-col>
+      <ion-col text-center>
+
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col text-center>
+        <ion-card class="cardContent">
+          <ion-card-header>
+            <ion-card-title>Rewards : </ion-card-title>
+          </ion-card-header>
+          <ion-card-content >
+            <img class="imgContentA" src="assets/badges/contribution.png">
+            <img class="imgContentB" src="assets/badges/border3.png">
+            <ion-button class="buttonClaim" color="primary" (click)="buttonClaim()">Claim</ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
