@@ -10,6 +10,46 @@
 <ion-content>
   
    <form [formGroup]="requiredInfo">
+<<<<<<< HEAD
+<<<<<<< HEAD
+        <ion-item>
+          <ion-label position="floating">Place Name</ion-label>
+          <ion-input formControlName="placeName" type="text" [class.invalid]="!requiredInfo.controls.placeName.valid"></ion-input>
+        </ion-item>
+
+        <ion-item *ngIf="!requiredInfo.controls.placeName.valid  ">
+          <p>Please fill up name of the place.</p>
+        </ion-item>
+
+
+
+        <ion-item lines="none">
+          <ion-label position="stacked" color="accent">Category of the place</ion-label>
+          <ion-select formControlName="categoryName" value="fraud" okText="Okay" cancelText="Dismiss" [class.invalid]="!requiredInfo.controls.categoryName.valid">
+            <ion-select-option *ngFor="let categoryData of categoryData" [value]="categoryData.category_name">{{categoryData.category_name}}</ion-select-option>
+
+          </ion-select>
+        </ion-item>
+        <ion-item *ngIf="!requiredInfo.controls.categoryName.valid  ">
+          <p>Please fill up category of the place.</p>
+        </ion-item>
+=======
+     
+      <div class="coordinate">
+        <ion-input  formControlName="poi_latitude"  class="latitude" disabled></ion-input>
+        <ion-input  formControlName="poi_longitude"  class="longitude" disabled></ion-input>
+      </div>
+   
+      <ion-title class="category_name">Category</ion-title>
+      <ion-select formControlName="category"  cancelText="Dismiss" [class.invalid]="!requiredInfo.controls.category.valid" class="category">
+        <ion-select-option *ngFor="let categoryData of categoryData" [value]="categoryData.category_name">{{categoryData.category_name}}</ion-select-option>
+      </ion-select>
+ 
+      <ion-title class="place_name">Place</ion-title>
+      <ion-input class="place" formControlName="name"  [class.invalid]="!requiredInfo.controls.name.valid"></ion-input>
+>>>>>>> 62423b1a25e032b4368037070ebdbed1c1aab5b9
+
+=======
 
      
       <div class="coordinate">
@@ -26,6 +66,7 @@
       <ion-input class="place" formControlName="name"  [class.invalid]="!requiredInfo.controls.name.valid"></ion-input>
 
 
+>>>>>>> b2310cf89efcd34b6f53537c536e142106d7c517
       <ion-title class="event_name">Event happen</ion-title>
       <ion-input class="event" formControlName="event" [class.invalid]="!requiredInfo.controls.event.valid"></ion-input>
     
@@ -34,14 +75,24 @@
         <ion-datetime displayFormat="MM DD YY" formControlName="event_date" placeholder="Select Date"></ion-datetime>
       </ion-item>
   </form>
+<<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+=======
+
+>>>>>>> b2310cf89efcd34b6f53537c536e142106d7c517
   
   <form [formGroup] = "uploadForm"  *ngIf="updatedata" class="upload_image">      
     <div>
       <input type="file" name="profile" (change)="onFileSelect($event)" />
     </div>
   </form>
+<<<<<<< HEAD
+>>>>>>> 62423b1a25e032b4368037070ebdbed1c1aab5b9
+=======
 
+>>>>>>> b2310cf89efcd34b6f53537c536e142106d7c517
 
   <div class="container">
     <form [formGroup]="keyValueForm" (ngSubmit)="doSubmit()">
