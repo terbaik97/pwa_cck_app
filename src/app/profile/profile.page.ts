@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../services/api.service';
 import { AuthService } from '../services/auth.service';
+import { ProfileService } from '../services/profile.service';
 
 @Component({
   selector: 'app-profile',
@@ -8,20 +11,34 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-
+profile_data: any;
+buttonLogout = true;
+buttonLogin: any;
+updateProfile: FormGroup; 
   constructor( 
     private _api : ApiService, 
-    private _auth: AuthService, ) { }
+    private _auth: AuthService, 
+    private route: ActivatedRoute,
+    private _profileService: ProfileService,
+    private formBuilder: FormBuilder, 
+    ) {
+      
+        
+     }
 
   ngOnInit() {
-    this.test_jwt() 
+    this.route.paramMap.subscribe(params => {
+      console.log(params.get('email') + "profile")
+       this._profileService.getProfile(params.get('email')).subscribe((res: any) =>{
+          console.log(res);
+          this.profile_data = res.data;
+      })   
+      });
   }
-  test_jwt(){ 
-    this._api.getTypeRequest('test-jwt').subscribe((res: any) => { 
-      console.log(res) 
- 
-    }, err => { 
-      console.log(err) 
-    }); 
-  } 
+  logout(){
+    // logout and reset the jwt token
+    localStorage.removeItem('jwt');
+    localStorage.removeItem('nickname');
+    localStorage.removeItem('email');
+  }
 }

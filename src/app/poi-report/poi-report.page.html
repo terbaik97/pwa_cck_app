@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header >
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/poi-info"></ion-back-button>
@@ -7,29 +7,28 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<!-- <ion-content>
+
   <ion-grid class="ion-no-margin">
-    <!-- form one here -->
+    
     <ion-row *ngIf="reportForm">
       <ion-col size="12" class="ion-no-margin ion-no-padding title">
       </ion-col>
       <ion-col size="12" class="form">
         <form [formGroup]="reportForm"  class="ion-margin-top">
           <ion-item>
-            <ion-label position="floating">Place Name</ion-label>
-            <ion-input formControlName="placeName" type="text" [class.invalid]="!reportForm.controls.placeName.valid"></ion-input>
+            <ion-label class="place_name">Place Name</ion-label>
+            <ion-input class="place_name_input" formControlName="name" type="text" [class.invalid]="!reportForm.controls.name.valid"></ion-input>
           </ion-item>
   
-          <ion-item *ngIf="!reportForm.controls.placeName.valid  ">
-            <p>Please fill up name of the place.</p>
-          </ion-item>
          
           <ion-item lines="none">
             <ion-label position="stacked" color="accent">Report Type</ion-label>
-            <ion-select formControlName="reportType" value="fraud" okText="Okay" cancelText="Dismiss"
-            [class.invalid]="!reportForm.controls.reportType.valid">
-              <ion-select-option value="fraud">Fraud</ion-select-option>
-              <ion-select-option value="abuse">Abuse</ion-select-option>
+            <ion-select formControlName="report_reason" value="fraud" okText="Okay" cancelText="Dismiss"
+            [class.invalid]="!reportForm.controls.report_reason.valid">
+              <ion-select-option value="pornography">Pornography</ion-select-option>
+              <ion-select-option value="inappropriate_information">Inappropriate information</ion-select-option>
+              <ion-select-option value="spam_information">Spam information</ion-select-option>
             </ion-select>
           </ion-item>
           <ion-item lines="none">
@@ -38,9 +37,27 @@
            </ion-item>
 
         </form>
-        <ion-button expand="full" color="primary" (click)="save()">Submit Info</ion-button>
+        <ion-button expand="full" color="primary" (click)="report(id)"  [disabled]="reportForm.invalid">Submit Info</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
  
+</ion-content> -->
+<ion-content>
+  <form [formGroup]="reportForm">
+      <ion-title class="place_name">Place Name</ion-title>
+      <ion-input class="place_name_input" formControlName="name" type="text" [class.invalid]="!reportForm.controls.name.valid"></ion-input>
+
+      <ion-title class="report_reason_name">Report Type</ion-title>
+      <ion-select formControlName="report_reason" class="report_reason" okText="Okay" cancelText="Dismiss"
+      [class.invalid]="!reportForm.controls.report_reason.valid">
+        <ion-select-option value="fraud">Fraud</ion-select-option>
+        <ion-select-option value="inappropriate_information">Inappropriate information</ion-select-option>
+        <ion-select-option value="spam_information">Spam information</ion-select-option>
+      </ion-select>
+
+      <ion-title class="comment_name">Comments</ion-title>
+      <ion-textarea formControlName="comments" class="comments" placeholder="Enter more information here..."></ion-textarea>
+  </form>
 </ion-content>
+<ion-button expand="full" class="report_button" color="primary" (click)="report(id)"  [disabled]="reportForm.invalid">Send</ion-button>

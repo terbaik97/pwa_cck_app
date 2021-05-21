@@ -15,7 +15,6 @@ import { EditPage } from './edit.page';
     IonicModule,
     EditPageRoutingModule,
     ReactiveFormsModule,
-  
   ],
   declarations: [EditPage, 
    ]

@@ -1,15 +1,59 @@
+
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+     Welcome  {{nickname}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+
+
+
+<form [formGroup]="updateProfile">
+
+  <div class="container py-3">
+    
+    <div class="row py-4">
+      
+        <div class="col-lg-6 ">
+  
+            
+            <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm" style="top: -60px;">
+                <input id="upload" type="file" name="avatar" (change)="onFileSelect($event)" class="file-upload form-control border-0" accept="image/*">
+                <label id="upload-label" for="upload" class="font-weight-light text-muted">Choose file</label>
+                <div class="input-group-append">
+                    <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Choose file</small></label>
+                </div>
+            </div>
+            <img class="profile-pic" [src]="displayImage">
+          
+           
+        </div>
+      </div>
+  </div>
+ 
+
+  
+ 
+    <ion-title class="name">Name</ion-title>
+    <ion-input   formControlName="full_name" class="name_input"  ></ion-input>
+  
+    <ion-title class="email">Email</ion-title>
+    <ion-input  formControlName="email" class="email_input"  ></ion-input>
+  
+    <ion-title class="mobile_number">Mobile Number</ion-title>
+    <ion-input formControlName="mobile_number" class="mobile_number_input" ></ion-input>
+  
+    
+  
+
+</form>
+
+<!-- <ion-button expand="full" class="report_button" color="primary" (click)="update()"  [disabled]="updateProfile.invalid">Update profile</ion-button> -->
+<ion-button class="update_button" round  expand="full" color="primary" (click)="onSubmit()">Update profile</ion-button>
+
+<div *ngIf="buttonLogout">
+  <ion-button class="logout_button" (click)="logout()">Logout
+</ion-button>
+</div>
