@@ -1,14 +1,6 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<ion-header translucent>
-=======
-<ion-header [translucent]="true">
->>>>>>> 62423b1a25e032b4368037070ebdbed1c1aab5b9
-=======
 
 <ion-header [translucent]="true">
 
->>>>>>> b2310cf89efcd34b6f53537c536e142106d7c517
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
@@ -17,96 +9,6 @@
     Info
     </ion-title>
   </ion-toolbar>
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-</ion-header>
-
-<ion-content>
-
-  <!-- display poi image -->
-  <img src="https://study.com/cimages/videopreview/videopreview-full/izfvnkemcz.jpg" >
-  <div *ngFor="let item of poiInfo">
-        <!-- <p class="ion-text-wrap">ID : {{ item.poiID }}</p><br>
-        <p class="ion-text-wrap">Latitude : {{ item.latitude }}</p><br>
-        <p class="ion-text-wrap">Longitude : {{ item.longitude }}</p><br> -->
-        <ion-card>
-          <ion-card-header>
-            <ion-card-subtitle>Latitude : {{ item.latitude }} , Longitude : {{ item.longitude }}</ion-card-subtitle>
-            <ion-card-title>No place name</ion-card-title>
-          </ion-card-header>
-
-          <ion-card-content>
-            No place information
-          </ion-card-content>
-
-        </ion-card>
-      </div>
-
-
-
-
-
-
-  <!-- tab buttons -->
-  <ion-footer >
-    <ion-toolbar class="footerPOI">
-      <div id="button-info-history" class="ion-padding">
-        <ion-button class="button-info" (click)="buttonEdit()">Edit</ion-button>
-
-        <ion-button class="button-history" (click)="buttonReport()">Report</ion-button>
-=======
-</ion-header>
-
-<!-- <ion-content [fullscreen]="true">
- 
-    <ion-item>
-      <ion-icon name="business"></ion-icon>
-      <ion-label>Place detail </ion-label>
-      <ion-button fill="outline" slot="end" (click)="buttonHistory(id)">View history</ion-button>
-    </ion-item>
-
-    <div *ngIf="checkdata">
-      <ion-badge color="secondary">Id</ion-badge>
-      <div>{{data.id}}</div>
-      <ion-badge color="secondary">Name</ion-badge>
-      <div>{{data.name}}</div>
-      <ion-badge color="secondary">Fields</ion-badge>
-      <div *ngFor="let data of fields;">{{data.key}} => {{data.value}}</div>
-      <ion-badge color="secondary">Latitude</ion-badge>
-      <div>{{data.poi_latitude}}</div>
-      <ion-badge color="secondary">Longitude</ion-badge>
-      <div>{{data.poi_longitude}}</div>
-      <ion-badge color="secondary">Image Poi</ion-badge>
-      <img src="{{baseUrl}}{{image}}"  width="500" height="600">
-    </div>
-
-    <br>
-    <br>
-    <div id="map" style="width: 100%; height: 50%">
-    </div>
-    
-  
-    <br>
-    <br>
-  
-    <div class="button">
-      <ion-button (click)="buttonEdit()" class="button-edit">
-        <ion-icon slot="start" ></ion-icon>
-        Edit Place
-      </ion-button>
-      
-      <ion-button (click)="buttonReport(id)" class="button-report">
-        <ion-icon slot="end" ></ion-icon>
-        Report Place
-      </ion-button>
-    </div>
-
-</ion-content> -->
-
-
-=======
->>>>>>> b2310cf89efcd34b6f53537c536e142106d7c517
 
 </ion-header>
 
@@ -129,11 +31,7 @@
       <div class="coordinate">
         <ion-input  type="text" name="longitude" class="longitude" value="{{data.poi_longitude}}" disabled></ion-input>
         <ion-input  type="text" name="latitude" class="latitude" value="{{data.poi_latitude}}" disabled></ion-input>
-<<<<<<< HEAD
->>>>>>> 62423b1a25e032b4368037070ebdbed1c1aab5b9
-=======
 
->>>>>>> b2310cf89efcd34b6f53537c536e142106d7c517
       </div>
    
     </div>

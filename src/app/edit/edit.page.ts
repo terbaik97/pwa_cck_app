@@ -13,17 +13,7 @@ import { AlertMessageService } from '../services/alert-message.service';
   styleUrls: ['./edit.page.scss'],
 })
 export class EditPage implements OnInit {
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-
-=======
-  
-  //declaration of variables
->>>>>>> 62423b1a25e032b4368037070ebdbed1c1aab5b9
-=======
-
->>>>>>> b2310cf89efcd34b6f53537c536e142106d7c517
   public categoryData: any;
   public submitAttempt: boolean = false;
   private playerCount: number = 1;
@@ -31,29 +21,7 @@ export class EditPage implements OnInit {
   public poi: any;
   public poiData: any[];
   public index: any;
-<<<<<<< HEAD
-<<<<<<< HEAD
-  constructor(private formBuilder: FormBuilder, private _poiService: PoiService, private activatedRoute: ActivatedRoute,
-    private router: Router,) {
 
-
-    this.activatedRoute.queryParams.subscribe(params => {
-      if (this.router.getCurrentNavigation().extras.state) {
-        this.index = this.router.getCurrentNavigation().extras.state.index;
-        this.poiData = JSON.parse(localStorage.getItem("addpoiData"));
-        this.poi = this.poiData[this.index];
-      }
-    })
-
-    this.requiredInfo = formBuilder.group({
-      placeName: ['', Validators.required],
-      categoryName: [''],
-
-      });
-=======
-=======
-
->>>>>>> b2310cf89efcd34b6f53537c536e142106d7c517
   message ="";
   data: any;
   updatedata: any;
@@ -76,11 +44,7 @@ export class EditPage implements OnInit {
     private alertMessage:AlertMessageService 
   ) 
 {
-<<<<<<< HEAD
->>>>>>> 62423b1a25e032b4368037070ebdbed1c1aab5b9
-=======
 
->>>>>>> b2310cf89efcd34b6f53537c536e142106d7c517
 
   this.activatedRoute.queryParams.subscribe(params => {
     if (this.router.getCurrentNavigation().extras.state) {
@@ -89,24 +53,7 @@ export class EditPage implements OnInit {
     }
   })
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    this.additionalInfo = formBuilder.group(
 
-      {
-      player1: ['', Validators.required],
-
-      }
-    );
-
-
-   }
-
-
-=======
-=======
-
->>>>>>> b2310cf89efcd34b6f53537c536e142106d7c517
   this.requiredInfo = formBuilder.group({
     name: ['', Validators.required],
     category: [''],
@@ -134,11 +81,7 @@ export class EditPage implements OnInit {
     details: this.formBuilder.array(items)
   });
 }
-<<<<<<< HEAD
->>>>>>> 62423b1a25e032b4368037070ebdbed1c1aab5b9
-=======
 
->>>>>>> b2310cf89efcd34b6f53537c536e142106d7c517
 
   ngOnInit() {
     this._poiService.getCategories().subscribe((data: any) => {
@@ -146,20 +89,7 @@ export class EditPage implements OnInit {
       this.categoryData = [];
     }
       this.categoryData = data;
-<<<<<<< HEAD
-<<<<<<< HEAD
-      console.log(this.categoryData);
-      console.log(this.categoryData[0]["category_name"]);
-      })
 
-      console.log("check data")
-      console.log(this.poi.latitude);
-
-
-=======
-=======
-
->>>>>>> b2310cf89efcd34b6f53537c536e142106d7c517
     });
     this._poiService.getPoibyCoordinate(this.index).subscribe((res: any) => 
     {
@@ -190,25 +120,13 @@ export class EditPage implements OnInit {
             image_poi: ""
           });
         });
-<<<<<<< HEAD
->>>>>>> 62423b1a25e032b4368037070ebdbed1c1aab5b9
-=======
 
->>>>>>> b2310cf89efcd34b6f53537c536e142106d7c517
 
         this.uploadForm = this.formBuilder.group({
           profile: ['']
         });
   }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-
-
-=======
-=======
->>>>>>> b2310cf89efcd34b6f53537c536e142106d7c517
   addRow() {
     const details = this.keyValueForm.get('details') as FormArray;
     details.push(this.createItem());
@@ -270,12 +188,7 @@ export class EditPage implements OnInit {
     return true;
 }
   
-<<<<<<< HEAD
- 
->>>>>>> 62423b1a25e032b4368037070ebdbed1c1aab5b9
-=======
 
->>>>>>> b2310cf89efcd34b6f53537c536e142106d7c517
   addControl(){
     this.playerCount++;
     this.additionalInfo.addControl('field' + this.playerCount, new FormControl('', Validators.required));
@@ -284,29 +197,7 @@ export class EditPage implements OnInit {
     this.additionalInfo.removeControl(control.key);
   }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-
-  save(){
-
-        this.submitAttempt = true;
-        if(!this.requiredInfo.valid){
-         alert("Name required")
-        }
-        else {
-          console.log("success!")
-          // console.log(this.requiredInfo.value);
-          // console.log(this.additionalInfo.value);
-          this.poiData =[].concat(this.requiredInfo.value,this.additionalInfo.value);
-          console.log(this.poiData);
-          let message = this._poiService.saveData(this.poiData);
-          console.log(message);
-        }
-=======
-=======
-
->>>>>>> b2310cf89efcd34b6f53537c536e142106d7c517
   setImageFile(event) {
     this.image_file = event.target.files[0];
     console.log(this.image_file.name)
@@ -344,11 +235,7 @@ export class EditPage implements OnInit {
       if(this.data === "")
       {
         console.log(this.poiData);
-<<<<<<< HEAD
->>>>>>> 62423b1a25e032b4368037070ebdbed1c1aab5b9
-=======
 
->>>>>>> b2310cf89efcd34b6f53537c536e142106d7c517
       }
       else
       {
@@ -371,15 +258,8 @@ export class EditPage implements OnInit {
 
  
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-}
->>>>>>> 62423b1a25e032b4368037070ebdbed1c1aab5b9
-=======
 
 }
 
->>>>>>> b2310cf89efcd34b6f53537c536e142106d7c517
 
 }
