@@ -10,6 +10,7 @@
 <ion-content>
   
    <form [formGroup]="requiredInfo">
+
      
       <div class="coordinate">
         <ion-input  formControlName="poi_latitude"  class="latitude" disabled></ion-input>
@@ -24,6 +25,7 @@
       <ion-title class="place_name">Place</ion-title>
       <ion-input class="place" formControlName="name"  [class.invalid]="!requiredInfo.controls.name.valid"></ion-input>
 
+
       <ion-title class="event_name">Event happen</ion-title>
       <ion-input class="event" formControlName="event" [class.invalid]="!requiredInfo.controls.event.valid"></ion-input>
     
@@ -32,12 +34,14 @@
         <ion-datetime displayFormat="MM DD YY" formControlName="event_date" placeholder="Select Date"></ion-datetime>
       </ion-item>
   </form>
+
   
   <form [formGroup] = "uploadForm"  *ngIf="updatedata" class="upload_image">      
     <div>
       <input type="file" name="profile" (change)="onFileSelect($event)" />
     </div>
   </form>
+
 
   <div class="container">
     <form [formGroup]="keyValueForm" (ngSubmit)="doSubmit()">

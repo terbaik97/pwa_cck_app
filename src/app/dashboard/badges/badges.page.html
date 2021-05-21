@@ -1,0 +1,229 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>Badges</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-card class="bigSection">
+    <ion-row class="headerBadges">
+      <ion-col>
+        <ion-card class="headerBadgesCard"><ion-card-title class="headerBadge">Login</ion-card-title></ion-card>
+      </ion-col>
+      <ion-col >
+     </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+    <!-- login badge elements -->
+    <ion-row>
+      <ion-col>
+        <ion-card class="loginCard">
+          <ion-card-content>
+            <ion-row>
+              <ion-col size="8">
+                <ion-card-subtitle class="no">#001</ion-card-subtitle>
+                <ion-card-title>Beginner</ion-card-title>
+                <ion-card-subtitle >
+                  <ion-badge class="cardSub">
+                    <h2>Login (1) time</h2>
+                  </ion-badge>
+                </ion-card-subtitle>
+                <ion-button disabled={{buttonClaimedLogin1}} class="claimModal" color="light" (click)="toClaimLoginModal1()">Claim</ion-button>
+              </ion-col>
+              <ion-col size="4">
+                <ion-img class="loginImage" src="assets/badges/login.png"></ion-img>
+                <ion-img class="loginImageBorder" src="assets/badges/border1.png"></ion-img>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col>
+        <ion-card class="loginCard">
+          <ion-card-content>
+            <ion-row>
+              <ion-col size="8">
+                <ion-card-subtitle class="no">#002</ion-card-subtitle>
+                <ion-card-title>Intermediate</ion-card-title>
+                <ion-card-subtitle >
+                  <ion-badge class="cardSub">
+                    <h2>Login (7) times</h2>
+                  </ion-badge>
+                </ion-card-subtitle>
+                <ion-button disabled={{buttonClaimedLogin2}} class="claimModal" color="light" (click)="toClaimLoginModal2()">Claim</ion-button>
+              </ion-col>
+              <ion-col size="4">
+                <ion-img class="loginImage" src="assets/badges/login.png"></ion-img>
+                <ion-img class="loginImageBorder" src="assets/badges/border2.png"></ion-img>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-card class="loginCard">
+          <ion-card-content>
+            <ion-row>
+              <ion-col size="8">
+                <ion-card-subtitle class="no">#003</ion-card-subtitle>
+                <ion-card-title>Expert</ion-card-title>
+                <ion-card-subtitle >
+                  <ion-badge class="cardSub">
+                    <h2>Login (30) times</h2>
+                  </ion-badge>
+                </ion-card-subtitle>
+                <ion-button disabled={{buttonClaimedLogin3}} class="claimModal" color="light" (click)="toClaimLoginModal3()">Claim</ion-button>
+              </ion-col>
+              <ion-col size="4">
+                <ion-img class="loginImage" src="assets/badges/login.png"></ion-img>
+                <ion-img class="loginImageBorder" src="assets/badges/border3.png"></ion-img>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col>
+        <ion-card class="loginCard">
+          <ion-card-content>
+            <ion-row>
+              <ion-col size="8">
+                <ion-card-subtitle class="no">#004</ion-card-subtitle>
+                <ion-card-title>Perfect</ion-card-title>
+                <ion-card-subtitle >
+                  <ion-badge class="cardSub">
+                    <h2>Login (90) times</h2>
+                  </ion-badge>
+                </ion-card-subtitle>
+                <ion-button disabled={{buttonClaimedLogin4}} class="claimModal" color="light" (click)="toClaimLoginModal4()">Claim</ion-button>
+              </ion-col>
+              <ion-col size="4">
+                <ion-img class="loginImage" src="assets/badges/login.png"></ion-img>
+                <ion-img class="loginImageBorder" src="assets/badges/border4.png"></ion-img>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+</ion-card>
+
+<ion-card class="divideSection"></ion-card>
+
+<ion-card class="bigSection">
+  <ion-row class="headerBadges">
+    <ion-col>
+      <ion-card class="headerBadgesCard"><ion-card-title class="headerBadge">Contribution</ion-card-title></ion-card>
+    </ion-col>
+    <ion-col >
+   </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+
+  <!-- Contribution badge elements -->
+  <ion-row>
+    <ion-col>
+      <ion-card class="contributionCard">
+        <ion-card-content>
+          <ion-row>
+            <ion-col size="8">
+              <ion-card-subtitle class="no">#001</ion-card-subtitle>
+              <ion-card-title>Beginner</ion-card-title>
+              <ion-card-subtitle >
+                <ion-badge class="cardSub">
+                  <h2>Edit POI (1) time</h2>
+                </ion-badge>
+              </ion-card-subtitle>
+              <ion-button disabled={{buttonClaimedCont1}} class="claimModal" color="light" (click)="toClaimContModal1()">Claim</ion-button>
+            </ion-col>
+            <ion-col size="4">
+              <ion-img class="contributionImage" src="assets/badges/contribution.png"></ion-img>
+              <ion-img class="contributionImageBorder" src="assets/badges/border1.png"></ion-img>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+
+    <ion-col>
+      <ion-card class="contributionCard">
+        <ion-card-content>
+          <ion-row>
+            <ion-col size="8">
+              <ion-card-subtitle class="no">#002</ion-card-subtitle>
+              <ion-card-title>Intermediate</ion-card-title>
+              <ion-card-subtitle >
+                <ion-badge class="cardSub">
+                  <h2>Edit POI (20) times</h2>
+                </ion-badge>
+              </ion-card-subtitle>
+              <ion-button disabled={{buttonClaimedCont2}} class="claimModal" color="light" (click)="toClaimContModal2()">Claim</ion-button>
+            </ion-col>
+            <ion-col size="4">
+              <ion-img class="contributionImage" src="assets/badges/contribution.png"></ion-img>
+              <ion-img class="contributionImageBorder" src="assets/badges/border2.png"></ion-img>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <ion-card class="contributionCard">
+        <ion-card-content>
+          <ion-row>
+            <ion-col size="8">
+              <ion-card-subtitle class="no">#003</ion-card-subtitle>
+              <ion-card-title>Expert</ion-card-title>
+              <ion-card-subtitle >
+                <ion-badge class="cardSub">
+                  <h2>Edit POI (60) times</h2>
+                </ion-badge>
+              </ion-card-subtitle>
+              <ion-button disabled={{buttonClaimedCont3}} class="claimModal" color="light" (click)="toClaimContModal3()">Claim</ion-button>
+            </ion-col>
+            <ion-col size="4">
+              <ion-img class="contributionImage" src="assets/badges/contribution.png"></ion-img>
+              <ion-img class="contributionImageBorder" src="assets/badges/border3.png"></ion-img>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+
+    <ion-col>
+      <ion-card class="contributionCard">
+        <ion-card-content>
+          <ion-row>
+            <ion-col size="8">
+              <ion-card-subtitle class="no">#004</ion-card-subtitle>
+              <ion-card-title>Perfect</ion-card-title>
+              <ion-card-subtitle >
+                <ion-badge class="cardSub">
+                  <h2>Edit POI (100) times</h2>
+                </ion-badge>
+              </ion-card-subtitle>
+              <ion-button disabled={{buttonClaimedCont4}} class="claimModal" color="light" (click)="toClaimContModal4()">Claim</ion-button>
+            </ion-col>
+            <ion-col size="4">
+              <ion-img  class="contributionImage" src="assets/badges/contribution.png"></ion-img>
+              <ion-img class="contributionImageBorder" src="assets/badges/border4.png"></ion-img>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-card>
+</ion-content>
+

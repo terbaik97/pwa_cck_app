@@ -37,7 +37,7 @@ export class Tab1Page implements OnInit {
     this.refresh();
     //Store first POI Data
     if (this.poiItems == null) {
-      localStorage.setItem("addpoiData", JSON.stringify([{ "poiID": '', "latitude": '', "longitude": '' }]))
+      localStorage.setItem("addpoiData", JSON.stringify([{ "poiID": '', "x": '', "y": '' }]))
       this.refresh();
     }
 
@@ -168,8 +168,8 @@ export class Tab1Page implements OnInit {
       this.poiItems.push(
         {
           poiID: id,
-          latitude: this.newPOIMarker._latlng.lat,
-          longitude: this.newPOIMarker._latlng.lng
+          x: this.newPOIMarker._latlng.lat,
+          y: this.newPOIMarker._latlng.lng
         }
       );
       localStorage.setItem("addpoiData", JSON.stringify(this.poiItems));
@@ -180,6 +180,7 @@ export class Tab1Page implements OnInit {
   //Retreive and Store all POI id,latitude and logitude in variables
   retrievePOIdata(){
     
+
     if(this.data.length !== null){
       for (let i = 0; i < this.data.length; i++) {
         this.markerPoints = L.marker([
@@ -190,6 +191,7 @@ export class Tab1Page implements OnInit {
         this.markerPoints.on('click', this.onClick, this);
         this.markerPoints.addTo(this.map);
         this.markerPoints.ID=i;
+
       }
     }
   }

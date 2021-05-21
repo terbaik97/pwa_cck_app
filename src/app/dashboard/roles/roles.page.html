@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Roles</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+
+  <ion-row>
+    <ion-col button (click)="editModal()">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>  <h1 style="color:black;">Edit</h1></ion-card-title>
+
+        <div class="container">
+              <!-- Creating a SVG image -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ffc409" fill-opacity="1" d="M0,96L80,122.7C160,149,320,203,480,224C640,245,800,235,960,202.7C1120,171,1280,117,1360,90.7L1440,64L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path></svg>
+
+        </div>
+        </ion-card-header>
+          <ion-card-content class="ion-no-border">
+            <div class="wave-container">
+              <img src="assets/roles/edit.svg">
+            </div>
+          </ion-card-content>
+      </ion-card>
+    </ion-col>
+    <ion-col  button (click)="reportModal()">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>  <h1 style="color:black;">Report</h1></ion-card-title>
+
+        <div class="container">
+              <!-- Creating a SVG image -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ffc409" fill-opacity="1" d="M0,96L80,122.7C160,149,320,203,480,224C640,245,800,235,960,202.7C1120,171,1280,117,1360,90.7L1440,64L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path></svg>
+
+        </div>
+        </ion-card-header>
+          <ion-card-content class="ion-no-border">
+            <div class="wave-container">
+              <img src="assets/roles/report.svg">
+            </div>
+          </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>

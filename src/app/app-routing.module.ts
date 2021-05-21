@@ -35,6 +35,26 @@ const routes: Routes = [
     loadChildren: () => import('./poi-report/poi-report.module').then( m => m.PoiReportPageModule)
   },
   {
+    path: 'dashboard',
+    loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardPageModule)
+  },
+  {
+    path: 'chart',
+    loadChildren: () => import('./dashboard/chart/chart.module').then(m => m.ChartPageModule)
+  },
+  {
+    path: 'roles',
+    loadChildren: () => import('./dashboard/roles/roles.module').then( m => m.RolesPageModule)
+  },
+  {
+    path: 'leaderboard',
+    loadChildren: () => import('./dashboard/leaderboard/leaderboard.module').then( m => m.LeaderboardPageModule)
+  },
+  {
+    path: 'badges',
+    loadChildren: () => import('./dashboard/badges/badges.module').then( m => m.BadgesPageModule)
+  },
+  {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
@@ -42,10 +62,12 @@ const routes: Routes = [
     path: 'profile/:email',
     loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
   },
+
   {
     path: 'register',
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   }
+
 
 
 ];

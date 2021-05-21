@@ -13,8 +13,7 @@ import { AlertMessageService } from '../services/alert-message.service';
   styleUrls: ['./edit.page.scss'],
 })
 export class EditPage implements OnInit {
-  
-  //declaration of variables
+
   public categoryData: any;
   public submitAttempt: boolean = false;
   private playerCount: number = 1;
@@ -22,6 +21,7 @@ export class EditPage implements OnInit {
   public poi: any;
   public poiData: any[];
   public index: any;
+
   message ="";
   data: any;
   updatedata: any;
@@ -45,12 +45,14 @@ export class EditPage implements OnInit {
   ) 
 {
 
+
   this.activatedRoute.queryParams.subscribe(params => {
     if (this.router.getCurrentNavigation().extras.state) {
       this.index = this.router.getCurrentNavigation().extras.state.index;
       console.log(this.index)
     }
   })
+
 
   this.requiredInfo = formBuilder.group({
     name: ['', Validators.required],
@@ -80,12 +82,14 @@ export class EditPage implements OnInit {
   });
 }
 
+
   ngOnInit() {
     this._poiService.getCategories().subscribe((data: any) => {
     if (data === ""){
       this.categoryData = [];
     }
       this.categoryData = data;
+
     });
     this._poiService.getPoibyCoordinate(this.index).subscribe((res: any) => 
     {
@@ -116,6 +120,7 @@ export class EditPage implements OnInit {
             image_poi: ""
           });
         });
+
 
         this.uploadForm = this.formBuilder.group({
           profile: ['']
@@ -183,7 +188,7 @@ export class EditPage implements OnInit {
     return true;
 }
   
- 
+
   addControl(){
     this.playerCount++;
     this.additionalInfo.addControl('field' + this.playerCount, new FormControl('', Validators.required));
@@ -191,6 +196,7 @@ export class EditPage implements OnInit {
   removeControl(control){
     this.additionalInfo.removeControl(control.key);
   }
+
 
   setImageFile(event) {
     this.image_file = event.target.files[0];
@@ -229,6 +235,7 @@ export class EditPage implements OnInit {
       if(this.data === "")
       {
         console.log(this.poiData);
+
       }
       else
       {
@@ -251,5 +258,8 @@ export class EditPage implements OnInit {
 
  
 
+
 }
 
+
+}

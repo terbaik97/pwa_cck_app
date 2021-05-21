@@ -1,0 +1,123 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Dashboard</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+
+  <ion-row>
+    <ion-col>
+      <ion-row>
+        <ion-col >
+        </ion-col>
+        <ion-card class="profileCard">
+          <ion-card-content>
+            <ion-col>
+              <ion-img class="pictureProfile" src="assets/badges/contribution.png"></ion-img>
+              <div [ngSwitch]="currentborder">
+                <ion-img *ngSwitchCase="'badge1'" class="pictureBorder" src="assets/border/pinkBorder.png"></ion-img>
+                <ion-img *ngSwitchCase="'badge2'" class="pictureBorder1" src="assets/border/glowBorder.png"></ion-img>
+              </div>
+              <!-- <ion-img class="pictureBorder" src="assets/border/pinkBorder.png"></ion-img> -->
+
+              <ion-button class="changeBorder" primary large (click)="toBorderModal()">
+                <ion-icon name="repeat-outline"></ion-icon>
+                <ion-label>Change border</ion-label>
+              </ion-button>
+            </ion-col>
+          </ion-card-content>
+        </ion-card>
+        <ion-col >
+        </ion-col>
+      </ion-row>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col></ion-col>
+    <ion-col>
+      <ion-card class="subDashboard">
+        <ion-card-header>
+          <ion-card-title color="primary">
+          Total Points Gained
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content><ion-card-title class="ion-text-center">10</ion-card-title></ion-card-content>
+      </ion-card>
+    </ion-col>
+
+    <ion-col>
+      <ion-card class="subDashboard">
+        <ion-card-header>
+          <ion-card-title color="primary">
+            Badges Received
+            <ion-button fill="outline" style="float: right;" (click)="toPageBadges()">View</ion-button>
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content><ion-card-title class="ion-text-center">1</ion-card-title>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+  <br>
+  <ion-title>Badge Display</ion-title>
+  <br>
+  <ion-row>
+    <ion-col>
+      <ion-card class="displayBadge">
+        <ion-card-content class="badge1">
+          <ion-img *ngIf="currentbadge1" class="loginImage" src="assets/badges/login.png"></ion-img>
+          <div [ngSwitch]="currentbadge1">
+            <ion-img *ngSwitchCase="'badge1'" class="loginImageBorder" src="assets/badges/border1.png"></ion-img>
+            <ion-img *ngSwitchCase="'badge2'" class="loginImageBorder" src="assets/badges/border2.png"></ion-img>
+            <ion-img *ngSwitchCase="'badge3'" class="loginImageBorder" src="assets/badges/border3.png"></ion-img>
+            <ion-img *ngSwitchCase="'badge4'" class="loginImageBorder" src="assets/badges/border4.png"></ion-img>
+          </div>
+          <h1 *ngIf="!currentbadge1">No Badges Selected</h1>
+          <ion-button class="loginImageButton" block (click)="badgeModal1()">
+            Choose Your Badge
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+    <ion-col>
+      <ion-card class="displayBadge">
+        <ion-card-content class="badge1">
+          <ion-img *ngIf="currentbadge2" class="loginImage" src="assets/badges/login.png"></ion-img>
+          <div [ngSwitch]="currentbadge2">
+            <ion-img *ngSwitchCase="'badge1'" class="loginImageBorder" src="assets/badges/border1.png"></ion-img>
+            <ion-img *ngSwitchCase="'badge2'" class="loginImageBorder" src="assets/badges/border2.png"></ion-img>
+            <ion-img *ngSwitchCase="'badge3'" class="loginImageBorder" src="assets/badges/border3.png"></ion-img>
+            <ion-img *ngSwitchCase="'badge4'" class="loginImageBorder" src="assets/badges/border4.png"></ion-img>
+          </div>
+          <h1 *ngIf="!currentbadge2">No Badges Selected</h1>
+          <ion-button class="loginImageButton" block (click)="badgeModal2()">
+            Choose Your Badge
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+    <ion-col>
+      <ion-card class="displayBadge">
+        <ion-card-content class="badge1">
+          <ion-img *ngIf="currentbadge3" class="loginImage" src="assets/badges/login.png"></ion-img>
+          <div [ngSwitch]="currentbadge3">
+            <ion-img *ngSwitchCase="'badge1'" class="loginImageBorder" src="assets/badges/border1.png"></ion-img>
+            <ion-img *ngSwitchCase="'badge2'" class="loginImageBorder" src="assets/badges/border2.png"></ion-img>
+            <ion-img *ngSwitchCase="'badge3'" class="loginImageBorder" src="assets/badges/border3.png"></ion-img>
+            <ion-img *ngSwitchCase="'badge4'" class="loginImageBorder" src="assets/badges/border4.png"></ion-img>
+          </div>
+          <h1 *ngIf="!currentbadge3">No Badges Selected</h1>
+          <ion-button class="loginImageButton" block (click)="badgeModal3()">
+            Choose Your Badge
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>

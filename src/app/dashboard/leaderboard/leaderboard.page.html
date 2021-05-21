@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Leaderboard</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-card>
+    <ngx-datatable
+      [rows]="players"
+      [ngClass]="tableStyle"
+      [rowHeight]="'auto'"
+      [headerHeight]="50"
+      [columnMode]="'force'"
+    >
+      <ngx-datatable-column name="Rank"></ngx-datatable-column>
+      <ngx-datatable-column name="Name"></ngx-datatable-column>
+      <ngx-datatable-column name="Points"></ngx-datatable-column>
+
+    </ngx-datatable>
+  </ion-card>
+</ion-content>

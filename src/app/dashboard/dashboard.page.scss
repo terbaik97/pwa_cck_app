@@ -1,0 +1,93 @@
+ion-content {
+  --ion-background-color: #1f2351;
+  .profileCard {
+    // overflow: visible;
+    background-color: black;
+    height: 400px;
+    width: 300px;
+    border-radius: 8px;
+    // margin: 26px 10px;
+    ion-col {
+      position: relative;
+      ion-img {
+        position: absolute;
+      }
+    }
+  }
+}
+
+.pictureProfile {
+  width: 200px;
+  bottom: -180px;
+  left: 30px;
+}
+
+.pictureBorder {
+  width: 300px;
+  bottom: -225px;
+  left: -15px;
+}
+
+.pictureBorder1 {
+  width: 370px;
+  bottom: -255px;
+  left: -65px;
+}
+
+.changeBorder {
+  left: 40px;
+  position: absolute;
+  bottom: -330px;
+}
+
+.card-alert {
+  width: 100px;
+  height: 100px;
+}
+
+.loginImage {
+  position: absolute;
+  width: 300px;
+  z-index: 3;
+  bottom: 100px;
+  left: 80px;
+}
+
+.loginImageBorder {
+  position: absolute;
+  width: 300px;
+  bottom: 100px;
+  left: 80px;
+}
+
+.loginImageButton {
+  position: absolute;
+  bottom: 30px;
+  left: 130px;
+  z-index: 4;
+}
+
+.badge1 {
+  position: relative;
+  height: 400px;
+}
+
+h1 {
+  text-align: center;
+  position: absolute;
+  bottom: 220px;
+  left: 120px;
+}
+
+.displayBadge {
+  border-radius: 8px;
+  background-color: black;
+}
+
+ion-title {
+  color: white;
+}
+
+.subDashboard {
+  background-color: white;
+}
