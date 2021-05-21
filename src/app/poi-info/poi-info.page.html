@@ -1,47 +1,92 @@
-<ion-header translucent>
+
+<ion-header [translucent]="true">
+
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
-    <ion-title>Poi info</ion-title>
+    <ion-title>
+    Info
+    </ion-title>
   </ion-toolbar>
 
 </ion-header>
 
-<ion-content>
+  <img *ngIf="checkdata" src="{{baseUrl}}{{image}} " class="image_poi">
 
-  <!-- display poi image -->
-  <img src="https://study.com/cimages/videopreview/videopreview-full/izfvnkemcz.jpg" >
-  <div *ngFor="let item of poiInfo">
-        <!-- <p class="ion-text-wrap">ID : {{ item.poiID }}</p><br>
-        <p class="ion-text-wrap">Latitude : {{ item.latitude }}</p><br>
-        <p class="ion-text-wrap">Longitude : {{ item.longitude }}</p><br> -->
-        <ion-card>
-          <ion-card-header>
-            <ion-card-subtitle>Latitude : {{ item.latitude }} , Longitude : {{ item.longitude }}</ion-card-subtitle>
-            <ion-card-title>No place name</ion-card-title>
-          </ion-card-header>
+  <ion-content>
+    <!-- display button -->
+    <ion-button class="button_info" >Info</ion-button>
+    <ion-button class="button_history" (click)="buttonHistory(id)" *ngIf="checkdata">History</ion-button>
 
-          <ion-card-content>
-            No place information
-          </ion-card-content>
+    <!-- display data -->
+    <div *ngIf="checkdata">
+      
+      <div class="name">{{data.name}}</div>
 
-        </ion-card>
+      <div *ngFor="let data of fields;" class="fields">{{data.key}} => {{data.value}}</div>
+
+      <div class="event">{{data.event}} happen on {{data.event_date}}</div>
+
+      <div class="coordinate">
+        <ion-input  type="text" name="longitude" class="longitude" value="{{data.poi_longitude}}" disabled></ion-input>
+        <ion-input  type="text" name="latitude" class="latitude" value="{{data.poi_latitude}}" disabled></ion-input>
+
       </div>
+   
+    </div>
+
+    <div id="map" style="width: 100%; height: 50%">
+    </div>
+    
+    <div *ngIf="nodata" class="no-data">Sorry no information</div>
+
+    <div>
+      <ion-button (click)="buttonEdit()" class="button_edit">
+        Edit
+      </ion-button>
+      
+      <ion-button *ngIf="checkdata" (click)="buttonReport(id)" class="button_report">
+        Report 
+      </ion-button>
+    </div>
+
+  </ion-content>
+ 
 
 
 
 
 
 
-  <!-- tab buttons -->
-  <ion-footer >
-    <ion-toolbar class="footerPOI">
-      <div id="button-info-history" class="ion-padding">
-        <ion-button class="button-info" (click)="buttonEdit()">Edit</ion-button>
 
-        <ion-button class="button-history" (click)="buttonReport()">Report</ion-button>
-      </div>
-    </ion-toolbar>
-  </ion-footer>
-</ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

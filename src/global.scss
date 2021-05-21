@@ -27,8 +27,18 @@
 
 @import "~leaflet/dist/leaflet.css";
 
+
 @import "~@swimlane/ngx-datatable/index.css";
 @import "~@swimlane/ngx-datatable/themes/dark.scss";
 @import "~@swimlane/ngx-datatable/themes/bootstrap.scss";
 @import "~@swimlane/ngx-datatable/themes/material.scss";
 @import "~@swimlane/ngx-datatable/assets/icons.css";
+
+//define all header each page
+ion-toolbar {
+  --background: linear-gradient(179.17deg, #597eab 29.07%, #09446c 117.37%);
+}
+ion-title {
+  color: #ffffff;
+}
+

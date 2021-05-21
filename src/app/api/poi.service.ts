@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { isNull } from '@angular/compiler/src/output/output_ast';
+import { map } from 'rxjs/operators'; 
 import { AuthService } from '../services/auth.service';
 @Injectable({
   providedIn: 'root'
@@ -8,22 +8,12 @@ import { AuthService } from '../services/auth.service';
 export class PoiService {
 
     baseUrl = 'http://127.0.0.1:3000/api/v1/';
-    data: any;
-    poiData: any;
-    
     constructor(public http: HttpClient , private _authService: AuthService) {
     }
 
     // getting data from index
-    getAllPoi(name: string) {
-      console.log(name);
-      if (name != null){
-        return this.http.get(this.baseUrl + 'pois/' + name);
-      }
-      else{
+    getAllPoi() {
         return this.http.get(this.baseUrl + '/pois');
-      }
-     
     }
     // get data information of one place
     getPoi(name: string) {
@@ -31,9 +21,9 @@ export class PoiService {
       return this.http.get(this.baseUrl + 'pois/show/'+name);
     }
     //get data history of one place
-    getPoiVersion(name: string) {
-      console.log(name);
-      return this.http.get(this.baseUrl + 'pois/show_version/'+name);
+    getPoiVersion(data: any) {
+      console.log(data);
+      return this.http.get(this.baseUrl + 'pois/show_version/'+data);
     }
     
     getCategories(){
@@ -41,26 +31,81 @@ export class PoiService {
     }
 
     saveData (data: any){
-    // return "data";
-    let jwtToken = this._authService.getToken();
-    const headers = { 'Authorization':  jwtToken };
-      return this.http.post(this.baseUrl + "pois" ,
-       {name: "Kafeteria",
-       fields: 
-        {
-        "rating" : 4.5,
-        "website" : "https://www.google.com/imghp?hl=EN",
-        "address" : "Baktisiswa, 50603 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur",
-        "phone_number" : "(02) 9374 4000"
-        },  
-        coordinate: "3.1189135014848364, 101.65991838090626"},{ headers }).subscribe({
-          next: data => {
-              this.poiData = data;
+      console.log("save");
+    
+      console.log(data);
+      let jwtToken = this._authService.getToken();
+      const headers = { 'Authorization':  jwtToken };
+      console.log(data);
+        return this.http.post(this.baseUrl + "pois" ,
+          {
+            name: data[0]["name"],
+            category:data[0]["category"], 
+            poi_latitude:data[0]["poi_latitude"],
+            poi_longitude:data[0]["poi_longitude"],
+            fields: data[1]["details"],
+            event:data[0]["event"],
+            event_date:data[0]["event_date"] 
           },
-          error: error => {
-              console.error('There was an error!', error);
-          }
-      });
+          { 
+            headers 
+          } ).pipe(map(res => { 
+              return res; 
+            }));
     }
-   
+
+    getPoibyCoordinate(data: any) {
+      console.log(data)
+      return this.http.get(this.baseUrl + "pois/show" + "?poi_latitude=" + data.lat + "&" + "poi_longitude=" + data.lng);
+    }
+
+    updateData (data: any){
+      let jwtToken = this._authService.getToken();
+      const headers = { 'Authorization':  jwtToken , 'Content-Type': 'application/json'};
+      console.log(jwtToken);
+        return this.http.put(this.baseUrl + "pois/update" ,
+          {
+           
+            name: data[0]["name"],
+            category:data[0]["category"], 
+            poi_latitude:data[0]["poi_latitude"],
+            poi_longitude:data[0]["poi_longitude"],
+            fields: data[1]["details"],
+            event:data[0]["event"],
+            event_date:data[0]["event_date"],
+            poi_id:data[2],
+          },
+          { 
+            headers 
+          }
+          ).
+          pipe(map(res => { 
+            
+              return res; 
+            }));
+      }
+
+      reportPoi(data: any){
+        console.log("report_poi");
+        console.log(data);
+        let jwtToken = this._authService.getToken();
+        const headers = { 'Authorization':  jwtToken };
+        return this.http.put(this.baseUrl + "report/update" ,
+          {
+            poi_id: data[1],
+            is_report: "1", 
+            report_reason: data[0]["report_reason"],
+          },
+          { 
+            headers 
+          } ).pipe(map(res => { 
+              return res; 
+            }));
+      }
+
+      showPoibyId(data: any){
+        return this.http.get(this.baseUrl + 'pois/show_poi/'+data);
+      }
+
+      
 }

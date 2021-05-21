@@ -53,3 +53,164 @@ ion-card {
 .footerPOI {
   --background: #54d61c;
 }
+.button_info {
+  position: absolute;
+  width: 153.03px;
+  height: 40px;
+  left: 24px;
+  top: 301px;
+
+  background: linear-gradient(179.17deg, #597eab 29.07%, #09446c 117.37%);
+  border-radius: 5px;
+}
+
+.button_history {
+  position: absolute;
+  width: 153.03px;
+  height: 40px;
+  left: 197px;
+  top: 301px;
+
+  background: #ffffff;
+  border: 1.51515px solid rgba(8, 25, 58, 0.1);
+  box-sizing: border-box;
+  box-shadow: 0px 7.57576px 30.303px rgba(60, 134, 221, 0.15);
+  border-radius: 5px;
+}
+
+.image_poi {
+  height: 321.45px;
+  left: 80.27px;
+  top: 97.91px;
+}
+
+.name {
+  position: absolute;
+  width: 242px;
+  height: 18px;
+  left: 24px;
+  top: 371px;
+
+  font-family: Metropolis;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 18px;
+  /* identical to box height */
+
+  color: #0e1026;
+}
+
+.fields {
+  position: absolute;
+  width: 342px;
+  height: 84px;
+  left: 24px;
+  top: 399px;
+
+  font-family: Metropolis;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 151.3%;
+  /* or 21px */
+
+  color: #0e1026;
+
+  opacity: 0.75;
+}
+
+.event {
+  position: absolute;
+  width: 327px;
+  height: 42px;
+  left: 24px;
+  top: 493px;
+}
+
+.coordinate {
+  position: absolute;
+  width: 335px;
+  height: 187px;
+  left: 20px;
+  top: 602px;
+
+  background: linear-gradient(179.17deg, #597eab 29.07%, #09446c 117.37%);
+  border-radius: 5px;
+}
+
+.longitude {
+  position: absolute;
+  width: 260px;
+  height: 40px;
+  left: 30px;
+  top: 50px;
+
+  background: #ffffff;
+  border: 1px solid rgba(39, 46, 93, 0.1);
+  box-sizing: border-box;
+  box-shadow: 0px 5px 20px rgba(60, 134, 221, 0.15);
+  border-radius: 5px;
+
+  color: black;
+  font-weight: bold;
+}
+
+.latitude {
+  position: absolute;
+  width: 260px;
+  height: 40px;
+  left: 30px;
+  top: 100px;
+
+  background: #ffffff;
+  border: 1px solid rgba(39, 46, 93, 0.1);
+  box-sizing: border-box;
+  box-shadow: 0px 5px 20px rgba(60, 134, 221, 0.15);
+  border-radius: 5px;
+
+  color: black;
+  font-weight: bold;
+}
+
+.button_report {
+  /* Report */
+
+  position: absolute;
+  width: 160px;
+  height: 35px;
+  left: 180px;
+  top: 875px;
+
+  font-family: Metropolis;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 18px;
+  /* identical to box height */
+
+  text-align: center;
+
+  color: #ffffff;
+}
+
+.button_edit {
+  /* Edit */
+
+  position: absolute;
+  width: 160px;
+  height: 35px;
+  left: 10px;
+  top: 875px;
+
+  font-family: Metropolis;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 18px;
+  /* identical to box height */
+
+  text-align: center;
+
+  color: #ffffff;
+}

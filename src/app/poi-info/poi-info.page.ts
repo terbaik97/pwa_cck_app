@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { PoiService } from '../api/poi.service';
+import { ApiService } from '../services/api.service';
+import * as L from 'leaflet';
+//imports for showing leaflet marker
+import "leaflet/dist/images/marker-shadow.png";
+import "leaflet/dist/images/marker-icon.png";
+import "leaflet/dist/images/marker-icon-2x.png";
 export class PoiInfo {
   poiID: any;
   latitude: any;
@@ -22,32 +29,73 @@ export class POIInfoPage implements OnInit {
   public poi: PoiInfo[] = [];
   public poiData: any[];
   public index: any;
-  public poiInfo = [];
-  id: string
-  constructor(private route: Router,
-    private activatedRoute: ActivatedRoute,) {
+
+  public poiInfo: any;
+  image: any;
+  id: string;
+  data: any;
+  checkdata: any;
+  map: L.Map;
+  fields: any;
+  baseUrl="http://127.0.0.1:3000";
+  nodata: any;
+
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private _poiService: PoiService
+    ) {
       this.activatedRoute.queryParams.subscribe(params => {
-        if (this.route.getCurrentNavigation().extras.state) {
-          this.index = this.route.getCurrentNavigation().extras.state.index;
-          this.poiData = JSON.parse(localStorage.getItem("addpoiData"));
-          this.poi = this.poiData[this.index];
+        if (this.router.getCurrentNavigation().extras.state) {
+          this.index = this.router.getCurrentNavigation().extras.state.index;
         }
       })
      }
 
   ngOnInit() {
 
-    let result = Object.values(this.poi);
-    // store data for id , coordinate x and
-    this.poiInfo = [
-      {
-        poiID: result[0],
-        latitude: result[1],
-        longitude: result[2]
-      }
-    ];
-   console.log(this.poiInfo);
 
+    let result = Object.values(this.index);
+    // store data for id , coordinate x and 
+    this.poiInfo = {
+      "lat": result[0],
+      "lng": result[1]
+      
+    }
+
+   this._poiService.getPoibyCoordinate(this.poiInfo).subscribe((res: any) => {
+     console.log(res);
+    if (res === ""){
+      this.nodata = true;
+      this.data = "";
+    }
+    this.checkdata = true;
+    this.data = res;
+    this.id = this.data.id
+    this.fields = this.data.fields;
+    this.image = this.data.image_pois[0]["image"]["url"]
+    console.log(this.image)
+    this.map = L.map('map', {
+      center: [this.data.poi_latitude, this.data.poi_longitude],
+      zoom: 18,
+      renderer: L.canvas
+    })
+
+
+    var layer = L.tileLayer('assets/tiles/{z}/{x}/{y}.png', {
+      maxNativeZoom: 18,
+      minNativeZoom: 18,
+     });
+    layer.addTo(this.map);
+
+    var marker = L.marker([this.data.poi_latitude, this.data.poi_longitude])
+    .bindPopup('Place you search is here')
+    .openPopup();
+    marker.addTo(this.map);
+    });
+
+
+ 
 
 
   }
@@ -58,15 +106,18 @@ export class POIInfoPage implements OnInit {
       state: {
         index: this.index
       }
-    }
-    this.route.navigate(['/edit'], navigationExtra);
+    }   
+
+    this.router.navigate(['/poi-edit'], navigationExtra);
   }
 
-  buttonReport() {
-    this.route.navigate(['/poi-report']);
+  buttonReport(id) {
+    console.log(id);
+    this.router.navigate(['/poi-report',id]);
   }
 
-  buttonHistory(){
-    this.route.navigate(['/history']);
+  buttonHistory(id){
+    console.log(id);
+    this.router.navigate(['/history',id]);
   }
 }

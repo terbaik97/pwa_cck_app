@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PoiService } from '../api/poi.service';
 
 @Component({
   selector: 'app-history',
@@ -13,20 +14,31 @@ export class HistoryPage implements OnInit {
     loop:true,
     spaceBetween:10
   };
-  constructor(private route: Router) { }
+  data: any;
+  constructor(private router: Router,private route: ActivatedRoute, private _poiService:PoiService) { }
 
   ngOnInit() {
+    const id: string = this.route.snapshot.params.id;
+    console.log(id);
+    this._poiService.getPoiVersion(id).subscribe((res: any)=>{
+      this.data = res;
+      // this.whodunnit = this.data.
+      console.log(this.data);
+    },
+    (err: any) =>{
+      console.log(err.error);
+    })
   }
 
   buttonEdit() {
-    this.route.navigate(['/edit']);
+    this.router.navigate(['/edit']);
   }
 
   buttonReport() {
-    this.route.navigate(['/poi-report']);
+    this.router.navigate(['/poi-report']);
   }
 
   buttonInfo(){
-    this.route.navigate(['/poi-info']);
+    this.router.navigate(['/poi-info']);
   }
 }
