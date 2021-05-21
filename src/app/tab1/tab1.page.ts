@@ -180,17 +180,7 @@ export class Tab1Page implements OnInit {
   //Retreive and Store all POI id,latitude and logitude in variables
   retrievePOIdata(){
     
-<<<<<<< HEAD
-<<<<<<< HEAD
-    if(this.poiItems.length !== null){
-      for (let i = 0; i < this.poiItems.length; i++) {
-        this.resultID.push(this.poiItems[i].poiID);
-        this.resultLat.push(this.poiItems[i].x);
-        this.resultLng.push(this.poiItems[i].y);
-=======
-=======
 
->>>>>>> b2310cf89efcd34b6f53537c536e142106d7c517
     if(this.data.length !== null){
       for (let i = 0; i < this.data.length; i++) {
         this.markerPoints = L.marker([
@@ -201,11 +191,7 @@ export class Tab1Page implements OnInit {
         this.markerPoints.on('click', this.onClick, this);
         this.markerPoints.addTo(this.map);
         this.markerPoints.ID=i;
-<<<<<<< HEAD
->>>>>>> 62423b1a25e032b4368037070ebdbed1c1aab5b9
-=======
 
->>>>>>> b2310cf89efcd34b6f53537c536e142106d7c517
       }
     }
   }
