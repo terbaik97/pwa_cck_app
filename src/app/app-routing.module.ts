@@ -63,14 +63,22 @@ const routes: Routes = [
     loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
   },
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+
+>>>>>>> b2310cf89efcd34b6f53537c536e142106d7c517
   {
     path: 'register',
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   }
 
 
+<<<<<<< HEAD
 >>>>>>> 62423b1a25e032b4368037070ebdbed1c1aab5b9
+=======
+
+>>>>>>> b2310cf89efcd34b6f53537c536e142106d7c517
 ];
 @NgModule({
   imports: [

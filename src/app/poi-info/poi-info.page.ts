@@ -55,6 +55,7 @@ export class POIInfoPage implements OnInit {
   ngOnInit() {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     let result = Object.values(this.poi);
     // store data for id , coordinate x and
     this.poiInfo = [
@@ -66,6 +67,9 @@ export class POIInfoPage implements OnInit {
     ];
    console.log(this.poiInfo);
 =======
+=======
+
+>>>>>>> b2310cf89efcd34b6f53537c536e142106d7c517
     let result = Object.values(this.index);
     // store data for id , coordinate x and 
     this.poiInfo = {
@@ -91,7 +95,11 @@ export class POIInfoPage implements OnInit {
       zoom: 18,
       renderer: L.canvas
     })
+<<<<<<< HEAD
 >>>>>>> 62423b1a25e032b4368037070ebdbed1c1aab5b9
+=======
+
+>>>>>>> b2310cf89efcd34b6f53537c536e142106d7c517
 
     var layer = L.tileLayer('assets/tiles/{z}/{x}/{y}.png', {
       maxNativeZoom: 18,
