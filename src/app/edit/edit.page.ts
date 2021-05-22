@@ -13,7 +13,8 @@ import { AlertMessageService } from '../services/alert-message.service';
   styleUrls: ['./edit.page.scss'],
 })
 export class EditPage implements OnInit {
-
+  
+  //declaration of variables
   public categoryData: any;
   public submitAttempt: boolean = false;
   private playerCount: number = 1;
@@ -121,7 +122,6 @@ export class EditPage implements OnInit {
           });
         });
 
-
         this.uploadForm = this.formBuilder.group({
           profile: ['']
         });
@@ -188,7 +188,7 @@ export class EditPage implements OnInit {
     return true;
 }
   
-
+ 
   addControl(){
     this.playerCount++;
     this.additionalInfo.addControl('field' + this.playerCount, new FormControl('', Validators.required));
@@ -196,7 +196,6 @@ export class EditPage implements OnInit {
   removeControl(control){
     this.additionalInfo.removeControl(control.key);
   }
-
 
   setImageFile(event) {
     this.image_file = event.target.files[0];
@@ -235,7 +234,6 @@ export class EditPage implements OnInit {
       if(this.data === "")
       {
         console.log(this.poiData);
-
       }
       else
       {
@@ -258,8 +256,5 @@ export class EditPage implements OnInit {
 
  
 
-
 }
 
-
-}

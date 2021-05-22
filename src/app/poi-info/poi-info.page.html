@@ -1,6 +1,4 @@
-
 <ion-header [translucent]="true">
-
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
@@ -9,8 +7,56 @@
     Info
     </ion-title>
   </ion-toolbar>
-
 </ion-header>
+
+<!-- <ion-content [fullscreen]="true">
+ 
+    <ion-item>
+      <ion-icon name="business"></ion-icon>
+      <ion-label>Place detail </ion-label>
+      <ion-button fill="outline" slot="end" (click)="buttonHistory(id)">View history</ion-button>
+    </ion-item>
+
+    <div *ngIf="checkdata">
+      <ion-badge color="secondary">Id</ion-badge>
+      <div>{{data.id}}</div>
+      <ion-badge color="secondary">Name</ion-badge>
+      <div>{{data.name}}</div>
+      <ion-badge color="secondary">Fields</ion-badge>
+      <div *ngFor="let data of fields;">{{data.key}} => {{data.value}}</div>
+      <ion-badge color="secondary">Latitude</ion-badge>
+      <div>{{data.poi_latitude}}</div>
+      <ion-badge color="secondary">Longitude</ion-badge>
+      <div>{{data.poi_longitude}}</div>
+      <ion-badge color="secondary">Image Poi</ion-badge>
+      <img src="{{baseUrl}}{{image}}"  width="500" height="600">
+    </div>
+
+    <br>
+    <br>
+    <div id="map" style="width: 100%; height: 50%">
+    </div>
+    
+  
+    <br>
+    <br>
+  
+    <div class="button">
+      <ion-button (click)="buttonEdit()" class="button-edit">
+        <ion-icon slot="start" ></ion-icon>
+        Edit Place
+      </ion-button>
+      
+      <ion-button (click)="buttonReport(id)" class="button-report">
+        <ion-icon slot="end" ></ion-icon>
+        Report Place
+      </ion-button>
+    </div>
+
+</ion-content> -->
+
+
+
 
   <img *ngIf="checkdata" src="{{baseUrl}}{{image}} " class="image_poi">
 
@@ -31,7 +77,6 @@
       <div class="coordinate">
         <ion-input  type="text" name="longitude" class="longitude" value="{{data.poi_longitude}}" disabled></ion-input>
         <ion-input  type="text" name="latitude" class="latitude" value="{{data.poi_latitude}}" disabled></ion-input>
-
       </div>
    
     </div>
