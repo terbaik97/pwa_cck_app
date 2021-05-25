@@ -70,18 +70,11 @@ ion-card {
   height: 40px;
   left: 197px;
   top: 301px;
-
-  background: #ffffff;
-  border: 1.51515px solid rgba(8, 25, 58, 0.1);
-  box-sizing: border-box;
-  box-shadow: 0px 7.57576px 30.303px rgba(60, 134, 221, 0.15);
-  border-radius: 5px;
 }
 
 .image_poi {
-  height: 321.45px;
-  left: 80.27px;
-  top: 97.91px;
+  padding: 20px;
+  margin: 30px 30px;
 }
 
 .name {
@@ -133,7 +126,7 @@ ion-card {
   width: 335px;
   height: 187px;
   left: 20px;
-  top: 602px;
+  top: 690px;
 
   background: linear-gradient(179.17deg, #597eab 29.07%, #09446c 117.37%);
   border-radius: 5px;
@@ -213,4 +206,11 @@ ion-card {
   text-align: center;
 
   color: #ffffff;
+}
+
+.card {
+  box-shadow: 0 0 6px 3px rgb(241 241 241 / 86%),
+    0 1px 10px 5px rgb(0 0 0 / 20%);
+  margin-bottom: 1rem;
+  top: 580px;
 }
