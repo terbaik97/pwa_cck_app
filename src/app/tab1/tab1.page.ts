@@ -33,27 +33,16 @@ export class Tab1Page implements OnInit {
   ) {}
 
   ngOnInit() {
-
-    this.refresh();
-    //Store first POI Data
-    if (this.poiItems == null) {
-      localStorage.setItem("addpoiData", JSON.stringify([{ "poiID": '', "latitude": '', "longitude": '' }]))
-      this.refresh();
-    }
-
-    this._poiService.getAllPoi().subscribe((res: any)=>{
+      this._poiService.getAllPoi().subscribe((res: any)=>{
       if(res){ 
-        
         this.data = res.data
+        this.leafletMap();
       } 
    });
 
   }
 
-  refresh() {
-    this.poiItems = JSON.parse(localStorage.getItem("addpoiData"));
 
-  }
 
   ionViewDidEnter() {
     if(this.map) {
@@ -78,10 +67,10 @@ export class Tab1Page implements OnInit {
     layer.addTo(this.map);
 
      //call this function to retrieve id, longitude and latitude
-     this.retrievePOIdata();
-
-
     
+
+
+    this.retrievePOIdata();
     for (let i = 0; i < this.data.length; i++) {
       this.markerPoints = L.marker([
         this.data[i]["poi_latitude"], 
@@ -118,27 +107,6 @@ export class Tab1Page implements OnInit {
     this.newPOIMarker.bindPopup('<p>Create new place here !!</p>');
     this.newPOIMarker.on('click', this.onClick, this);
     this.newPOIMarker.addTo(this.map);
-
-    //dummy id for putting new id
-    let dummyID;
-
-    for (let i = 0; i <= this.poiItems.length; i++) {
-      dummyID=i;
-    }
-    //call this function to store new POI created in db
-    this.addStatic(this.newPOIMarker.ID=dummyID);
-
-    //Call function to see lat and longitude
-    // POIlatlng();
-
-    //function when the marker is placed down
-    // function POIlatlng(){
-    //   let lat = e.latlng.lat;
-    //   let lon = e.latlng.lng;
-
-    //   console.log('lat: ', lat);
-    //   console.log('lon: ', lon);
-    // }
   }
 
   //When user click this, it will popup modal
@@ -162,20 +130,6 @@ export class Tab1Page implements OnInit {
     await alert.present();
   }
 
-  addStatic(id) {
-     //Store other POI Data
-    if (this.poiItems !== null && this.poiItems.length>0){
-      this.poiItems.push(
-        {
-          poiID: id,
-          latitude: this.newPOIMarker._latlng.lat,
-          longitude: this.newPOIMarker._latlng.lng
-        }
-      );
-      localStorage.setItem("addpoiData", JSON.stringify(this.poiItems));
-    }
-
-  }
 
   //Retreive and Store all POI id,latitude and logitude in variables
   retrievePOIdata(){
