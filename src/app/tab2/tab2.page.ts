@@ -7,6 +7,7 @@ import { AuthService } from '../services/auth.service';
 import { ProfileService } from '../services/profile.service';
 import { ajax, css } from "jquery";
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
+import { AlertMessageService } from '../services/alert-message.service';
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
@@ -27,7 +28,8 @@ export class Tab2Page implements OnInit{
     private formBuilder: FormBuilder, 
     private _authService: AuthService,
     private httpClient: HttpClient,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private alertMessage:AlertMessageService 
     
   ) {
     this.nickname = this._auth.getUserNickname();
@@ -44,6 +46,7 @@ export class Tab2Page implements OnInit{
     this._profileService.getProfile(this._auth.getUserEmail()).subscribe((res: any) =>{
       console.log(res.data[0]);
       this.profile_data = res.data[0];
+      this.displayImage = "http://127.0.0.1:3000"+res.data[0]["avatar"]["url"];
       this.updateProfile.patchValue({
         full_name: this.profile_data.full_name,
         email:this.profile_data.email,
@@ -94,13 +97,13 @@ export class Tab2Page implements OnInit{
     let jwtToken = this._authService.getToken();
     const headers = { 'Authorization':  jwtToken };
     this.httpClient.put<any>("http://127.0.0.1:3000/api/v1/update", formData ,{ headers}).subscribe(
-      (res) => console.log(res),
+      (res) => {
+      console.log(res)
+      this.alertMessage.presentAlert(res.message)
+      this.router.navigate(['/tabs/tab2'])
+      } ,
       (err) => console.log(err)
     );
-  }
-
-  update(){
-    const data = this.updateProfile.value
   }
 
   logout(){
