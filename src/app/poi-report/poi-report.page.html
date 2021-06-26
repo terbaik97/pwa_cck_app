@@ -7,57 +7,201 @@
   </ion-toolbar>
 </ion-header>
 
-<!-- <ion-content>
-
-  <ion-grid class="ion-no-margin">
-    
-    <ion-row *ngIf="reportForm">
-      <ion-col size="12" class="ion-no-margin ion-no-padding title">
-      </ion-col>
-      <ion-col size="12" class="form">
-        <form [formGroup]="reportForm"  class="ion-margin-top">
-          <ion-item>
-            <ion-label class="place_name">Place Name</ion-label>
-            <ion-input class="place_name_input" formControlName="name" type="text" [class.invalid]="!reportForm.controls.name.valid"></ion-input>
-          </ion-item>
-  
-         
-          <ion-item lines="none">
-            <ion-label position="stacked" color="accent">Report Type</ion-label>
-            <ion-select formControlName="report_reason" value="fraud" okText="Okay" cancelText="Dismiss"
-            [class.invalid]="!reportForm.controls.report_reason.valid">
-              <ion-select-option value="pornography">Pornography</ion-select-option>
-              <ion-select-option value="inappropriate_information">Inappropriate information</ion-select-option>
-              <ion-select-option value="spam_information">Spam information</ion-select-option>
-            </ion-select>
-          </ion-item>
-          <ion-item lines="none">
-            <ion-label position="stacked" color="accent">Comments</ion-label>
-            <ion-textarea formControlName="comments" placeholder="Enter more information here..."></ion-textarea>
-           </ion-item>
-
-        </form>
-        <ion-button expand="full" color="primary" (click)="report(id)"  [disabled]="reportForm.invalid">Submit Info</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
- 
-</ion-content> -->
 <ion-content>
-  <form [formGroup]="reportForm">
-      <ion-title class="place_name">Place Name</ion-title>
-      <ion-input class="place_name_input" formControlName="name" type="text" [class.invalid]="!reportForm.controls.name.valid"></ion-input>
+  <div class="container">
 
-      <ion-title class="report_reason_name">Report Type</ion-title>
-      <ion-select formControlName="report_reason" class="report_reason" okText="Okay" cancelText="Dismiss"
-      [class.invalid]="!reportForm.controls.report_reason.valid">
-        <ion-select-option value="fraud">Fraud</ion-select-option>
-        <ion-select-option value="inappropriate_information">Inappropriate information</ion-select-option>
-        <ion-select-option value="spam_information">Spam information</ion-select-option>
-      </ion-select>
+    <form [formGroup]="reportForm">
 
-      <ion-title class="comment_name">Comments</ion-title>
-      <ion-textarea formControlName="comments" class="comments" placeholder="Enter more information here..."></ion-textarea>
+      <div class="row">
+        <ion-title class="col-12 place_name" style="color: black;">Place Name</ion-title>
+        <ion-input class="col-12 place_name_input" formControlName="name" type="text" [class.invalid]="!reportForm.controls.name.valid" disabled></ion-input>
+      </div>
+      
+      <div class="row">
+        <ion-title class="col-12 report_reason_name" style="color: black;">Report Type</ion-title>
+        <ion-select formControlName="report_reason" class="report_reason" okText="Okay" cancelText="Dismiss"
+        [class.invalid]="!reportForm.controls.report_reason.valid">
+          <ion-select-option value="fraud">Fraud</ion-select-option>
+          <ion-select-option value="inappropriate_information">Inappropriate information</ion-select-option>
+          <ion-select-option value="spam_information">Spam information</ion-select-option>
+        </ion-select>
+      </div>
+      <!-- list all history -->
+      <div class="row" *ngIf="length > 1">
+        <ion-card *ngFor="let data of historyData">
+          <ion-card-header>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col class="headerDate" >
+                      <div>
+                        Who did 
+                        <div>{{data.user.full_name}}</div>
+                        <ion-datetime displayFormat="DD-MM-YYYY" value="{{data.created_at}}"></ion-datetime>
+                      </div>
+                    </ion-col>
+                  </ion-row>
+            
+                  <ion-row>
+                    <ion-col style="text-align: center; background-color:lightblue; color: black;">Before</ion-col>
+                    <ion-col></ion-col>
+                    <ion-col style="text-align: center;  background-color:lightblue; color: black;">After</ion-col>
+                  </ion-row>
+                  
+                  <ion-row *ngIf="data.object_changes.name ? data.object_changes.name : '' ">
+                    <ion-col class="dataChanges" style="text-align: center;"><pre >Name : {{data.object_changes.name[0] | json}}</pre></ion-col>
+                    <ion-col></ion-col>
+                    <ion-col class="dataChanges" style="text-align: center;"><pre >Name : {{data.object_changes.name[1] | json}}</pre></ion-col>
+                  </ion-row>
+            
+                  <ion-row *ngIf="data.object_changes.category ? data.object_changes.category : '' ">
+                    <ion-col class="dataChanges" style="text-align: center;"> <pre >Category : {{data.object_changes.category[0] | json}}</pre></ion-col>
+                    <ion-col></ion-col>
+                    <ion-col class="dataChanges" style="text-align: center;"> <pre >Category : {{data.object_changes.category[1] | json}}</pre></ion-col>
+                  </ion-row>
+            
+                  <ion-row *ngIf="data.object_changes.event ? data.object_changes.event : '' ">
+                    <ion-col class="dataChanges" style="text-align: center;"> <pre >Event :  {{data.object_changes.event[0] | json}}</pre></ion-col>
+                    <ion-col></ion-col>
+                    <ion-col class="dataChanges" style="text-align: center;"> <pre >Event : {{data.object_changes.event[1] | json}}</pre></ion-col>
+                  </ion-row>
+            
+                  <ion-row *ngIf="data.object_changes.event_date ? data.object_changes.event_date : '' ">
+                    <ion-col class="dataChanges" style="text-align: center;"> <pre >Event Date :  {{data.object_changes.event_date[0] | json}}</pre></ion-col>
+                    <ion-col></ion-col>
+                    <ion-col class="dataChanges" style="text-align: center;"> <pre >Event Date : {{data.object_changes.event_date[1] | json}}</pre></ion-col>
+                  </ion-row>
+            
+                  <ion-row *ngIf="data.object_changes.fields ? data.object_changes.fields : '' ">
+                    <ion-col class="dataChanges" style="text-align: center;"> <pre >Fields :  {{data.object_changes.fields[0] | json}}</pre></ion-col>
+                    <ion-col></ion-col>
+                    <ion-col class="dataChanges" style="text-align: center;"> <pre> Fields : {{data.object_changes.fields[1] | json}}</pre></ion-col>
+                  </ion-row>
+            
+                </ion-grid>
+    
+                <button type="button" class="btn btn-primary" *ngIf="submitRevert == true" (click)="presentAlertRevert(data.item_id,data.id,data.whodunnit)"  [disabled]="reportForm.invalid">Revert</button>
+                <button type="button" class="btn btn-danger" *ngIf="submitReport == true" (click)="presentAlertReport(data.item_id,data.id,data.whodunnit)"  [disabled]="reportForm.invalid">Report</button>
+      
+          </ion-card-header>
+          
+        </ion-card>
+        <!-- <ion-card  *ngFor="let data of historyData; let i = index">
+
+          <ion-card-header *ngIf=" i == 0">
+            Place Created
+          </ion-card-header>
+          <ion-card-header *ngIf=" i > 0">
+            Place Updated
+          </ion-card-header>
+        
+          <ion-card-content>
+            Object changes
+           
+           
+            <pre *ngIf="data.object_changes.name ? data.object_changes.name : '' ">Name {{data.object_changes.name | json}}</pre>
+            <pre *ngIf="data.object_changes.category ? data.object_changes.category : '' ">Category {{data.object_changes.category | json}}</pre>
+            <pre *ngIf="data.object_changes.event ? data.object_changes.event : '' ">Event {{data.object_changes.event | json}}</pre>
+            <pre *ngIf="data.object_changes.event_date ? data.object_changes.event_date : '' ">Event Date {{data.object_changes.event_date | json}}</pre>
+            <pre *ngIf="data.object_changes.fields ? data.object_changes.fields : '' ">Fields {{data.object_changes.fields | json}}</pre>
+            <button type="button" class="btn btn-primary" *ngIf="submitRevert == true" (click)="presentAlertRevert(data.item_id,data.id,data.whodunnit)"  [disabled]="reportForm.invalid">Revert</button>
+            <button type="button" class="btn btn-danger" *ngIf="submitReport == true" (click)="presentAlertReport(data.item_id,data.id,data.whodunnit)"  [disabled]="reportForm.invalid">Report</button>
+          </ion-card-content>
+        
+        </ion-card> -->
+      </div>
+
+      <!-- <div class="row">
+        <ion-title class="col-12 comment_name" style="color: black;">Comments</ion-title>
+        <ion-textarea formControlName="comments" class="col-12 comments" placeholder="Enter more information here..."></ion-textarea>
+      </div> -->
+
+      <!-- <div class="row">
+        <ion-button expand="full" class="col-6 report_button" color="primary" (click)="report(id)"  [disabled]="reportForm.invalid">Submit report</ion-button>
+      </div> -->
+
+      <div class="row" *ngIf="length == 1">
+        <ion-card *ngFor="let data of historyData">
+          <ion-card-header>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col class="headerDate" >
+                      <div>
+                        Who did 
+                        <div>{{data.user.full_name}}</div>
+                        <ion-datetime displayFormat="DD-MM-YYYY" value="{{data.created_at}}"></ion-datetime>
+                      </div>
+                    </ion-col>
+                  </ion-row>
+            
+                  <ion-row>
+                    <ion-col style="text-align: center; background-color:lightblue; color: black;">Before</ion-col>
+                    <ion-col></ion-col>
+                    <ion-col style="text-align: center;  background-color:lightblue; color: black;">After</ion-col>
+                  </ion-row>
+                  
+                  <ion-row *ngIf="data.object_changes.name ? data.object_changes.name : '' ">
+                    <ion-col class="dataChanges" style="text-align: center;"><pre >Name : {{data.object_changes.name[0] | json}}</pre></ion-col>
+                    <ion-col></ion-col>
+                    <ion-col class="dataChanges" style="text-align: center;"><pre >Name : {{data.object_changes.name[1] | json}}</pre></ion-col>
+                  </ion-row>
+            
+                  <ion-row *ngIf="data.object_changes.category ? data.object_changes.category : '' ">
+                    <ion-col class="dataChanges" style="text-align: center;"> <pre >Category : {{data.object_changes.category[0] | json}}</pre></ion-col>
+                    <ion-col></ion-col>
+                    <ion-col class="dataChanges" style="text-align: center;"> <pre >Category : {{data.object_changes.category[1] | json}}</pre></ion-col>
+                  </ion-row>
+            
+                  <ion-row *ngIf="data.object_changes.event ? data.object_changes.event : '' ">
+                    <ion-col class="dataChanges" style="text-align: center;"> <pre >Event :  {{data.object_changes.event[0] | json}}</pre></ion-col>
+                    <ion-col></ion-col>
+                    <ion-col class="dataChanges" style="text-align: center;"> <pre >Event : {{data.object_changes.event[1] | json}}</pre></ion-col>
+                  </ion-row>
+            
+                  <ion-row *ngIf="data.object_changes.event_date ? data.object_changes.event_date : '' ">
+                    <ion-col class="dataChanges" style="text-align: center;"> <pre >Event Date :  {{data.object_changes.event_date[0] | json}}</pre></ion-col>
+                    <ion-col></ion-col>
+                    <ion-col class="dataChanges" style="text-align: center;"> <pre >Event Date : {{data.object_changes.event_date[1] | json}}</pre></ion-col>
+                  </ion-row>
+            
+                  <ion-row *ngIf="data.object_changes.fields ? data.object_changes.fields : '' ">
+                    <ion-col class="dataChanges" style="text-align: center;"> <pre >Fields :  {{data.object_changes.fields[0] | json}}</pre></ion-col>
+                    <ion-col></ion-col>
+                    <ion-col class="dataChanges" style="text-align: center;"> <pre> Fields : {{data.object_changes.fields[1] | json}}</pre></ion-col>
+                  </ion-row>
+            
+                </ion-grid>
+                <button type="button" class="btn btn-primary"  (click)="presentAlertRevertReport(data.item_id,data.id,data.whodunnit)"  [disabled]="reportForm.invalid">Report & Revert</button>
+          </ion-card-header>
+          
+            
+         
+        </ion-card>
+        <!-- <ion-card  *ngFor="let data of historyData; let i = index">
+
+          <ion-card-header *ngIf=" i == 0">
+            Place Created
+          </ion-card-header>
+         
+        
+          <ion-card-content>
+            Object changes
+           
+           
+            <pre *ngIf="data.object_changes.name ? data.object_changes.name : '' ">Name {{data.object_changes.name | json}}</pre>
+            <pre *ngIf="data.object_changes.category ? data.object_changes.category : '' ">Category {{data.object_changes.category | json}}</pre>
+            <pre *ngIf="data.object_changes.event ? data.object_changes.event : '' ">Event {{data.object_changes.event | json}}</pre>
+            <pre *ngIf="data.object_changes.event_date ? data.object_changes.event_date : '' ">Event Date {{data.object_changes.event_date | json}}</pre>
+            <pre *ngIf="data.object_changes.fields ? data.object_changes.fields : '' ">Fields {{data.object_changes.fields | json}}</pre>
+            <button type="button" class="btn btn-primary"  (click)="presentAlertRevertReport(data.item_id,data.id,data.whodunnit)"  [disabled]="reportForm.invalid">Report & Revert</button>
+          </ion-card-content>
+        
+        </ion-card> -->
+      </div>
+
   </form>
+
+  </div>
+  
+  
+  
 </ion-content>
-<ion-button expand="full" class="report_button" color="primary" (click)="report(id)"  [disabled]="reportForm.invalid">Send</ion-button>

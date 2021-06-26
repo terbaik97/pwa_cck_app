@@ -7,6 +7,7 @@ import * as L from 'leaflet';
 import "leaflet/dist/images/marker-shadow.png";
 import "leaflet/dist/images/marker-icon.png";
 import "leaflet/dist/images/marker-icon-2x.png";
+import { AuthService } from '../services/auth.service';
 export class PoiInfo {
   poiID: any;
   latitude: any;
@@ -39,11 +40,14 @@ export class POIInfoPage implements OnInit {
   fields: any;
   baseUrl="http://127.0.0.1:3000";
   nodata: any;
-
+  marker: L.Map;
+  newPosition: any;
+  userPoint = this._authService.getUserPoint();
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private _poiService: PoiService
+    private _poiService: PoiService,
+    private _authService:AuthService
     ) {
       this.activatedRoute.queryParams.subscribe(params => {
         if (this.router.getCurrentNavigation().extras.state) {
@@ -63,39 +67,59 @@ export class POIInfoPage implements OnInit {
     }
 
    this._poiService.getPoibyCoordinate(this.poiInfo).subscribe((res: any) => {
-     console.log(res);
-    if (res === ""){
-      this.nodata = true;
-      this.data = "";
-    }
     this.checkdata = true;
     this.data = res;
     this.id = this.data.id
     this.fields = this.data.fields;
     this.image = this.data.image_pois[0]["image"]["url"]
     console.log(this.image)
-    this.map = L.map('map', {
+
+    this.map = L.map('mapView', {
       center: [this.data.poi_latitude, this.data.poi_longitude],
       zoom: 18,
       renderer: L.canvas
     })
-
+    // this.map = L.map('map').setView([this.data.poi_latitude, this.data.poi_longitude], 18);
     var layer = L.tileLayer('assets/tiles/{z}/{x}/{y}.png', {
       maxNativeZoom: 18,
       minNativeZoom: 18,
      });
     layer.addTo(this.map);
-
-    var marker = L.marker([this.data.poi_latitude, this.data.poi_longitude])
-    .bindPopup('Place you search is here')
+    L.marker([this.data.poi_latitude, this.data.poi_longitude]).addTo(this.map)
+    .bindPopup(this.data.name)
     .openPopup();
-    marker.addTo(this.map);
+
+    this.marker = new L.marker([3.1210736296614234, 101.65362004185054],{draggable:'true'}).addTo(this.map)
+    .bindPopup(this.newPosition ? this.newPosition : "move here to know distance")
+    .openPopup();
+   
+    this.marker.on('dragend', (event) => {
+      var marker = event.target;
+      var position = marker.getLatLng();
+      this.newPosition = position;
+      
+      console.log(this.map.distance([this.data.poi_latitude, this.data.poi_longitude], [this.newPosition.lat, this.newPosition.lng]))
+      var popup = L.popup()
+      .setLatLng([this.newPosition.lat, this.newPosition.lng])
+      .setContent('Distance from ' + this.data.name + ' is ' +  this.map.distance([this.data.poi_latitude, this.data.poi_longitude], [this.newPosition.lat, this.newPosition.lng]) + ' metres ')
+      .openOn(this.map);
     });
 
+    // this.map.bindTooltip("my tooltip text").openTooltip();
+    
+    console.log(this.marker)
+    // console.log(this.map.distance([this.data.poi_latitude, this.data.poi_longitude], [this.newPosition.lat, this.newPosition.lng]))
+    
+    },
+    (err: any) =>{
+      
+      this.nodata = err.error;
+    });
+  }
 
- 
+  calculateDistance(){
 
-
+    console.log(this.newPosition);
   }
 
   buttonEdit() {
@@ -110,12 +134,12 @@ export class POIInfoPage implements OnInit {
   }
 
   buttonReport(id) {
-    console.log(id);
+    
     this.router.navigate(['/poi-report',id]);
   }
 
   buttonHistory(id){
-    console.log(id);
+    
     this.router.navigate(['/history',id]);
   }
 }

@@ -9,14 +9,14 @@
 
 
 
-
+<div class="container" style="    background-color: aliceblue;">
 <form [formGroup]="updateProfile">
 
-  <div class="container py-3">
+ 
     
-    <div class="row py-4">
+    <div class="row">
       
-        <div class="col-lg-6 ">
+        <div class="col-lg-12 ">
   
             
             <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm" style="top: -60px;">
@@ -29,30 +29,41 @@
             <img class="profile-pic" [src]="displayImage">
            
         </div>
-      </div>
-  </div>
- 
+    </div>
 
-  
- 
-    <ion-title class="name">Name</ion-title>
-    <ion-input   formControlName="full_name" class="name_input"  ></ion-input>
-  
-    <ion-title class="email">Email</ion-title>
-    <ion-input  formControlName="email" class="email_input"  ></ion-input>
-  
-    <ion-title class="mobile_number">Mobile Number</ion-title>
-    <ion-input formControlName="mobile_number" class="mobile_number_input" ></ion-input>
-  
+    <div class="row ">
+      <ion-title class="col-sm-12 col-md-6 name">Name</ion-title>
+      <ion-input formControlName="full_name" class="col-sm-12 col-md-6 name_input"  ></ion-input>
+    </div>
+
+    <div class="row ">
+      <ion-title class="col-sm-12 col-md-6 email">Email</ion-title>
+      <ion-input  formControlName="email" class="col-sm-12 col-md-6 email_input"  ></ion-input>
+    </div>
+
+    <div class="row ">
+      <ion-title class="col-sm-12 col-md-6 mobile_number">Mobile Number</ion-title>
+      <ion-input formControlName="mobile_number" class="col-sm-12 col-md-6 mobile_number_input" ></ion-input>
+    </div>
     
-  
+    <!-- <div class="row" style="
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;">
+      <ion-button class="col-sm-6 col-md-6 update_button" round  expand="full" color="primary" (click)="onSubmit()">Update profile</ion-button>
+      <ion-button *ngIf="buttonLogout" class="col-sm-6 col-md-6 logout_button" (click)="logout()">Logout</ion-button>
+    </div> -->
 
+    <div class="row display-button" style="
+    margin: 1px;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;">
+    <ion-button class="col-md-6 col-sm-6 col-xs-6 button-left" (click)="onSubmit()" >Update</ion-button>
+    <ion-button class="col-md-6 col-sm-6 col-xs-6 button-right"   (click)="logout()">Logout</ion-button>
+    </div>
+ 
 </form>
-
-<!-- <ion-button expand="full" class="report_button" color="primary" (click)="update()"  [disabled]="updateProfile.invalid">Update profile</ion-button> -->
-<ion-button class="update_button" round  expand="full" color="primary" (click)="onSubmit()">Update profile</ion-button>
-
-<div *ngIf="buttonLogout">
-  <ion-button class="logout_button" (click)="logout()">Logout
-</ion-button>
 </div>

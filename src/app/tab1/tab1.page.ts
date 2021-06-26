@@ -9,6 +9,7 @@ import { NavigationExtras,Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { PoiService } from '../api/poi.service';
+import { EventModalComponent } from '../event-modal/event-modal.component';
 
 @Component({
   selector: 'app-tab1',
@@ -26,6 +27,7 @@ export class Tab1Page implements OnInit {
   map: L.Map;
   data: any;
   data_length: Number;
+  event: any;
   constructor(
     private modalCtrl: ModalController,
     private route: Router,
@@ -36,6 +38,7 @@ export class Tab1Page implements OnInit {
   ngOnInit() {
 
     this.refresh();
+    this.openModalEvent();
     //Store first POI Data
     if (this.poiItems == null) {
       localStorage.setItem("addpoiData", JSON.stringify([{ "poiID": '', "latitude": '', "longitude": '' }]))
@@ -44,8 +47,6 @@ export class Tab1Page implements OnInit {
 
     this._poiService.getAllPoi().subscribe((res: any)=>{
       if(res){ 
-        console.log(res)
-        console.log(res.data.length)
         this.data_length = res.data.length
         this.data = res.data
         this.retrievePOIdata();
@@ -91,6 +92,8 @@ export class Tab1Page implements OnInit {
       this.map.invalidateSize();
     },0);
   }
+
+
   async openModal() {
     const modal = await this.modalCtrl.create({
       component: SearchModalComponent
@@ -133,15 +136,16 @@ export class Tab1Page implements OnInit {
 
   //Retreive and Store all POI id,latitude and logitude in variables
   retrievePOIdata(){
-    
-  
+   
       for (let i = 0; i < this.data_length; i++) {
         this.markerPoints = L.marker([
           this.data[i]["poi_latitude"], 
           this.data[i]["poi_longitude"] 
-        ]);
-        this.markerPoints.bindPopup('<p>' + this.data[i]["name"] + 'is here'  +'</p>');
+        ],{icon :this.checkFacility(this.data[i]["category"])} );
+        this.markerPoints.bindPopup('<p>' + this.data[i]["name"] + ' is here'  +'</p>');
         this.markerPoints.on('click', this.onClick, this);
+        // this.checkFacility(this.data[i]["category"]);
+        
         this.markerPoints.addTo(this.map);
         this.markerPoints.ID=i;
       }
@@ -150,7 +154,7 @@ export class Tab1Page implements OnInit {
 
   //function when click poi, go to page info
 onClick(e) {
-console.log(e.latlng);
+
     //Go to page poi based on ID of each marker
     let navigationExtra: NavigationExtras = {
       state: {
@@ -159,4 +163,69 @@ console.log(e.latlng);
     }    
     this.route.navigate(['/poi-info'], navigationExtra);
   }
+
+checkFacility(category: any){
+  
+  switch(category){
+  case "Library":
+      return L.icon({
+      iconUrl: 'assets/poi_icon/library.png',
+      iconSize:     [50, 50], // size of the icon
+      
+  });
+   
+  case "Faculty":
+    return L.icon({
+      iconUrl: 'assets/poi_icon/faculty.png',
+      iconSize:     [50, 50], // size of the icon
+      
+  });
+  case "Residential Collage":
+    return L.icon({
+      iconUrl: 'assets/poi_icon/residential.png',
+      iconSize:     [50, 50], // size of the icon
+      
+  });
+  case "Hall":
+    return L.icon({
+      iconUrl: 'assets/poi_icon/hall.png',
+      iconSize:     [50, 50], // size of the icon
+      
+  });
+  case "Parking":
+    return L.icon({
+      iconUrl: 'assets/poi_icon/parking.png',
+      iconSize:     [50, 50], // size of the icon
+      
+  });
+  case "Bus stop":
+    return L.icon({
+      iconUrl: 'assets/poi_icon/bus-stop.png',
+      iconSize:     [50, 50], // size of the icon
+      
+  });
+    default:
+      return L.icon({
+        iconUrl: 'assets/poi_icon/marker-icon.png',
+        iconSize:     [20, 20], // size of the icon
+        
+    });
+  }
+
+  }
+
+async openModalEvent() {
+  this._poiService.getEventPoi().subscribe((event:any)=>{
+    this.event = event.data;
+    
+  })
+  
+  const modal = await this.modalCtrl.create({
+    component: EventModalComponent,
+    componentProps: { event: this.event }
+  });
+
+  return await modal.present();
+}
+
 }

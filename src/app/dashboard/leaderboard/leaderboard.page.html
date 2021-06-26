@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content fullscreen>
-  <ion-card>
+  <!-- <ion-card>
     <ngx-datatable
       [rows]="players"
       [ngClass]="tableStyle"
@@ -16,10 +16,39 @@
       [headerHeight]="50"
       [columnMode]="'force'"
     >
-      <ngx-datatable-column name="Rank"></ngx-datatable-column>
+      <ngx-datatable-column name="ID"></ngx-datatable-column>
       <ngx-datatable-column name="Name"></ngx-datatable-column>
-      <ngx-datatable-column name="Points"></ngx-datatable-column>
+      <ngx-datatable-column name="Point"></ngx-datatable-column>
 
     </ngx-datatable>
-  </ion-card>
+  </ion-card> -->
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Rank</th>
+        <th scope="col">Name</th>
+        <th scope="col">Total Point</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of players; index as i">
+        <th scope="row">{{i+1}}</th>
+        <td>{{data.name}}</td>
+        <td>{{data.totalPoints}}</td>
+      </tr>
+      <!-- <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Larry</td>
+        <td>the Bird</td>
+        <td>@twitter</td>
+      </tr> -->
+    </tbody>
+  </table>
 </ion-content>

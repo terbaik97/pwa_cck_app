@@ -16,10 +16,44 @@ ion-content {
   }
 }
 
+.knightRight {
+  position: absolute;
+  width: 50em;
+  left: -9em;
+  z-index: 3;
+}
+
+.backRight {
+  position: absolute;
+  width: 20em;
+  left: 11em;
+  z-index: 2;
+}
+
+.knightLeft {
+  position: absolute;
+  width: 50em;
+  left: -9em;
+  z-index: 3;
+}
+
+.backLeft {
+  position: absolute;
+  width: 20em;
+  left: 0em;
+  z-index: 2;
+}
+
 .pictureProfile {
   width: 200px;
   bottom: -180px;
   left: 30px;
+}
+
+.pictureBorderDefault {
+  width: 330px;
+  bottom: -245px;
+  left: -34px;
 }
 
 .pictureBorder {
@@ -51,6 +85,14 @@ ion-content {
   z-index: 3;
   bottom: 100px;
   left: 80px;
+}
+
+.contributionImage {
+  position: absolute;
+  width: 230px;
+  z-index: 3;
+  bottom: 130px;
+  left: 115px;
 }
 
 .loginImageBorder {
@@ -90,4 +132,61 @@ ion-title {
 
 .subDashboard {
   background-color: white;
+}
+
+.roleProgress {
+  border-radius: 8px;
+  background-color: black;
+}
+
+.roleTitle {
+  font-size: 2em;
+  font-weight: 900 !important;
+}
+
+ion-select {
+  background-color: white;
+  color: black;
+  width: 10em;
+  left: 1em;
+}
+
+.star {
+  width: 150% !important;
+  left: 0px;
+  bottom: 0pxm;
+}
+
+.middleCard {
+  position: relative;
+  height: 400px;
+  background-color: black;
+}
+
+.middlePicture {
+  position: absolute;
+  width: 200px;
+  bottom: -180px;
+  left: 7.5em;
+}
+
+.middleBorderDefault {
+  position: absolute;
+  width: 330px;
+  bottom: -245px;
+  left: 3em;
+}
+
+.middleBorderBadge2 {
+  position: absolute;
+  width: 360px;
+  bottom: -255px;
+  left: 1em;
+}
+
+.middleButton {
+  position: absolute;
+  left: 8.5em;
+  position: absolute;
+  bottom: -330px;
 }

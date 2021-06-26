@@ -8,6 +8,8 @@ import { Tab1PageRoutingModule } from './tab1-routing.module';
 import { SearchModalComponent } from '../search-modal/search-modal.component';
 import { FilterPipe } from '../pipe/filter.pipe';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { EventModalComponent } from '../event-modal/event-modal.component';
+
 @NgModule({
   imports: [
     IonicModule,
@@ -16,6 +18,6 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     Tab1PageRoutingModule,
     Ng2SearchPipeModule
   ],
-  declarations: [Tab1Page, SearchModalComponent,FilterPipe]
+  declarations: [Tab1Page, SearchModalComponent,FilterPipe,EventModalComponent]
 })
 export class Tab1PageModule {}

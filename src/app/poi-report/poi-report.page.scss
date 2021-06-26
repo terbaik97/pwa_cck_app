@@ -1,101 +1,106 @@
-ion-content {
-  // --background: url(/assets/imgs/background/29.jpg) no-repeat center/cover fixed;
-  height: 100%;
-  background-repeat: no-repeat;
-  background-size: cover;
+.row {
+  margin: 10px 10px;
+}
+.container {
+  padding: 40px;
 }
 
-.form {
-  ion-item {
-    --padding-start: 0 !important;
-    --inner-padding-end: 0;
-    --background: transparent;
-    --ripple-color: transparent;
+// ion-content {
+//   // --background: url(/assets/imgs/background/29.jpg) no-repeat center/cover fixed;
+//   height: 100%;
+//   background-repeat: no-repeat;
+//   background-size: cover;
+// }
 
-    ion-label {
-      transform: none;
-      margin: 5px 0 0 0 !important;
-      transform: none;
-      margin: 5px 16px 0 16px !important;
-      width: calc(100% - 32px);
-    }
+// .form {
+//   ion-item {
+//     --padding-start: 0 !important;
+//     --inner-padding-end: 0;
+//     --background: transparent;
+//     --ripple-color: transparent;
 
-    ion-input {
-      --background: var(--cs-background-primary) !important;
-      --padding-bottom: 10px;
-      --padding-end: 10px;
-      --padding-start: 10px;
-      --padding-top: 10px;
-      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2) !important;
-      margin: 10px 16px !important;
-      width: calc(100% - 32px);
-      border-radius: 5px;
-    }
+//     ion-label {
+//       transform: none;
+//       margin: 5px 0 0 0 !important;
+//       transform: none;
+//       margin: 5px 16px 0 16px !important;
+//       width: calc(100% - 32px);
+//     }
 
-    ion-textarea {
-      --background: var(--cs-background-primary) !important;
-      --padding-bottom: 10px;
-      --padding-end: 10px;
-      --padding-start: 10px;
-      --padding-top: 10px;
-      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2) !important;
-      margin: 10px 16px !important;
-      width: calc(100% - 32px);
-      border-radius: 5px;
-    }
+//     ion-input {
+//       --background: var(--cs-background-primary) !important;
+//       --padding-bottom: 10px;
+//       --padding-end: 10px;
+//       --padding-start: 10px;
+//       --padding-top: 10px;
+//       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2) !important;
+//       margin: 10px 16px !important;
+//       width: calc(100% - 32px);
+//       border-radius: 5px;
+//     }
 
-    ion-select {
-      --background: var(--cs-background-primary) !important;
-      --padding-bottom: 10px;
-      --padding-end: 10px;
-      --padding-start: 10px;
-      --padding-top: 10px;
-      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2) !important;
-      margin: 10px 16px !important;
-      width: calc(100% - 32px);
-      border-radius: 5px;
-    }
-  }
+//     ion-textarea {
+//       --background: var(--cs-background-primary) !important;
+//       --padding-bottom: 10px;
+//       --padding-end: 10px;
+//       --padding-start: 10px;
+//       --padding-top: 10px;
+//       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2) !important;
+//       margin: 10px 16px !important;
+//       width: calc(100% - 32px);
+//       border-radius: 5px;
+//     }
 
-  ion-radio-group {
-    margin: 5px 16px 0 16px !important;
-  }
-}
+//     ion-select {
+//       --background: var(--cs-background-primary) !important;
+//       --padding-bottom: 10px;
+//       --padding-end: 10px;
+//       --padding-start: 10px;
+//       --padding-top: 10px;
+//       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2) !important;
+//       margin: 10px 16px !important;
+//       width: calc(100% - 32px);
+//       border-radius: 5px;
+//     }
+//   }
 
-ion-button {
-  margin: 5px 16px 0 16px !important;
-  --border-radius: 5px !important;
-  --padding-top: 5px;
-  --padding-bottom: 5px;
-  --padding-start: 10px;
-  --padding-end: 10px;
-  --box-shadow: none;
-  font-size: 17px;
-  font-weight: bold !important;
-  height: auto;
-}
-.place_name {
-  /* POI Name */
-  height: 16px;
-  left: -123px;
-  top: 142px;
+//   ion-radio-group {
+//     margin: 5px 16px 0 16px !important;
+//   }
+// }
 
-  font-family: Metropolis;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 16px;
-  /* identical to box height */
+// ion-button {
+//   margin: 5px 16px 0 16px !important;
+//   --border-radius: 5px !important;
+//   --padding-top: 5px;
+//   --padding-bottom: 5px;
+//   --padding-start: 10px;
+//   --padding-end: 10px;
+//   --box-shadow: none;
+//   font-size: 17px;
+//   font-weight: bold !important;
+//   height: auto;
+// }
+// .place_name {
+//   /* POI Name */
+//   height: 16px;
+//   left: -123px;
+//   top: 142px;
 
-  text-transform: capitalize;
+//   font-family: Metropolis;
+//   font-style: normal;
+//   font-weight: normal;
+//   font-size: 16px;
+//   line-height: 16px;
+//   /* identical to box height */
 
-  color: #0e1026;
-}
+//   text-transform: capitalize;
+
+//   color: #0e1026;
+// }
 .place_name_input {
   width: 331px;
   height: 50px;
-  left: 23px;
-  top: 172px;
   background: #ffffff;
   border: 1px solid rgba(39, 46, 93, 0.1);
   box-sizing: border-box;
@@ -105,9 +110,6 @@ ion-button {
 .report_reason {
   width: 331px;
   height: 50px;
-  left: 23px;
-  top: 225px;
-
   background: #ffffff;
   border: 1px solid rgba(39, 46, 93, 0.1);
   box-sizing: border-box;
@@ -115,39 +117,36 @@ ion-button {
   border-radius: 5px;
 }
 
-.report_reason_name {
-  height: 16px;
-  left: -123px;
-  top: 257px;
+// .report_reason_name {
+//   height: 16px;
+//   left: -123px;
+//   top: 257px;
 
-  font-family: Metropolis;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 16px;
-  /* identical to box height */
-  text-transform: capitalize;
-  color: #0e1026;
-}
+//   font-family: Metropolis;
+//   font-style: normal;
+//   font-weight: normal;
+//   font-size: 16px;
+//   line-height: 16px;
+//   /* identical to box height */
+//   text-transform: capitalize;
+//   color: #0e1026;
+// }
 
-.comment_name {
-  left: -123px;
-  font-family: Metropolis;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 16px;
-  /* identical to box height */
-  text-transform: capitalize;
-  color: #0e1026;
-}
+// .comment_name {
+//   left: -123px;
+//   font-family: Metropolis;
+//   font-style: normal;
+//   font-weight: normal;
+//   font-size: 16px;
+//   line-height: 16px;
+//   /* identical to box height */
+//   text-transform: capitalize;
+//   color: #0e1026;
+// }
 
 .comments {
   width: 331px;
   height: 187px;
-  left: 23px;
-  top: 300px;
-
   background: #ffffff;
   border: 1px solid rgba(39, 46, 93, 0.1);
   box-sizing: border-box;
@@ -156,10 +155,8 @@ ion-button {
 }
 
 .report_button {
-  width: 314.92px;
+  width: 50%;
   height: 50px;
-  left: 26px;
-  top: 574px;
-  background: linear-gradient(179.17deg, #597eab 29.07%, #09446c 117.37%);
   border-radius: 5px;
+  margin: 10px 10px;
 }

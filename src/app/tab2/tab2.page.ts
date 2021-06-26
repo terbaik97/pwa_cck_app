@@ -8,6 +8,7 @@ import { ProfileService } from '../services/profile.service';
 import { ajax, css } from "jquery";
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 import { AlertMessageService } from '../services/alert-message.service';
+import { FirebaseService } from '../services/firebase.service';
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
@@ -19,6 +20,7 @@ export class Tab2Page implements OnInit{
   buttonLogout = true;
   updateProfile: FormGroup; 
   displayImage: any;
+  errMessage = "";
   constructor(
     private _api : ApiService, 
     private _auth: AuthService, 
@@ -29,7 +31,8 @@ export class Tab2Page implements OnInit{
     private _authService: AuthService,
     private httpClient: HttpClient,
     private sanitizer: DomSanitizer,
-    private alertMessage:AlertMessageService 
+    private alertMessage:AlertMessageService,
+    private _firebaseService:FirebaseService
     
   ) {
     this.nickname = this._auth.getUserNickname();
@@ -42,16 +45,18 @@ export class Tab2Page implements OnInit{
     
   }
   ngOnInit() {
-    console.log(this._auth.getUserNickname());
-    this._profileService.getProfile(this._auth.getUserEmail()).subscribe((res: any) =>{
-      console.log(res.data[0]);
-      this.profile_data = res.data[0];
-      this.displayImage = "http://127.0.0.1:3000"+res.data[0]["avatar"]["url"];
-      this.updateProfile.patchValue({
-        full_name: this.profile_data.full_name,
-        email:this.profile_data.email,
-        mobile_number:this.profile_data.mobile_number,
+      console.log(this._auth.getUserNickname());
+      this._firebaseService.update_user({totalPoints: parseInt(this._authService.getUserPoint()) },this._authService.getUserId())
+      this._profileService.getProfile(this._auth.getUserEmail()).subscribe((res: any) =>{
+        console.log(res.data[0]);
+        this.profile_data = res.data[0];
+        this.displayImage = "http://127.0.0.1:3000"+res.data[0]["avatar"]["url"];
+        this.updateProfile.patchValue({
+          full_name: this.profile_data.full_name,
+          email:this.profile_data.email,
+          mobile_number:this.profile_data.mobile_number,
         });
+       
   })
   }
 
@@ -83,9 +88,9 @@ export class Tab2Page implements OnInit{
 
   }}
 
-  onSubmit(poi_id: any) {
+  onSubmit() {
    
-
+console.log("update")
     //update image
     const formData = new FormData();
     formData.append('id', this._authService.getUserId());
@@ -93,27 +98,46 @@ export class Tab2Page implements OnInit{
     formData.append('full_name', this.updateProfile.get('full_name').value);
     formData.append('email', this.updateProfile.get('email').value);
     formData.append('mobile_number', this.updateProfile.get('mobile_number').value);
-
+    formData.append('user_point', this._authService.getUserPoint());
     let jwtToken = this._authService.getToken();
     const headers = { 'Authorization':  jwtToken };
+   
     this.httpClient.put<any>("http://127.0.0.1:3000/api/v1/update", formData ,{ headers}).subscribe(
-      (res) => {
+      (res:any) => {
       console.log(res)
+      // update in angular
+      this._firebaseService.update_user(res.data,res.data.id)
       this.alertMessage.presentAlert(res.message)
       this.router.navigate(['/tabs/tab2'])
       } ,
-      (err) => console.log(err)
+      (err: any) => 
+      {
+        console.log(err)
+        this.errMessage=err.message
+        if(this.errMessage == "Invalid Credentials"){
+          this.logout();
+        }
+      }
+     
     );
   }
 
   logout(){
-    // logout and reset the jwt token
-    localStorage.removeItem('jwt');
-    localStorage.removeItem('nickname');
-    localStorage.removeItem('email');
-    this.router.navigate(['/']) 
+    const formData = new FormData();
+    formData.append('id', this._authService.getUserId());
+    formData.append('user_point', this._authService.getUserPoint());
+    let jwtToken = this._authService.getToken();
+    const headers = { 'Authorization':  jwtToken };
+    this.httpClient.put<any>("http://127.0.0.1:3000/api/v1/update", formData ,{ headers}).subscribe((data:any)=>{
+      console.log(data)
+      localStorage.clear();
+      this.router.navigate(['/'])
+      .then(() => {
+        window.location.reload();
+      }); 
+    })
   }
 
-  
+
 }
 

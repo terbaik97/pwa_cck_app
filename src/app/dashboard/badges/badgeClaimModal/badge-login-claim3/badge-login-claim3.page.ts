@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-badge-login-claim3',
@@ -8,10 +10,14 @@ import { FirebaseService } from 'src/app/services/firebase.service';
   styleUrls: ['./badge-login-claim3.page.scss'],
 })
 export class BadgeLoginClaim3Page implements OnInit {
-
+  //usable
+  public usableBadge: any;
+  //
   public claimedLoginBadge3: any;
   constructor(private modalCtr: ModalController,
-    private firebaseService: FirebaseService) { }
+    private firebaseService: FirebaseService,
+    private _authService:AuthService,
+    private router: Router,) { }
 
   ngOnInit() {
   }
@@ -23,7 +29,14 @@ export class BadgeLoginClaim3Page implements OnInit {
 
   buttonClaim(){
     this.claimedLoginBadge3=true;
-    this.update('1', this.claimedLoginBadge3);
+    this.update(this._authService.getUserId(), this.claimedLoginBadge3);
+    //usable badge
+    this.usableBadge=true;
+    this.updateUsable(this._authService.getUserId(), this.usableBadge)
+    this.router.navigate(['/badges'])
+    .then(() => {
+      window.location.reload();
+    }); 
     this.close();
   }
 
@@ -31,6 +44,13 @@ export class BadgeLoginClaim3Page implements OnInit {
     let recordBorder = {};
     recordBorder['claimedLoginBadge3'] = record;
     this.firebaseService.update_claimed_badge(id, recordBorder);
+  }
+
+  //usable
+  updateUsable(id, record){
+    let usableBadge = {};
+    usableBadge['usableBadge3'] = record;
+    this.firebaseService.update_usable_badge(id, usableBadge);
   }
 
 }

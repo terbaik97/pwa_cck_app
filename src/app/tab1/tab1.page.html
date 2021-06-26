@@ -1,9 +1,11 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
     <ion-button class="searchButton" (click)="openModal()">
       <div class="ion-text-left">Search</div>
     </ion-button>
-  
   </ion-toolbar>
 </ion-header>
 

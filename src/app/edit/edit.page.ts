@@ -7,6 +7,7 @@ import {HttpClient, HttpEvent, HttpErrorResponse, HttpEventType, HttpRequest, Ht
 import { AuthService } from "../services/auth.service";
 import { AlertController } from '@ionic/angular';
 import { AlertMessageService } from '../services/alert-message.service';
+import { FirebaseService } from '../services/firebase.service';
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.page.html',
@@ -42,7 +43,10 @@ export class EditPage implements OnInit {
     private router: Router,
     private httpClient: HttpClient,
     private _authService:AuthService,
-    private alertMessage:AlertMessageService 
+    private alertMessage:AlertMessageService,
+    private _firebaseService:FirebaseService,
+    private _auth: AuthService
+    
   ) 
 {
 
@@ -57,7 +61,7 @@ export class EditPage implements OnInit {
 
   this.requiredInfo = formBuilder.group({
     name: ['', Validators.required],
-    category: [''],
+    category: ['',Validators.required],
     poi_latitude:[''],
     poi_longitude:[''],
     image_poi:[''],
@@ -101,12 +105,15 @@ export class EditPage implements OnInit {
           console.log(this.data)
           this.poi_id = this.data.id
           this.requiredInfo.patchValue({
+            category: this.data.category,
             name: this.data.name,
             poi_latitude:  this.index.lat,
             poi_longitude:  this.index.lng,
             image_poi: "",
             event:this.data.event,
-            event_date:this.data.event_date
+            event_date:this.data.event_date,
+            key:this.data.fields[0]["key"],
+            value:this.data.fields[0]["value"]
             });
           }
         
@@ -152,15 +159,20 @@ export class EditPage implements OnInit {
   }
 
   onSubmit(poi_id: any) {
+   
     //update data
     this.poiData = [].concat(this.requiredInfo.value,this.keyValueForm.value,poi_id);
     console.log(this.poiData);
     this._poiService.updateData(this.poiData)
     .subscribe((res: any) => { 
       if(res){ 
-        
+        // update point
+        this._firebaseService.update_user({totalPoints: parseInt(this._authService.getUserPoint()) + 20 },this._authService.getUserId())
+        this._auth.setDataInLocalStorage('user_point', parseInt(this._authService.getUserPoint()) + 20 )
+        this._poiService.updateUserPoint(this._auth.getUserPoint())
         this.alertMessage.presentAlert(res.message)
-        this.router.navigate(['/']) 
+        this.router.navigate(['/'])
+        
       } 
     }, 
     err => { 
@@ -178,6 +190,7 @@ export class EditPage implements OnInit {
       (res) => console.log(res),
       (err) => console.log(err)
     );
+
   }
   isEmpty(obj) {
     for(var prop in obj) {
@@ -242,8 +255,12 @@ export class EditPage implements OnInit {
       this._poiService.saveData(this.poiData)
       .subscribe((res: any) => { 
         if(res){ 
+          this._firebaseService.update_user({totalPoints: parseInt(this._authService.getUserPoint()) + 30 },this._authService.getUserId())
+          this._auth.setDataInLocalStorage('user_point', parseInt(this._authService.getUserPoint()) + 30 )
+          this._poiService.updateUserPoint(this._auth.getUserPoint())
           this.alertMessage.presentAlert(res.message)
-          this.router.navigate(['']) 
+          this.router.navigate(['/'])
+         
         } 
       }, 
       err => { 

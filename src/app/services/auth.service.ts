@@ -1,11 +1,14 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
-  constructor() { 
+  baseUrl = 'http://127.0.0.1:3000/api/v1/';
+  constructor(
+    public http: HttpClient
+  ) { 
   } 
 
   getUserDetails() { 
@@ -29,7 +32,19 @@ export class AuthService {
     return localStorage.getItem('id'); 
   } 
 
+  getUserPoint() { 
+    return localStorage.getItem('user_point'); 
+  } 
+
   clearStorage() { 
       localStorage.clear(); 
   } 
+
+  getUserDetail(){
+    let jwtToken = this.getToken();
+    const headers = { 'Authorization':  jwtToken , 'Content-Type': 'application/json'};
+    return this.http.get(this.baseUrl + '/show',{
+      headers
+    });
+  }
 }

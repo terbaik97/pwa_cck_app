@@ -56,12 +56,16 @@
       <div class="header-content">
         <img src="../assets/badges/contribution.png">
         <ion-label>
-          <h2>Luqman</h2>
-          <p>Total Points: 100</p>
+          <h2>{{nickname}}</h2>
+          <p>Total Points: {{point}}</p>
         </ion-label>
       </div>
       <ion-list class="menu-items" lines="none">
         <ion-menu-toggle>
+          <ion-item routerLink="">
+            <ion-icon name="home-outline" slot="start"></ion-icon>
+            <ion-label>Main menu</ion-label>
+          </ion-item>
           <ion-item routerLink="dashboard">
             <ion-icon name="pie-chart-outline" slot="start"></ion-icon>
             <ion-label>Dashboard</ion-label>
@@ -70,10 +74,10 @@
             <ion-icon name="stats-chart-outline"></ion-icon>
             <ion-label>Chart</ion-label>
           </ion-item>
-          <ion-item routerLink="roles">
+          <!-- <ion-item routerLink="roles">
             <ion-icon name="game-controller-outline"></ion-icon>
             <ion-label>Roles</ion-label>
-          </ion-item>
+          </ion-item> -->
           <ion-item routerLink="leaderboard">
             <ion-icon name="trophy-outline"></ion-icon>
             <ion-label>Leaderboard</ion-label>

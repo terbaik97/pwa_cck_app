@@ -8,75 +8,75 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content >
   <ion-card *ngFor="let data of data">
     <ion-card-header>
-      {{data.whodunnit}}
+          <ion-grid>
+            <ion-row>
+              <ion-col class="headerDate" >
+                <div>
+                  Who did 
+                  <div>{{data.user.full_name}}</div>
+                  <ion-datetime displayFormat="DD-MM-YYYY" value="{{data.created_at}}"></ion-datetime>
+                </div>
+              </ion-col>
+            </ion-row>
+      
+            <ion-row>
+              <ion-col style="text-align: center; background-color:lightblue; color: black;">Before</ion-col>
+              <ion-col></ion-col>
+              <ion-col style="text-align: center;  background-color:lightblue; color: black;">After</ion-col>
+            </ion-row>
+            
+            <ion-row *ngIf="data.object_changes.name ? data.object_changes.name : '' ">
+              <ion-col class="dataChanges" style="text-align: center;"><pre >Name : {{data.object_changes.name[0] | json}}</pre></ion-col>
+              <ion-col></ion-col>
+              <ion-col class="dataChanges" style="text-align: center;"><pre >Name : {{data.object_changes.name[1] | json}}</pre></ion-col>
+            </ion-row>
+      
+            <ion-row *ngIf="data.object_changes.category ? data.object_changes.category : '' ">
+              <ion-col class="dataChanges" style="text-align: center;"> <pre >Category : {{data.object_changes.category[0] | json}}</pre></ion-col>
+              <ion-col></ion-col>
+              <ion-col class="dataChanges" style="text-align: center;"> <pre >Category : {{data.object_changes.category[1] | json}}</pre></ion-col>
+            </ion-row>
+      
+            <ion-row *ngIf="data.object_changes.event ? data.object_changes.event : '' ">
+              <ion-col class="dataChanges" style="text-align: center;"> <pre >Event :  {{data.object_changes.event[0] | json}}</pre></ion-col>
+              <ion-col></ion-col>
+              <ion-col class="dataChanges" style="text-align: center;"> <pre >Event : {{data.object_changes.event[1] | json}}</pre></ion-col>
+            </ion-row>
+      
+            <ion-row *ngIf="data.object_changes.event_date ? data.object_changes.event_date : '' ">
+              <ion-col class="dataChanges" style="text-align: center;"> <pre >Event Date :  {{data.object_changes.event_date[0] | json}}</pre></ion-col>
+              <ion-col></ion-col>
+              <ion-col class="dataChanges" style="text-align: center;"> <pre >Event Date : {{data.object_changes.event_date[1] | json}}</pre></ion-col>
+            </ion-row>
+      
+            <ion-row *ngIf="data.object_changes.fields ? data.object_changes.fields : '' ">
+              <ion-col class="dataChanges" style="text-align: center;"> <pre >Fields :  {{data.object_changes.fields[0] | json}}</pre></ion-col>
+              <ion-col></ion-col>
+              <ion-col class="dataChanges" style="text-align: center;"> <pre> Fields : {{data.object_changes.fields[1] | json}}</pre></ion-col>
+            </ion-row>
+      
+          </ion-grid>
+
+
+
+
+
     </ion-card-header>
     
-        <ion-grid>
-          <ion-row>
-            <ion-col>
-              <div>
-                <ion-card-content>
-                  <ion-badge>Name change</ion-badge>
-                  <!-- <label for="changes-made">Changes name of the place: </label> -->
-                  <div *ngFor="let data of data.object_changes.name;  let i = index">
-                    <div *ngIf="i == 0">
-                      {{data}} => 
-                    </div>
-                    <div *ngIf="i== 1">
-                      {{data}} 
-                    </div>
-                  </div>
-                  <ion-badge>Field change</ion-badge>
-                  <!-- <label for="changes-made">Changes field of the place: </label> -->
-                  <div *ngFor="let data of data.object_changes.fields; let i = index"> 
-                    <div *ngIf="i == 0">
-                      {{data | json}} => 
-                    </div>
-                    <div *ngIf="i== 1">
-                      {{data | json}} 
-                    </div>
-                  </div>
-                  <!-- <label for="changes-made">Changes happened: </label> -->
-                  <div *ngFor="let data of data.object_changes.report_reason;  let i = index">
-                    <div *ngIf="i == 0">
-                      {{data}} => 
-                    </div>
-                    <div *ngIf="i== 1">
-                      {{data}} 
-                    </div>
-                  </div>
-            
-                  <div *ngFor="let data of data.object_changes.is_report;  let i = index">
-                    <div *ngIf="i == 0">
-                      {{data}} => 
-                    </div>
-                    <div *ngIf="i== 1">
-                      {{data}} 
-                    </div>
-                  </div>
-                </ion-card-content>
-                
-            
-
-              </div>
-            </ion-col>
-            <ion-col>
-              <div>
-               
-                
-                <div>{{data.event}}</div>
-                <ion-datetime displayFormat="MMM DD, YYYY HH:mm" value="{{data.created_at}}" display-timezone="utc"></ion-datetime>
-                
-              </div>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
+      
    
   </ion-card>
 
 </ion-content>
+
+
+
+
+
+
+
 
 

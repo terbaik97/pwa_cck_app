@@ -8,6 +8,8 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+
+
   <div class="ion-padding">
 
     <ion-card>
@@ -19,4 +21,378 @@
       </ion-card-content>
     </ion-card>
   </div>
+
+  <ion-select [(ngModel)]="getDay" name="badgesType" placeholder="Select day to view your activity" style="background-color: white;
+  color: rgb(185, 181, 181);
+  width: 10em;
+  left: 1em;">
+    <ion-select-option value="Monday">Monday</ion-select-option>
+    <ion-select-option value="Tuesday">Tuesday</ion-select-option>
+    <ion-select-option value="Wednesday">Wednesday</ion-select-option>
+    <ion-select-option value="Thursday">Thursday</ion-select-option>
+    <ion-select-option value="Friday">Friday</ion-select-option>
+    <ion-select-option value="Saturday">Saturday</ion-select-option>
+    <ion-select-option value="Sunday">Sunday</ion-select-option>
+  </ion-select>
+
+<div *ngIf="getDay == 'Monday'">
+  <ion-card *ngFor="let data of dayMonday">
+    <ion-grid>
+      <ion-row>
+        <ion-col class="headerDate" >
+          <div>
+            <ion-datetime displayFormat="DD-MM-YYYY" value="{{data.created_at}}"></ion-datetime>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col style="text-align: center; background-color:lightblue; color: black;">Before</ion-col>
+        <ion-col></ion-col>
+        <ion-col style="text-align: center;  background-color:lightblue; color: black;">After</ion-col>
+      </ion-row>
+      
+      <ion-row *ngIf="data.object_changes.name ? data.object_changes.name : '' ">
+        <ion-col class="dataChanges" style="text-align: center;"><pre >Name : {{data.object_changes.name[0] | json}}</pre></ion-col>
+        <ion-col></ion-col>
+        <ion-col class="dataChanges" style="text-align: center;"><pre >Name : {{data.object_changes.name[1] | json}}</pre></ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="data.object_changes.category ? data.object_changes.category : '' ">
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Category : {{data.object_changes.category[0] | json}}</pre></ion-col>
+        <ion-col></ion-col>
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Category : {{data.object_changes.category[1] | json}}</pre></ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="data.object_changes.event ? data.object_changes.event : '' ">
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Event :  {{data.object_changes.event[0] | json}}</pre></ion-col>
+        <ion-col></ion-col>
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Event : {{data.object_changes.event[1] | json}}</pre></ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="data.object_changes.event_date ? data.object_changes.event_date : '' ">
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Event Date :  {{data.object_changes.event_date[0] | json}}</pre></ion-col>
+        <ion-col></ion-col>
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Event Date : {{data.object_changes.event_date[1] | json}}</pre></ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="data.object_changes.fields ? data.object_changes.fields : '' ">
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Fields :  {{data.object_changes.fields[0] | json}}</pre></ion-col>
+        <ion-col></ion-col>
+        <ion-col class="dataChanges" style="text-align: center;"> <pre> Fields : {{data.object_changes.fields[1] | json}}</pre></ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </ion-card>
+</div>
+
+
+<div *ngIf="getDay == 'Tuesday'">
+  <ion-card *ngFor="let data of dayTuesday">
+    <ion-grid>
+      <ion-row>
+        <ion-col class="headerDate" >
+          <div>
+            <ion-datetime displayFormat="DD-MM-YYYY" value="{{data.created_at}}"></ion-datetime>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col style="text-align: center; background-color:lightblue; color: black;">Before</ion-col>
+        <ion-col></ion-col>
+        <ion-col style="text-align: center;  background-color:lightblue; color: black;">After</ion-col>
+      </ion-row>
+      
+      <ion-row *ngIf="data.object_changes.name ? data.object_changes.name : '' ">
+        <ion-col class="dataChanges" style="text-align: center;"><pre >Name : {{data.object_changes.name[0] | json}}</pre></ion-col>
+        <ion-col></ion-col>
+        <ion-col class="dataChanges" style="text-align: center;"><pre >Name : {{data.object_changes.name[1] | json}}</pre></ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="data.object_changes.category ? data.object_changes.category : '' ">
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Category : {{data.object_changes.category[0] | json}}</pre></ion-col>
+        <ion-col></ion-col>
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Category : {{data.object_changes.category[1] | json}}</pre></ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="data.object_changes.event ? data.object_changes.event : '' ">
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Event :  {{data.object_changes.event[0] | json}}</pre></ion-col>
+        <ion-col></ion-col>
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Event : {{data.object_changes.event[1] | json}}</pre></ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="data.object_changes.event_date ? data.object_changes.event_date : '' ">
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Event Date :  {{data.object_changes.event_date[0] | json}}</pre></ion-col>
+        <ion-col></ion-col>
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Event Date : {{data.object_changes.event_date[1] | json}}</pre></ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="data.object_changes.fields ? data.object_changes.fields : '' ">
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Fields :  {{data.object_changes.fields[0] | json}}</pre></ion-col>
+        <ion-col></ion-col>
+        <ion-col class="dataChanges" style="text-align: center;"> <pre> Fields : {{data.object_changes.fields[1] | json}}</pre></ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </ion-card>
+</div>
+
+<div *ngIf="getDay == 'Wednesday'">
+  <ion-card *ngFor="let data of dayWednesday">
+    <ion-grid>
+      <ion-row>
+        <ion-col class="headerDate" >
+          <div>
+            <ion-datetime displayFormat="DD-MM-YYYY" value="{{data.created_at}}"></ion-datetime>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col style="text-align: center; background-color:lightblue; color: black;">Before</ion-col>
+        <ion-col></ion-col>
+        <ion-col style="text-align: center;  background-color:lightblue; color: black;">After</ion-col>
+      </ion-row>
+      
+      <ion-row *ngIf="data.object_changes.name ? data.object_changes.name : '' ">
+        <ion-col class="dataChanges" style="text-align: center;"><pre >Name : {{data.object_changes.name[0] | json}}</pre></ion-col>
+        <ion-col></ion-col>
+        <ion-col class="dataChanges" style="text-align: center;"><pre >Name : {{data.object_changes.name[1] | json}}</pre></ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="data.object_changes.category ? data.object_changes.category : '' ">
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Category : {{data.object_changes.category[0] | json}}</pre></ion-col>
+        <ion-col></ion-col>
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Category : {{data.object_changes.category[1] | json}}</pre></ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="data.object_changes.event ? data.object_changes.event : '' ">
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Event :  {{data.object_changes.event[0] | json}}</pre></ion-col>
+        <ion-col></ion-col>
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Event : {{data.object_changes.event[1] | json}}</pre></ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="data.object_changes.event_date ? data.object_changes.event_date : '' ">
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Event Date :  {{data.object_changes.event_date[0] | json}}</pre></ion-col>
+        <ion-col></ion-col>
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Event Date : {{data.object_changes.event_date[1] | json}}</pre></ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="data.object_changes.fields ? data.object_changes.fields : '' ">
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Fields :  {{data.object_changes.fields[0] | json}}</pre></ion-col>
+        <ion-col></ion-col>
+        <ion-col class="dataChanges" style="text-align: center;"> <pre> Fields : {{data.object_changes.fields[1] | json}}</pre></ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </ion-card>
+</div>
+
+<div *ngIf="getDay == 'Thursday'">
+  <ion-card *ngFor="let data of dayThursday">
+    <ion-grid>
+      <ion-row>
+        <ion-col class="headerDate" >
+          <div>
+            <ion-datetime displayFormat="DD-MM-YYYY" value="{{data.created_at}}"></ion-datetime>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col style="text-align: center; background-color:lightblue; color: black;">Before</ion-col>
+        <ion-col></ion-col>
+        <ion-col style="text-align: center;  background-color:lightblue; color: black;">After</ion-col>
+      </ion-row>
+      
+      <ion-row *ngIf="data.object_changes.name ? data.object_changes.name : '' ">
+        <ion-col class="dataChanges" style="text-align: center;"><pre >Name : {{data.object_changes.name[0] | json}}</pre></ion-col>
+        <ion-col></ion-col>
+        <ion-col class="dataChanges" style="text-align: center;"><pre >Name : {{data.object_changes.name[1] | json}}</pre></ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="data.object_changes.category ? data.object_changes.category : '' ">
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Category : {{data.object_changes.category[0] | json}}</pre></ion-col>
+        <ion-col></ion-col>
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Category : {{data.object_changes.category[1] | json}}</pre></ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="data.object_changes.event ? data.object_changes.event : '' ">
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Event :  {{data.object_changes.event[0] | json}}</pre></ion-col>
+        <ion-col></ion-col>
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Event : {{data.object_changes.event[1] | json}}</pre></ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="data.object_changes.event_date ? data.object_changes.event_date : '' ">
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Event Date :  {{data.object_changes.event_date[0] | json}}</pre></ion-col>
+        <ion-col></ion-col>
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Event Date : {{data.object_changes.event_date[1] | json}}</pre></ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="data.object_changes.fields ? data.object_changes.fields : '' ">
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Fields :  {{data.object_changes.fields[0] | json}}</pre></ion-col>
+        <ion-col></ion-col>
+        <ion-col class="dataChanges" style="text-align: center;"> <pre> Fields : {{data.object_changes.fields[1] | json}}</pre></ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </ion-card>
+</div>
+
+<div *ngIf="getDay == 'Friday'">
+  <ion-card *ngFor="let data of dayFriday">
+    <ion-grid>
+      <ion-row>
+        <ion-col class="headerDate" >
+          <div>
+            <ion-datetime displayFormat="DD-MM-YYYY" value="{{data.created_at}}"></ion-datetime>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col style="text-align: center; background-color:lightblue; color: black;">Before</ion-col>
+        <ion-col></ion-col>
+        <ion-col style="text-align: center;  background-color:lightblue; color: black;">After</ion-col>
+      </ion-row>
+      
+      <ion-row *ngIf="data.object_changes.name ? data.object_changes.name : '' ">
+        <ion-col class="dataChanges" style="text-align: center;"><pre >Name : {{data.object_changes.name[0] | json}}</pre></ion-col>
+        <ion-col></ion-col>
+        <ion-col class="dataChanges" style="text-align: center;"><pre >Name : {{data.object_changes.name[1] | json}}</pre></ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="data.object_changes.category ? data.object_changes.category : '' ">
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Category : {{data.object_changes.category[0] | json}}</pre></ion-col>
+        <ion-col></ion-col>
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Category : {{data.object_changes.category[1] | json}}</pre></ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="data.object_changes.event ? data.object_changes.event : '' ">
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Event :  {{data.object_changes.event[0] | json}}</pre></ion-col>
+        <ion-col></ion-col>
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Event : {{data.object_changes.event[1] | json}}</pre></ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="data.object_changes.event_date ? data.object_changes.event_date : '' ">
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Event Date :  {{data.object_changes.event_date[0] | json}}</pre></ion-col>
+        <ion-col></ion-col>
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Event Date : {{data.object_changes.event_date[1] | json}}</pre></ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="data.object_changes.fields ? data.object_changes.fields : '' ">
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Fields :  {{data.object_changes.fields[0] | json}}</pre></ion-col>
+        <ion-col></ion-col>
+        <ion-col class="dataChanges" style="text-align: center;"> <pre> Fields : {{data.object_changes.fields[1] | json}}</pre></ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </ion-card>
+</div>
+
+<div *ngIf="getDay == 'Saturday'">
+  <ion-card *ngFor="let data of daySaturday">
+    <ion-grid>
+      <ion-row>
+        <ion-col class="headerDate" >
+          <div>
+            <ion-datetime displayFormat="DD-MM-YYYY" value="{{data.created_at}}"></ion-datetime>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col style="text-align: center; background-color:lightblue; color: black;">Before</ion-col>
+        <ion-col></ion-col>
+        <ion-col style="text-align: center;  background-color:lightblue; color: black;">After</ion-col>
+      </ion-row>
+      
+      <ion-row *ngIf="data.object_changes.name ? data.object_changes.name : '' ">
+        <ion-col class="dataChanges" style="text-align: center;"><pre >Name : {{data.object_changes.name[0] | json}}</pre></ion-col>
+        <ion-col></ion-col>
+        <ion-col class="dataChanges" style="text-align: center;"><pre >Name : {{data.object_changes.name[1] | json}}</pre></ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="data.object_changes.category ? data.object_changes.category : '' ">
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Category : {{data.object_changes.category[0] | json}}</pre></ion-col>
+        <ion-col></ion-col>
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Category : {{data.object_changes.category[1] | json}}</pre></ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="data.object_changes.event ? data.object_changes.event : '' ">
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Event :  {{data.object_changes.event[0] | json}}</pre></ion-col>
+        <ion-col></ion-col>
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Event : {{data.object_changes.event[1] | json}}</pre></ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="data.object_changes.event_date ? data.object_changes.event_date : '' ">
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Event Date :  {{data.object_changes.event_date[0] | json}}</pre></ion-col>
+        <ion-col></ion-col>
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Event Date : {{data.object_changes.event_date[1] | json}}</pre></ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="data.object_changes.fields ? data.object_changes.fields : '' ">
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Fields :  {{data.object_changes.fields[0] | json}}</pre></ion-col>
+        <ion-col></ion-col>
+        <ion-col class="dataChanges" style="text-align: center;"> <pre> Fields : {{data.object_changes.fields[1] | json}}</pre></ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </ion-card>
+</div>
+
+<div *ngIf="getDay == 'Sunday'">
+  <ion-card *ngFor="let data of daySunday">
+    <ion-grid>
+      <ion-row>
+        <ion-col class="headerDate" >
+          <div>
+            <ion-datetime displayFormat="DD-MM-YYYY" value="{{data.created_at}}"></ion-datetime>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col style="text-align: center; background-color:lightblue; color: black;">Before</ion-col>
+        <ion-col></ion-col>
+        <ion-col style="text-align: center;  background-color:lightblue; color: black;">After</ion-col>
+      </ion-row>
+      
+      <ion-row *ngIf="data.object_changes.name ? data.object_changes.name : '' ">
+        <ion-col class="dataChanges" style="text-align: center;"><pre >Name : {{data.object_changes.name[0] | json}}</pre></ion-col>
+        <ion-col></ion-col>
+        <ion-col class="dataChanges" style="text-align: center;"><pre >Name : {{data.object_changes.name[1] | json}}</pre></ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="data.object_changes.category ? data.object_changes.category : '' ">
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Category : {{data.object_changes.category[0] | json}}</pre></ion-col>
+        <ion-col></ion-col>
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Category : {{data.object_changes.category[1] | json}}</pre></ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="data.object_changes.event ? data.object_changes.event : '' ">
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Event :  {{data.object_changes.event[0] | json}}</pre></ion-col>
+        <ion-col></ion-col>
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Event : {{data.object_changes.event[1] | json}}</pre></ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="data.object_changes.event_date ? data.object_changes.event_date : '' ">
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Event Date :  {{data.object_changes.event_date[0] | json}}</pre></ion-col>
+        <ion-col></ion-col>
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Event Date : {{data.object_changes.event_date[1] | json}}</pre></ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="data.object_changes.fields ? data.object_changes.fields : '' ">
+        <ion-col class="dataChanges" style="text-align: center;"> <pre >Fields :  {{data.object_changes.fields[0] | json}}</pre></ion-col>
+        <ion-col></ion-col>
+        <ion-col class="dataChanges" style="text-align: center;"> <pre> Fields : {{data.object_changes.fields[1] | json}}</pre></ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </ion-card>
+</div>
+
+
+  
 </ion-content>

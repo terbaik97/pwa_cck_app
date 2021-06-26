@@ -1,0 +1,43 @@
+
+
+<div class="container" >
+  <div class="row">
+    <ion-toolbar>
+        <ion-buttons slot="end">
+          <ion-button (click)="dismissModal()">Close</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+      <div class="col-lg-4" *ngFor="let event of event; index as i">
+        <div class="card card-margin" >
+            <div class="card-header no-border">
+                <h5 class="card-title">Event happening</h5>
+            </div>
+            <div class="card-body pt-0">
+                <div class="widget-49">
+                    <div class="widget-49-title-wrapper">
+                        <div class="widget-49-date-primary" >
+                            <ion-datetime displayFormat="DD" value="{{event.event_date}}" display-timezone="utc" disabled></ion-datetime>
+                            <ion-datetime displayFormat="MMM" value="{{event.event_date}}" display-timezone="utc" disabled></ion-datetime>
+                        </div>
+                        <div class="widget-49-meeting-info">
+                            <span class="widget-49-pro-title">{{event.event}}</span>
+                            <span class="widget-49-meeting-time">{{event.name}}</span>
+                        </div>
+                    </div>
+                    <!-- <ol class="widget-49-meeting-points">
+                        <li class="widget-49-meeting-item"><span>Expand module is removed</span></li>
+                        <li class="widget-49-meeting-item"><span>Data migration is in scope</span></li>
+                        <li class="widget-49-meeting-item"><span>Session timeout increase to 30 minutes</span></li>
+                    </ol> -->
+                    <!-- <div class="widget-49-meeting-action">
+                        <a href="#" class="btn btn-sm btn-flash-border-primary">View All</a>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+      
+    
+  </div>
+  </div>

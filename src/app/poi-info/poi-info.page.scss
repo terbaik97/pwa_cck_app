@@ -26,20 +26,20 @@ ion-card {
   text-align: center;
 }
 
-.button-info {
+.button-left {
   width: 160px;
-  height: 60px;
-  margin-right: 100px;
+  height: 40px;
+  margin-right: 70px;
   --vertical-align: middle;
   --padding-start: 10px;
   --padding-end: 10px;
   font-size: 130%;
 }
 
-.button-history {
+.button-right {
   width: 160px;
-  height: 60px;
-  margin-left: 100px;
+  height: 40px;
+  margin-left: -50px;
   --vertical-align: middle;
   --padding-start: 10px;
   --padding-end: 10px;
@@ -53,36 +53,21 @@ ion-card {
 .footerPOI {
   --background: #54d61c;
 }
-.button_info {
-  position: absolute;
-  width: 153.03px;
-  height: 40px;
-  left: 24px;
-  top: 301px;
+// .button_info {
 
-  background: linear-gradient(179.17deg, #597eab 29.07%, #09446c 117.37%);
-  border-radius: 5px;
-}
+// }
 
-.button_history {
-  position: absolute;
-  width: 153.03px;
-  height: 40px;
-  left: 197px;
-  top: 301px;
-}
+// .button_history {
+
+// }
 
 .image_poi {
   padding: 20px;
-  margin: 30px 30px;
+  top: -200px;
 }
 
 .name {
-  position: absolute;
-  width: 242px;
-  height: 18px;
-  left: 24px;
-  top: 371px;
+  margin: 20px;
 
   font-family: Metropolis;
   font-style: normal;
@@ -95,12 +80,7 @@ ion-card {
 }
 
 .fields {
-  position: absolute;
-  width: 342px;
-  height: 84px;
-  left: 24px;
-  top: 399px;
-
+  margin: 20px;
   font-family: Metropolis;
   font-style: normal;
   font-weight: 500;
@@ -114,11 +94,7 @@ ion-card {
 }
 
 .event {
-  position: absolute;
-  width: 327px;
-  height: 42px;
-  left: 24px;
-  top: 493px;
+  margin: 20px;
 }
 
 .coordinate {
@@ -211,6 +187,6 @@ ion-card {
 .card {
   box-shadow: 0 0 6px 3px rgb(241 241 241 / 86%),
     0 1px 10px 5px rgb(0 0 0 / 20%);
-  margin-bottom: 1rem;
-  top: 580px;
+  margin: 20px;
+  text-align: centre;
 }

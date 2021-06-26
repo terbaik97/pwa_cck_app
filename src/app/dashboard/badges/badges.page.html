@@ -12,7 +12,7 @@
   <ion-card class="bigSection">
     <ion-row class="headerBadges">
       <ion-col>
-        <ion-card class="headerBadgesCard"><ion-card-title class="headerBadge">Login</ion-card-title></ion-card>
+        <ion-card class="headerBadgesCard"><ion-card-title class="headerBadge">Add new place</ion-card-title></ion-card>
       </ion-col>
       <ion-col >
      </ion-col>
@@ -25,14 +25,16 @@
           <ion-card-content>
             <ion-row>
               <ion-col size="8">
-                <ion-card-subtitle class="no">#001</ion-card-subtitle>
+                <!-- <ion-card-subtitle class="no">#001</ion-card-subtitle> -->
                 <ion-card-title>Beginner</ion-card-title>
                 <ion-card-subtitle >
                   <ion-badge class="cardSub">
-                    <h2>Login (1) time</h2>
+                    <h2>Create (1) time</h2>
                   </ion-badge>
                 </ion-card-subtitle>
-                <ion-button disabled={{buttonClaimedLogin1}} class="claimModal" color="light" (click)="toClaimLoginModal1()">Claim</ion-button>
+                <ion-button *ngIf="buttonClaimedLogin1 == ''" class="claimModal" color="light" (click)="toClaimLoginModal1()">Claim</ion-button>
+                <ion-button disabled *ngIf="buttonClaimedLogin1 == true" class="claimModal" color="light" (click)="toClaimLogModal1()">Claim</ion-button>
+                <!-- <ion-button disabled *ngIf="buttonClaimedLogin1 == false" class="claimModal" color="light" >Already Claim</ion-button> -->
               </ion-col>
               <ion-col size="4">
                 <ion-img class="loginImage" src="assets/badges/login.png"></ion-img>
@@ -48,14 +50,15 @@
           <ion-card-content>
             <ion-row>
               <ion-col size="8">
-                <ion-card-subtitle class="no">#002</ion-card-subtitle>
+                <!-- <ion-card-subtitle class="no">#002</ion-card-subtitle> -->
                 <ion-card-title>Intermediate</ion-card-title>
                 <ion-card-subtitle >
                   <ion-badge class="cardSub">
-                    <h2>Login (7) times</h2>
+                    <h2>Create (7) times</h2>
                   </ion-badge>
                 </ion-card-subtitle>
-                <ion-button disabled={{buttonClaimedLogin2}} class="claimModal" color="light" (click)="toClaimLoginModal2()">Claim</ion-button>
+                <ion-button *ngIf="buttonClaimedLogin2 == ''" class="claimModal" color="light" (click)="toClaimLoginModal2()">Claim</ion-button>
+                <ion-button disabled *ngIf="buttonClaimedLogin2 == true" class="claimModal" color="light" (click)="toClaimLogModal2()">Claim</ion-button>
               </ion-col>
               <ion-col size="4">
                 <ion-img class="loginImage" src="assets/badges/login.png"></ion-img>
@@ -73,14 +76,15 @@
           <ion-card-content>
             <ion-row>
               <ion-col size="8">
-                <ion-card-subtitle class="no">#003</ion-card-subtitle>
+                <!-- <ion-card-subtitle class="no">#003</ion-card-subtitle> -->
                 <ion-card-title>Expert</ion-card-title>
                 <ion-card-subtitle >
                   <ion-badge class="cardSub">
-                    <h2>Login (30) times</h2>
+                    <h2>Create (30) times</h2>
                   </ion-badge>
                 </ion-card-subtitle>
-                <ion-button disabled={{buttonClaimedLogin3}} class="claimModal" color="light" (click)="toClaimLoginModal3()">Claim</ion-button>
+                <ion-button *ngIf="buttonClaimedLogin3 == ''" class="claimModal" color="light" (click)="toClaimLoginModal3()">Claim</ion-button>
+                <ion-button disabled *ngIf="buttonClaimedLogin3 == true" class="claimModal" color="light" (click)="toClaimLogModal3()">Claim</ion-button>
               </ion-col>
               <ion-col size="4">
                 <ion-img class="loginImage" src="assets/badges/login.png"></ion-img>
@@ -96,14 +100,16 @@
           <ion-card-content>
             <ion-row>
               <ion-col size="8">
-                <ion-card-subtitle class="no">#004</ion-card-subtitle>
+                <!-- <ion-card-subtitle class="no">#004</ion-card-subtitle> -->
                 <ion-card-title>Perfect</ion-card-title>
                 <ion-card-subtitle >
                   <ion-badge class="cardSub">
-                    <h2>Login (90) times</h2>
+                    <h2>Create (90) times</h2>
                   </ion-badge>
                 </ion-card-subtitle>
-                <ion-button disabled={{buttonClaimedLogin4}} class="claimModal" color="light" (click)="toClaimLoginModal4()">Claim</ion-button>
+                <ion-button *ngIf="buttonClaimedLogin4 == ''" class="claimModal" color="light" (click)="toClaimLoginModal1()">Claim</ion-button>
+                <ion-button disabled *ngIf="buttonClaimedLogin4 == true" class="claimModal" color="light" (click)="toClaimLogModal4()">Claim</ion-button>
+                
               </ion-col>
               <ion-col size="4">
                 <ion-img class="loginImage" src="assets/badges/login.png"></ion-img>
@@ -135,14 +141,15 @@
         <ion-card-content>
           <ion-row>
             <ion-col size="8">
-              <ion-card-subtitle class="no">#001</ion-card-subtitle>
+              <!-- <ion-card-subtitle class="no">#001</ion-card-subtitle> -->
               <ion-card-title>Beginner</ion-card-title>
               <ion-card-subtitle >
                 <ion-badge class="cardSub">
                   <h2>Edit POI (1) time</h2>
                 </ion-badge>
               </ion-card-subtitle>
-              <ion-button disabled={{buttonClaimedCont1}} class="claimModal" color="light" (click)="toClaimContModal1()">Claim</ion-button>
+              <ion-button *ngIf="buttonClaimedCont1 == ''" class="claimModal" color="light" (click)="toClaimContModal1()">Claim</ion-button>
+              <ion-button disabled *ngIf="buttonClaimedCont1 == true" class="claimModal" color="light" (click)="toClaimContModal1()">Claim</ion-button>
             </ion-col>
             <ion-col size="4">
               <ion-img class="contributionImage" src="assets/badges/contribution.png"></ion-img>
@@ -158,14 +165,15 @@
         <ion-card-content>
           <ion-row>
             <ion-col size="8">
-              <ion-card-subtitle class="no">#002</ion-card-subtitle>
+              <!-- <ion-card-subtitle class="no">#002</ion-card-subtitle> -->
               <ion-card-title>Intermediate</ion-card-title>
               <ion-card-subtitle >
                 <ion-badge class="cardSub">
                   <h2>Edit POI (20) times</h2>
                 </ion-badge>
               </ion-card-subtitle>
-              <ion-button disabled={{buttonClaimedCont2}} class="claimModal" color="light" (click)="toClaimContModal2()">Claim</ion-button>
+              <ion-button *ngIf="buttonClaimedCont2 == ''" class="claimModal" color="light" (click)="toClaimContModal2()">Claim</ion-button>
+              <ion-button disabled *ngIf="buttonClaimedCont2 == true" class="claimModal" color="light" (click)="toClaimContModal2()">Claim</ion-button>
             </ion-col>
             <ion-col size="4">
               <ion-img class="contributionImage" src="assets/badges/contribution.png"></ion-img>
@@ -183,14 +191,15 @@
         <ion-card-content>
           <ion-row>
             <ion-col size="8">
-              <ion-card-subtitle class="no">#003</ion-card-subtitle>
+              <!-- <ion-card-subtitle class="no">#003</ion-card-subtitle> -->
               <ion-card-title>Expert</ion-card-title>
               <ion-card-subtitle >
                 <ion-badge class="cardSub">
                   <h2>Edit POI (60) times</h2>
                 </ion-badge>
               </ion-card-subtitle>
-              <ion-button disabled={{buttonClaimedCont3}} class="claimModal" color="light" (click)="toClaimContModal3()">Claim</ion-button>
+              <ion-button *ngIf="buttonClaimedCont3 == ''" class="claimModal" color="light" (click)="toClaimContModal3()">Claim</ion-button>
+              <ion-button disabled *ngIf="buttonClaimedCont3 == true" class="claimModal" color="light" (click)="toClaimContModal3()">Claim</ion-button>
             </ion-col>
             <ion-col size="4">
               <ion-img class="contributionImage" src="assets/badges/contribution.png"></ion-img>
@@ -206,14 +215,16 @@
         <ion-card-content>
           <ion-row>
             <ion-col size="8">
-              <ion-card-subtitle class="no">#004</ion-card-subtitle>
+              <!-- <ion-card-subtitle class="no">#004</ion-card-subtitle> -->
               <ion-card-title>Perfect</ion-card-title>
               <ion-card-subtitle >
                 <ion-badge class="cardSub">
                   <h2>Edit POI (100) times</h2>
                 </ion-badge>
               </ion-card-subtitle>
-              <ion-button disabled={{buttonClaimedCont4}} class="claimModal" color="light" (click)="toClaimContModal4()">Claim</ion-button>
+              
+              <ion-button *ngIf="buttonClaimedCont4 == ''" class="claimModal" color="light" (click)="toClaimContModal4()">Claim</ion-button>
+              <ion-button disabled *ngIf="buttonClaimedCont4 == true" class="claimModal" color="light" (click)="toClaimContModal4()">Claim</ion-button>
             </ion-col>
             <ion-col size="4">
               <ion-img  class="contributionImage" src="assets/badges/contribution.png"></ion-img>

@@ -8,12 +8,24 @@ import { HistoryPageRoutingModule } from './history-routing.module';
 
 import { HistoryPage } from './history.page';
 
+import { NgCircleProgressModule } from 'ng-circle-progress';
+
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    HistoryPageRoutingModule
+    HistoryPageRoutingModule,
+    NgCircleProgressModule.forRoot({
+      "clockwise": false,
+      "unitsFontSize":"40",
+      "titleFontSize": "57",
+      "subtitleFontSize": "25",
+      "titleColor":"#3880FF",
+      "unitsColor":"#3880FF",
+      "outerStrokeLinecap":"round",
+    })
   ],
   declarations: [HistoryPage]
 })

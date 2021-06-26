@@ -1,6 +1,21 @@
 import {  Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Chart from 'chart.js/auto';
+import { FirebaseService } from 'src/app/services/firebase.service';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AuthService } from 'src/app/services/auth.service';
+import { element } from 'protractor';
+import { HttpClient } from '@angular/common/http';
+
+const days = [
+  'Sun',
+  'Mon',
+  'Tue',
+  'Wed',
+  'Thu',
+  'Fri',
+  'Sat'
+]
 
 @Component({
   selector: 'app-chart',
@@ -9,36 +24,50 @@ import Chart from 'chart.js/auto';
 })
 export class ChartPage implements OnInit {
   public chartItem: any[] = [];
-  public chartWeekData: any;
+  public chartWeekData={};
+  public chartDaily: any[] = [];
+  updatePoints=[];
+  convertedDate=[];
+  convertedDay=[];
+  colledtedDay={
+    Sun:0,
+    Mon:0,
+    Tue:0,
+    Wed:0,
+    Thu:0,
+    Fri:0,
+    Sat:0
+  };
+  name = this._authService.getUserNickname();
   @ViewChild('barCanvas') private barCanvas: ElementRef;
 
   barChart: any;
+  public array: any[] = [];
+  public array2: any[] =[];
+  dayMonday= [];
+  dayTuesday= [];
+  dayWednesday= [];
+  dayThursday= [];
+  dayFriday= [];
+  daySaturday= [];
+  daySunday= [];
+  getDay = 'Monday';
+  constructor(
+    private route: Router,
+    private firebaseService: FirebaseService,
+    private firestore: AngularFirestore,
+    private _authService:AuthService,
+    public http: HttpClient ) {
 
-  constructor(private route: Router) { }
+ 
+  }
 
-  //if local storage empty, will set default data
   ngOnInit() {
-    this.refresh();
-    //Store first POI Data
-    if (this.chartItem == null) {
-      localStorage.setItem("addChartData", JSON.stringify([{
-        "chartID": '', "Sun": '', "Mon": '', "Tue": '', "Wed": '', "Thu": '', "Fri": '', "Sat": '' }]))
-      this.refresh();
-    }
 
-    this.chartWeekData = this.chartItem[1];
+    this.getUserActivity()
   }
 
-  //retrieve data from local storage
-  refresh() {
-    this.chartItem = JSON.parse(localStorage.getItem("addChartData"));
-  }
-
-  //initialize chart
-  ngAfterViewInit() {
-    this.barChartMethod();
-    // this.addData();
-  }
+  ngAfterViewInit() {}
 
   //chart code
   barChartMethod() {
@@ -48,13 +77,14 @@ export class ChartPage implements OnInit {
         labels: ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'],
         datasets: [{
           data: [
-            this.chartWeekData.Sun,
-            this.chartWeekData.Mon,
-            this.chartWeekData.Tue,
-            this.chartWeekData.Wed,
-            this.chartWeekData.Thu,
-            this.chartWeekData.Fri,
-            this.chartWeekData.Sat],
+            this.colledtedDay.Sun,
+            this.colledtedDay.Mon,
+            this.colledtedDay.Tue,
+            this.colledtedDay.Wed,
+            this.colledtedDay.Thu,
+            this.colledtedDay.Fri,
+            this.colledtedDay.Sat,
+            ],
           backgroundColor: [
             'rgb(255,0,0,0.2)',
             'rgb(255,165,0,0.2)',
@@ -91,22 +121,70 @@ export class ChartPage implements OnInit {
     });
   }
 
-//add dummy data
-//   addData(){
-//     if (this.chartItem !== null && this.chartItem.length>0){
-//       this.chartItem.push(
-//         {
-//           chartID: 1,
-//           Sun: 8,
-//           Mon: 3,
-//           Tue: 2,
-//           Wed: 1,
-//           Thu: 4,
-//           Fri: 4,
-//           Sat: 7,
-//         }
-//       );
-//       localStorage.setItem("addChartData", JSON.stringify(this.chartItem));
-//     }
-//   }
+  
+
+  getUserActivity(){
+    let jwtToken = this._authService.getToken();
+    const headers = { 'Authorization':  jwtToken };
+    this.http.get("http://127.0.0.1:3000/api/v1/user_actions?user_id=" + this._authService.getUserId(),{headers}).subscribe((res:any)=>{
+      console.log(res.data);
+      this.countData(res.data);
+    });
+  }
+
+  countData(data: any){
+    console.log(data.length);
+ // console.log(this.chartDaily);
+  this.chartDaily = data
+ for(let i = 0; i < this.chartDaily.length; i++){
+  this.updatePoints.push(this.chartDaily[i].created_at);
+}
+
+//convert string date into ISO date format
+console.log(this.updatePoints);
+for(let i = 0; i < this.updatePoints.length; i++){
+  this.convertedDate.push(new Date(this.updatePoints[i]));
+}
+
+//get day
+for(let i = 0; i < this.convertedDate.length; i++){
+  this.convertedDay.push(days[this.convertedDate[i].getDay()]);
+}
+console.log(this.convertedDay)
+
+//collect days from array
+for(let i = 0; i < this.convertedDay.length; i++){
+  // console.log(this.convertedDate);
+  if(this.convertedDay[i] === 'Sun'){
+    this.daySunday.push(this.chartDaily[i]);
+    this.colledtedDay.Sun+=1;
+  }
+  if(this.convertedDay[i] === 'Mon'){
+    this.chartDaily[i]['created_at'] = this.convertedDate[i]
+    this.dayMonday.push(this.chartDaily[i]);
+    this.colledtedDay.Mon+=1;
+  }
+  if(this.convertedDay[i] === 'Tue'){
+    this.dayTuesday.push(this.chartDaily[i]);
+    this.colledtedDay.Tue+=1;
+  }
+  if(this.convertedDay[i] === 'Wed'){
+    this.dayWednesday.push(this.chartDaily[i]);
+    this.colledtedDay.Wed+=1;
+  }
+  if(this.convertedDay[i] === 'Thu'){
+    this.dayThursday.push(this.chartDaily[i]);
+    this.colledtedDay.Thu+=1;
+  }
+  if(this.convertedDay[i] === 'Fri'){
+    this.dayFriday.push(this.chartDaily[i]);
+    this.colledtedDay.Fri+=1;
+  }
+  if(this.convertedDay[i] === 'Sat'){
+    this.daySaturday.push(this.chartDaily[i]);
+    this.colledtedDay.Sat+=1;
+  }
+}
+  this.barChartMethod();
+  }
 }

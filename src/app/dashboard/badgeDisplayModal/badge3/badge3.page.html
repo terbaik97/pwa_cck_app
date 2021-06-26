@@ -9,28 +9,52 @@
     <ion-list >
       <ion-radio-group value="badge3" [formControl]="borderForm.controls['borderChosen3']">
 
-        <ion-item class="badge3" >
+        <ion-item *ngIf="usableBadge1" class="badge3" >
           <ion-img class="loginImage" src="assets/badges/login.png"></ion-img>
           <ion-img class="loginImageBorder" src="assets/badges/border1.png"></ion-img>
           <ion-radio class="badgeRadio" slot="start" value="badge1"></ion-radio>
         </ion-item>
 
-        <ion-item>
+        <ion-item *ngIf="usableBadge2">
           <ion-img class="loginImage" src="assets/badges/login.png"></ion-img>
           <ion-img class="loginImageBorder" src="assets/badges/border2.png"></ion-img>
           <ion-radio slot="start" value="badge2"></ion-radio>
         </ion-item>
 
-        <ion-item>
+        <ion-item *ngIf="usableBadge3">
           <ion-img class="loginImage" src="assets/badges/login.png"></ion-img>
           <ion-img class="loginImageBorder" src="assets/badges/border3.png"></ion-img>
           <ion-radio slot="start" value="badge3"></ion-radio>
         </ion-item>
 
-        <ion-item>
+        <ion-item *ngIf="usableBadge4">
           <ion-img class="loginImage" src="assets/badges/login.png"></ion-img>
           <ion-img class="loginImageBorder" src="assets/badges/border4.png"></ion-img>
           <ion-radio slot="start" value="badge4"></ion-radio>
+        </ion-item>
+
+        <ion-item *ngIf="usableBadge5">
+          <ion-img class="loginImage" src="assets/badges/contribution.png"></ion-img>
+          <ion-img class="loginImageBorder" src="assets/badges/border1.png"></ion-img>
+          <ion-radio slot="start" value="badge5"></ion-radio>
+        </ion-item>
+
+        <ion-item *ngIf="usableBadge6">
+          <ion-img class="loginImage" src="assets/badges/contribution.png"></ion-img>
+          <ion-img class="loginImageBorder" src="assets/badges/border2.png"></ion-img>
+          <ion-radio slot="start" value="badge6"></ion-radio>
+        </ion-item>
+
+        <ion-item *ngIf="usableBadge7">
+          <ion-img class="loginImage" src="assets/badges/contribution.png"></ion-img>
+          <ion-img class="loginImageBorder" src="assets/badges/border3.png"></ion-img>
+          <ion-radio slot="start" value="badge7"></ion-radio>
+        </ion-item>
+
+        <ion-item *ngIf="usableBadge8">
+          <ion-img class="loginImage" src="assets/badges/contribution.png"></ion-img>
+          <ion-img class="loginImageBorder" src="assets/badges/border4.png"></ion-img>
+          <ion-radio slot="start" value="badge8"></ion-radio>
         </ion-item>
       </ion-radio-group>
       <ion-button expand="full" color="primary" (click)="save()">Submit Info</ion-button>

@@ -1,7 +1,16 @@
-ion-content{
-    --ion-background-color:#111D12;
+ion-content {
+  --ion-background-color: #111d12;
 }
 
-ion-card{
-    --ion-background-color:white;
+ion-card {
+  --ion-background-color: white;
+}
+
+.headerDate {
+  background-color: lightgrey;
+}
+
+.dataChanges {
+  background-color: lightcyan;
+  border-bottom: 1px solid black;
 }

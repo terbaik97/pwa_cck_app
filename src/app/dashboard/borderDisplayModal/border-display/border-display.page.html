@@ -10,11 +10,16 @@
       <ion-radio-group value="border1" [formControl]="borderForm.controls['borderDisplayChosen']">
 
         <ion-item class="border">
+          <ion-img class="loginImageBorder" src="assets/border/golden.png"></ion-img>
+          <ion-radio class="badgeRadio" slot="start" value="default"></ion-radio>
+        </ion-item>
+
+        <ion-item class="border" *ngIf="usableBorder">
           <ion-img class="loginImageBorder" src="assets/border/pinkBorder.png"></ion-img>
           <ion-radio class="badgeRadio" slot="start" value="badge1"></ion-radio>
         </ion-item>
 
-        <ion-item>
+        <ion-item *ngIf="usableBorder2">
           <ion-img class="loginImageBorder"  src="assets/border/glowBorder.png"></ion-img>
           <ion-radio slot="start" value="badge2"></ion-radio>
         </ion-item>

@@ -13,8 +13,9 @@ ion-content {
 .imgA1 {
   z-index: 3;
   position: absolute;
-  bottom: 0px;
-  left: 0px;
+  bottom: 50px;
+  left: 52px;
+  width: 200px;
 }
 .imgB1 {
   z-index: 1;
@@ -65,9 +66,9 @@ ion-content {
 .imgContentA {
   position: absolute;
   z-index: 4;
-  bottom: -250px;
-  left: 0px;
-  width: 50%;
+  bottom: -215px;
+  left: 40px;
+  width: 200px;
 }
 
 .imgContentB {
@@ -75,6 +76,14 @@ ion-content {
   z-index: 3;
   bottom: -250px;
   left: 0px;
+  width: 50%;
+}
+
+.imgContentC {
+  position: absolute;
+  z-index: 3;
+  bottom: -250px;
+  left: 300px;
   width: 50%;
 }
 

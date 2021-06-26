@@ -6,8 +6,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from "@angular/router";
 import { IonicModule } from '@ionic/angular';
 import { DashboardPageRoutingModule } from './dashboard-routing.module';
-
 import { DashboardPage } from './dashboard.page';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 const routes: Routes = [
   {
@@ -28,6 +28,15 @@ const routes: Routes = [
     DashboardPageRoutingModule,
     RouterModule.forChild(routes),
     ReactiveFormsModule,
+    NgCircleProgressModule.forRoot({
+      "clockwise": false,
+      "unitsFontSize":"40",
+      "titleFontSize": "57",
+      "subtitleFontSize": "25",
+      "titleColor":"#3880FF",
+      "unitsColor":"#3880FF",
+      "outerStrokeLinecap":"round",
+    })
   ],
   declarations: [DashboardPage,]
 })
